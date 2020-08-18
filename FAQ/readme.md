@@ -16,9 +16,14 @@ qdevops -i -a
   * Make sure *Windows Authentication pattern* is 'Windows'
 ![Commands](VirtualProxy.png)
 
-* Check qdevops server configuration, located by default at <qdevops dir>\servers
+* Check qdevops server configuration, located by default at '\<qdevops dir>\servers'
   * Make sure the *host* does not ends with '/'
   * The proxy (virtual) is correct
   * *user* is in the format 'DOMAIN\USER'. It's showing '\\\\' because is a json file.
   * *useticket* is set to 'false'. This feature will be implemented.
 ![Commands](ServerConfig.png)
+
+* If everything is ok, the following command should show the apps from your server:
+```
+qdevops -u=<your-server-file.txt> -l
+```

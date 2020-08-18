@@ -12,10 +12,15 @@ By the way, you can create your own functions.
 qdevops -u=desktop -l
 ```
 #### Add a Qlik Sense Server reference file
+This command will ask individually for each parameter need to connect to Qlik Sense. These parameters will be saved on JSON format, under '.\servers' folder.
+```
+qdevops -i -a
+```
 This command create a master.txt file with connection information that can be used later
 ```
 qdevops -a=master.txt,MyDomain\MyUser,MyPass,https://myserver.domain.com/
 ```
+
 
 #### Export variables from a server
 ```
