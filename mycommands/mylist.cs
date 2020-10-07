@@ -20,7 +20,8 @@ public class mylist : iqlikcommand
 	}
 	public string CommandId => "mylist";
 	public bool WillExecute { get; set; }
-	public string Content { get; set; }
+	public List<string> Content { get; set; }
+	public int TimesToExecute { get; set; }
 	public int Priority { get; set; } = 10;
 
 	public void Execute(JObject args, qlikcommandconfig conf)
