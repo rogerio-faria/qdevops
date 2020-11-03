@@ -45,9 +45,9 @@ public class mylist : iqlikcommand
 {
 	public string CommandId => "w|mylist";
 	public string HelpTip => "TEST - List all Apps from current Qlik server";
-	public void Execute((JObject args, ref ILocation loc, qlikcommandconfig conf))
+	public void Execute((JObject args, qlikcommandconfig conf))
 	{
-		IEnumerable<IAppIdentifier> apps_info = loc.GetAppIdentifiers();
+		IEnumerable<IAppIdentifier> apps_info = conf.loc.GetAppIdentifiers();
 		foreach (var item in apps_info)
 		{
 			Console.WriteLine($"TEST - {item.AppId}");
