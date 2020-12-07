@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StyleMerge</name>
+    </assembly>
+    <members>
+        <member name="T:StyleMerge.RuleTuple">
+            <summary>
+            A selector, with specificity, and declarations.
+            </summary>
+        </member>
+        <member name="T:StyleMerge.Inliner">
+            <summary>
+            The primary entry point of this library. Use "ProcessHtml" for all your email inlining needs.
+            </summary>
+        </member>
+        <member name="M:StyleMerge.Inliner.ProcessHtml(System.String)">
+            <summary>
+            Accepts a string of HTML and produces a string of HTML with styles inlined.
+            </summary>
+            <param name="sourceHtml"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StyleMerge.InliningException">
+            <summary>
+            Indicates an issue with the HTML where we cannot parse it, or we are unable to handle a rule defined by the CSS to be inlined.
+            </summary>
+        </member>
+    </members>
+</doc>

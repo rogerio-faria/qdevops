@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Qlik.Engine.Extensions</name>
+    </assembly>
+    <members>
+        <member name="M:Qlik.Engine.Extensions.DataPageExtensions.Transform``1(Qlik.Engine.NxDataPage,System.Func{Qlik.Engine.NxCellRows,``0})">
+            <summary>
+            Delegate that will act on the NxDataPage 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="transform">A method</param>
+            <returns></returns>
+        </member>
+        <member name="M:Qlik.Engine.Extensions.DataPageExtensions.AllCells(Qlik.Engine.NxDataPage)">
+            <summary>
+            Returns a list och rows from the NxDataPage
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Qlik.Engine.Extensions.DataPageExtensions.IsNumeric(Qlik.Engine.NxCell)">
+            <summary>
+            Check id cell is numeric
+            </summary>
+            <param name="source">NxCell</param>
+            <returns></returns>
+        </member>
+        <member name="M:Qlik.Engine.Extensions.ScriptExtensions.GetCommonOperationsScript(Qlik.Engine.IApp)">
+            <summary>
+            Returns a the script for commonoperations with fields and inline data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Qlik.Engine.Extensions.SizeExtensions.AsPage(Qlik.Engine.ISize,System.Int32)">
+            <summary>
+            Gets a NxPage.
+            </summary>
+            <param name="size">The size of the page</param>
+            <param name="maxHeight">Maximum height, default is 50</param>
+            <returns>The page</returns>
+        </member>
+        <member name="M:Qlik.Engine.Extensions.SizeExtensions.AsSize(Qlik.Engine.INxPage)">
+            <summary>
+            Gets a ISize for the NxPage
+            </summary>
+            <param name="page">The NxPage</param>
+            <returns>Size of the page</returns>
+        </member>
+        <member name="M:Qlik.Engine.Extensions.StructureExpressionExtensions.If``1(``0,System.String,Qlik.Engine.AbstractStructure,Qlik.Engine.AbstractStructure)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="container"></param>
+            <param name="expression"></param>
+            <param name="thenContent"></param>
+            <param name="elseContent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Qlik.Engine.Extensions.UrlExtensions.SingleUrl(Qlik.Engine.IGenericObject,Qlik.Engine.Extensions.VisualizationOptions,Qlik.Engine.Extensions.CallbackOptions)">
+            <summary>
+            Returns an Uri for the single mashup
+            </summary>
+            <param name="genericObject"></param>
+            <param name="options">VisualizationOptions</param>
+            <param name="callback">Callback</param>
+            <returns></returns>
+        </member>
+        <member name="M:Qlik.Engine.Extensions.UrlExtensions.SingleUrl(Qlik.Engine.ILocation,Qlik.Engine.IAppIdentifier,System.String,Qlik.Engine.Extensions.VisualizationOptions,Qlik.Engine.Extensions.CallbackOptions,Qlik.Engine.ISession)">
+            <summary>
+            Returns an Uri for the single mashup.
+            This method opens a temporary websocket connection.
+            </summary>
+            <param name="location"></param>
+            <param name="appIdentifier">Token to identify an unique app</param>
+            <param name="objectIdentifier">Token to identify an unique object in an app</param>
+            <param name="options">VisualizationOptions</param>
+            <param name="callback">Callback</param>
+            <param name="session">Defines a specific app session, that can be connected to.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Qlik.Engine.Extensions.VisualizationOptions">
+            <summary>
+            Visualization options for the single mashup
+            </summary>
+        </member>
+        <member name="F:Qlik.Engine.Extensions.VisualizationOptions.None">
+            <summary>
+            No options
+            </summary>
+        </member>
+        <member name="F:Qlik.Engine.Extensions.VisualizationOptions.CurrentSelection">
+            <summary>
+            Show current selections
+            </summary>
+        </member>
+        <member name="F:Qlik.Engine.Extensions.VisualizationOptions.Debug">
+            <summary>
+            Set single to debug mode
+            </summary>
+        </member>
+        <member name="F:Qlik.Engine.Extensions.VisualizationOptions.NoAnimate">
+            <summary>
+            Do not animate object
+            </summary>
+        </member>
+        <member name="T:Qlik.Engine.Extensions.CallbackOptions">
+            <summary>
+            Callback options for the single mashup
+            </summary>
+        </member>
+        <member name="F:Qlik.Engine.Extensions.CallbackOptions.None">
+            <summary>
+            No callbacks
+            </summary>
+        </member>
+        <member name="F:Qlik.Engine.Extensions.CallbackOptions.InternetExplorer">
+            <summary>
+            Callbacks activated when using Internet Explorer.
+            </summary>
+        </member>
+        <member name="F:Qlik.Engine.Extensions.CallbackOptions.Others">
+            <summary>
+            Callbacks activated when using other browsers than Internet Explorer.
+            </summary>
+        </member>
+    </members>
+</doc>
