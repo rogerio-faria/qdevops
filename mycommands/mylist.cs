@@ -19,10 +19,10 @@ public class mylist : iqlikcommand
 		}
 	}
 	public string CommandId => "mylist";
-	public bool WillExecute { get; set; }
 	public List<string> Content { get; set; }
-	public int TimesToExecute { get; set; }
-	public int Priority { get; set; } = 10;
+	public string Name => "My list command";
+	public string Group => "Application";
+	public int ListOrder { get; set; }
 
 	public void Execute(JObject args, qlikcommandconfig conf)
 	{
@@ -38,8 +38,5 @@ public class mylist : iqlikcommand
 			Console.WriteLine($"TEST - {item.AppId}");
 		}
 	}
-
-
-
 }
 
