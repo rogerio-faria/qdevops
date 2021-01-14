@@ -37,11 +37,11 @@ C# Example
 ```csharp
 using System;
 using System.IO;
-using qdevopsbase.server;
+using QDevOpsBase.Server;
 using Qlik.Engine;
 using System.Collections.Generic;
 
-public class mylist : iqlikcommand
+public class mylist : IQlikCommand
 {
 	public string CommandId => "w|mylist";
 	public string HelpTip => "TEST - List all Apps from current Qlik server";

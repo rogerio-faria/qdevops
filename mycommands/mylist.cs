@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
-using qdevopsbase.server;
+using QDevOpsBase.Server;
 using Qlik.Engine;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
-public class mylist : iqlikcommand
+public class mylist : IQlikCommand
 {
 	public qlikcommandparameters Params
 	{
