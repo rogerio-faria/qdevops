@@ -18,7 +18,7 @@ qdevops -i -a
 ```
 This command create a master.txt file with connection information that can be used later
 ```
-qdevops -a=master.txt,MyDomain\MyUser,MyPass,https://myserver.domain.com/
+qdevops -a=master.txt,https://myserver.domain.com/,qproxy,login,MyDomain\MyUser,MyPass
 ```
 
 
@@ -26,6 +26,27 @@ qdevops -a=master.txt,MyDomain\MyUser,MyPass,https://myserver.domain.com/
 ```
 qdevops -u=master.txt -v=export,dbc91f77-ec37-4b01-9fe8-9241423aaac8,vars.txt
 ```
+
+
+
+#### Save all scripts, master items and chart objects to a folder
+```
+qdevops -u=master.txt -s=c:\qlik-scripts\,gsmdvo
+```
+
+
+#### Check all command options
+```
+qdevops -h=<COMMAND>
+```
+
+#### Got a Key, Activated it
+```
+qdevops -key=activate,<GET-AT-QDEVOPS.DESQ.COM.BR>
+```
+
+
+
 
 ## Creating your own functions
 Create your file like the the example and put it at 'mycommands' folder, than use 
@@ -40,17 +61,42 @@ using System.IO;
 using QDevOpsBase.Server;
 using Qlik.Engine;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+using QDevOpsBase.Utils;
 
-public class mylist : IQlikCommand
+public class mylist : ICommand
 {
-	public string CommandId => "w|mylist";
-	public string HelpTip => "TEST - List all Apps from current Qlik server";
-	public void Execute((JObject args, qlikcommandconfig conf))
+	public CommandsParameters Params
 	{
-		IEnumerable<IAppIdentifier> apps_info = conf.loc.GetAppIdentifiers();
+		get
+		{
+			return new CommandsParameters()
+			{
+				FullHelp = "TEST = List all Qlik Apps",
+				Parameters = new List<CommandsParametersFields>()
+			};
+		}
+	}
+	public string CommandId => "mylist";
+	public List<string> Content { get; set; }
+	public string Name => "My list command";
+	public int ListOrder { get; set; }
+	public bool NeedsServer => true;
+
+	public void Execute(JObject args, CommandsConfig conf)
+	{
+		IEnumerable<IAppIdentifier> apps_info = conf.QlikLocation.GetAppIdentifiers();
+		if (apps_info == null)
+		{
+			Console.WriteLine("Apps List returned null!");
+			return;
+		}
 		foreach (var item in apps_info)
 		{
 			Console.WriteLine($"TEST - {item.AppId}");
 		}
-	}}
+	}
+}
+
+
 ```

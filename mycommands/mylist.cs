@@ -4,30 +4,30 @@ using QDevOpsBase.Server;
 using Qlik.Engine;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using QDevOpsBase.Utils;
 
-public class mylist : IQlikCommand
+public class mylist : ICommand
 {
-	public qlikcommandparameters Params
+	public CommandsParameters Params
 	{
 		get
 		{
-			return new qlikcommandparameters()
+			return new CommandsParameters()
 			{
 				FullHelp = "TEST = List all Qlik Apps",
-				Parameters = new Dictionary<string, string>()
+				Parameters = new List<CommandsParametersFields>()
 			};
 		}
 	}
 	public string CommandId => "mylist";
 	public List<string> Content { get; set; }
 	public string Name => "My list command";
-	public string Group => "Application";
 	public int ListOrder { get; set; }
+	public bool NeedsServer => true;
 
-	public void Execute(JObject args, qlikcommandconfig conf)
+	public void Execute(JObject args, CommandsConfig conf)
 	{
-
-		IEnumerable<IAppIdentifier> apps_info = conf.loc.GetAppIdentifiers();
+		IEnumerable<IAppIdentifier> apps_info = conf.QlikLocation.GetAppIdentifiers();
 		if (apps_info == null)
 		{
 			Console.WriteLine("Apps List returned null!");
