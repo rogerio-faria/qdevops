@@ -156,7 +156,7 @@
         </member>
         <member name="M:Qlik.Sense.JsonRpc.ILocation.AsDirectConnectionAsync(System.String,System.String,System.Boolean,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)">
              <summary>
-             Defining the location as a direct connection to Qlik Sense using a specific user
+             Defining the location as a direct connection to Qlik Sense using a specific user.
             
              Parameter extendedSecurityEnvironment has been deprecated and will be removed in future releases. Use CustomUserHeaders to define Origin header.
              </summary>
@@ -166,14 +166,46 @@
              <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
              <param name="certificateCollection">Collection of certificates to use when connecting</param>
         </member>
+        <member name="M:Qlik.Sense.JsonRpc.ILocation.AsDirectConnection(System.String,System.String,System.Security.Cryptography.X509Certificates.X509Certificate2Collection,System.Boolean)">
+            <summary>
+            Defining the location as a direct connection to Qlik Sense using a specific user.
+            Connection will be made to port 4747 unless port is explicitly stated in location URI.
+            </summary>
+            <param name="userDirectory">User directory name</param>
+            <param name="userId">User id</param>
+            <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
+            <param name="certificateCollection">Collection of certificates to use when connecting</param>
+        </member>
+        <member name="M:Qlik.Sense.JsonRpc.ILocation.AsDirectConnection(System.String,System.String,System.Security.Cryptography.X509Certificates.X509Certificate2Collection,System.Int32,System.Boolean)">
+            <summary>
+            Defining the location as a direct connection to Qlik Sense using a specific user.
+            </summary>
+            <param name="userDirectory">User directory name</param>
+            <param name="userId">User id</param>
+            <param name="certificateCollection">Collection of certificates to use when connecting</param>
+            <param name="enginePort">The engine port to connect to.</param>
+            <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
+        </member>
         <member name="M:Qlik.Sense.JsonRpc.ILocation.AsDirectConnectionToPersonalEditionAsync">
             <summary>
-            Defining the location as a direct connection to Qlik Sense Personal
+            Defining the location as a direct connection to Qlik Sense Personal.
             </summary>
+        </member>
+        <member name="M:Qlik.Sense.JsonRpc.ILocation.AsDirectConnectionToPersonalEdition">
+            <summary>
+            Defining the location as a direct connection to Qlik Sense Personal.
+            Connection will be made to port 4848 unless port is explicitly stated in location URI.
+            </summary>
+        </member>
+        <member name="M:Qlik.Sense.JsonRpc.ILocation.AsDirectConnectionToPersonalEdition(System.Int32)">
+            <summary>
+            Defining the location as a direct connection to Qlik Sense Personal.
+            </summary>
+            <param name="enginePort">The engine port to connect to.</param>
         </member>
         <member name="M:Qlik.Sense.JsonRpc.ILocation.AsDirectConnectionAsync(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)">
             <summary>
-            Defining the location as a direct connection to Qlik Sense using a specific user, proxy session and proxy package
+            Defining the location as a direct connection to Qlik Sense using a specific user, proxy session and proxy package.
             </summary>
             <param name="userDirectory">User directory name</param>
             <param name="userId">User id</param>
@@ -185,16 +217,22 @@
         </member>
         <member name="M:Qlik.Sense.JsonRpc.ILocation.AsAnonymousUserViaProxyAsync(System.Boolean,System.Boolean)">
              <summary>
-             Defining the location as a connection to Qlik Sense as an anonymous user
+             Defining the location as a connection to Qlik Sense as an anonymous user.
             
              Parameter proxyUsesSsl has been deprecated and will be removed in future releases. Use CustomUserHeaders to define Origin header.
              </summary>
              <param name="proxyUsesSsl">DEPRECATED: Parameter will be removed in future releases. Use CustomUserHeaders to define Origin header.</param>
              <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
         </member>
+        <member name="M:Qlik.Sense.JsonRpc.ILocation.AsAnonymousUserViaProxy(System.Boolean)">
+            <summary>
+            Defining the location as a connection to Qlik Sense as an anonymous user.
+            </summary>
+            <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
+        </member>
         <member name="M:Qlik.Sense.JsonRpc.ILocation.AsExistingSessionViaProxyAsync(System.String,System.String,System.Boolean,System.Boolean)">
              <summary>
-             Defining the location as a connection to Qlik Sense using an existing session
+             Defining the location as a connection to Qlik Sense using an existing session.
             
              Parameter proxyUsesSsl has been deprecated and will be removed in future releases. Use CustomUserHeaders to define Origin header.
              </summary>
@@ -203,9 +241,17 @@
              <param name="proxyUsesSsl">DEPRECATED: Parameter will be removed in future releases. Use CustomUserHeaders to define Origin header.</param>
              <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
         </member>
+        <member name="M:Qlik.Sense.JsonRpc.ILocation.AsExistingSessionViaProxy(System.String,System.String,System.Boolean)">
+            <summary>
+            Defining the location as a connection to Qlik Sense using an existing session.
+            </summary>
+            <param name="sessionId">The sessionId</param>
+            <param name="cookieHeaderName">The name of the cookie specified in the QMC</param>
+            <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
+        </member>
         <member name="M:Qlik.Sense.JsonRpc.ILocation.AsNtlmUserViaProxyAsync(System.Boolean,System.Net.NetworkCredential,System.Boolean)">
              <summary>
-             Defining the location as a connection to Qlik Sense using NTLM Authentication
+             Defining the location as a connection to Qlik Sense using NTLM Authentication.
             
              Parameter proxyUsesSsl has been deprecated and will be removed in future releases. Use CustomUserHeaders to define Origin header.
              </summary>
@@ -213,9 +259,16 @@
              <param name="loginCredentials">Authentication with custom credentials</param>
              <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
         </member>
+        <member name="M:Qlik.Sense.JsonRpc.ILocation.AsNtlmUserViaProxy(System.Net.NetworkCredential,System.Boolean)">
+            <summary>
+            Defining the location as a connection to Qlik Sense using NTLM Authentication.
+            </summary>
+            <param name="loginCredentials">Authentication with custom credentials.</param>
+            <param name="certificateValidation">Indicates if invalid certificates should be ignored.</param>
+        </member>
         <member name="M:Qlik.Sense.JsonRpc.ILocation.AsJwtViaProxy(System.String,System.Boolean)">
             <summary>
-            Defining the location as a connection to Qlik Sense using JWT Authentication
+            Defining the location as a connection to Qlik Sense using JWT Authentication.
             </summary>
             <param name="key">The JWT key to use for authentication.</param>
             <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
@@ -230,6 +283,14 @@
              <param name="headerAuthenticationHeaderName">Authentication header name need to be specified if different from default. See settings in the management console</param>
              <param name="proxyUsesSsl">DEPRECATED: Parameter will be removed in future releases. Use CustomUserHeaders to define Origin header.</param>
              <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
+        </member>
+        <member name="M:Qlik.Sense.JsonRpc.ILocation.AsStaticHeaderUserViaProxy(System.String,System.String,System.Boolean)">
+            <summary>
+            Defining the location as a static header connection to Qlik Sense using a specific user.
+            </summary>
+            <param name="headerUserId">User id</param>
+            <param name="headerAuthenticationHeaderName">Authentication header name need to be specified if different from default. See settings in the management console</param>
+            <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
         </member>
         <member name="T:Qlik.Sense.JsonRpc.IRpcConnection">
             <summary>
@@ -387,7 +448,7 @@
         </member>
         <member name="M:Qlik.Sense.JsonRpc.Location.AsDirectConnectionAsync(System.String,System.String,System.Boolean,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)">
              <summary>
-             Defining the location as a direct connection to Qlik Sense using a specific user
+             Defining the location as a direct connection to Qlik Sense using a specific user.
             
              Parameter extendedSecurityEnvironment has been deprecated and will be removed in future releases. Use CustomUserHeaders to define Origin header.
              </summary>
@@ -397,14 +458,46 @@
              <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
              <param name="certificateCollection">Collection of certificates to use when connecting</param>
         </member>
+        <member name="M:Qlik.Sense.JsonRpc.Location.AsDirectConnection(System.String,System.String,System.Security.Cryptography.X509Certificates.X509Certificate2Collection,System.Boolean)">
+            <summary>
+            Defining the location as a direct connection to Qlik Sense using a specific user.
+            Connection will be made to port 4747 unless port is explicitly stated in location URI.
+            </summary>
+            <param name="userDirectory">User directory name</param>
+            <param name="userId">User id</param>
+            <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
+            <param name="certificateCollection">Collection of certificates to use when connecting</param>
+        </member>
+        <member name="M:Qlik.Sense.JsonRpc.Location.AsDirectConnection(System.String,System.String,System.Security.Cryptography.X509Certificates.X509Certificate2Collection,System.Int32,System.Boolean)">
+            <summary>
+            Defining the location as a direct connection to Qlik Sense using a specific user.
+            </summary>
+            <param name="userDirectory">User directory name</param>
+            <param name="userId">User id</param>
+            <param name="certificateCollection">Collection of certificates to use when connecting</param>
+            <param name="enginePort">The engine port to connect to.</param>
+            <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
+        </member>
         <member name="M:Qlik.Sense.JsonRpc.Location.AsDirectConnectionToPersonalEditionAsync">
             <summary>
-             Defining the location as a direct connection to Qlik Sense Personal
+             Defining the location as a direct connection to Qlik Sense Personal.
             </summary>
+        </member>
+        <member name="M:Qlik.Sense.JsonRpc.Location.AsDirectConnectionToPersonalEdition">
+            <summary>
+            Defining the location as a direct connection to Qlik Sense Personal.
+            Connection will be made to port 4848 unless port is explicitly stated in location URI.
+            </summary>
+        </member>
+        <member name="M:Qlik.Sense.JsonRpc.Location.AsDirectConnectionToPersonalEdition(System.Int32)">
+            <summary>
+            Defining the location as a direct connection to Qlik Sense Personal.
+            </summary>
+            <param name="enginePort">The engine port to connect to.</param>
         </member>
         <member name="M:Qlik.Sense.JsonRpc.Location.AsDirectConnectionAsync(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)">
             <summary>
-            Defining the location as a direct connection to Qlik Sense using a specific user, proxy session and proxy package
+            Defining the location as a direct connection to Qlik Sense using a specific user, proxy session and proxy package.
             </summary>
             <param name="userDirectory">User directory name</param>
             <param name="userId">User id</param>
@@ -416,16 +509,22 @@
         </member>
         <member name="M:Qlik.Sense.JsonRpc.Location.AsAnonymousUserViaProxyAsync(System.Boolean,System.Boolean)">
              <summary>
-             Defining the location as a connection to Qlik Sense as an anonymous user
+             Defining the location as a connection to Qlik Sense as an anonymous user.
             
              Parameter proxyUsesSsl has been deprecated and will be removed in future releases. Use CustomUserHeaders to define Origin header.
              </summary>
              <param name="proxyUsesSsl">DEPRECATED: Parameter will be removed in future releases. Use CustomUserHeaders to define Origin header.</param>
              <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
         </member>
+        <member name="M:Qlik.Sense.JsonRpc.Location.AsAnonymousUserViaProxy(System.Boolean)">
+            <summary>
+            Defining the location as a connection to Qlik Sense as an anonymous user.
+            </summary>
+            <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
+        </member>
         <member name="M:Qlik.Sense.JsonRpc.Location.AsExistingSessionViaProxyAsync(System.String,System.String,System.Boolean,System.Boolean)">
              <summary>
-             Defining the location as a connection to Qlik Sense using an existing session
+             Defining the location as a connection to Qlik Sense using an existing session.
             
              Parameter proxyUsesSsl has been deprecated and will be removed in future releases. Use CustomUserHeaders to define Origin header.
              </summary>
@@ -434,9 +533,17 @@
              <param name="proxyUsesSsl">DEPRECATED: Parameter will be removed in future releases. Use CustomUserHeaders to define Origin header.</param>
              <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
         </member>
+        <member name="M:Qlik.Sense.JsonRpc.Location.AsExistingSessionViaProxy(System.String,System.String,System.Boolean)">
+            <summary>
+            Defining the location as a connection to Qlik Sense using an existing session.
+            </summary>
+            <param name="sessionId">The sessionId</param>
+            <param name="cookieHeaderName">The name of the cookie specified in the QMC</param>
+            <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
+        </member>
         <member name="M:Qlik.Sense.JsonRpc.Location.AsNtlmUserViaProxyAsync(System.Boolean,System.Net.NetworkCredential,System.Boolean)">
              <summary>
-             Defining the location as a connection to Qlik Sense using NTLM Authentication
+             Defining the location as a connection to Qlik Sense using NTLM Authentication.
             
              Parameter proxyUsesSsl has been deprecated and will be removed in future releases. Use CustomUserHeaders to define Origin header.
              </summary>
@@ -444,16 +551,23 @@
              <param name="loginCredentials">Authentication with custom credentials</param>
              <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
         </member>
+        <member name="M:Qlik.Sense.JsonRpc.Location.AsNtlmUserViaProxy(System.Net.NetworkCredential,System.Boolean)">
+            <summary>
+            Defining the location as a connection to Qlik Sense using NTLM Authentication.
+            </summary>
+            <param name="loginCredentials">Authentication with custom credentials.</param>
+            <param name="certificateValidation">Indicates if invalid certificates should be ignored.</param>
+        </member>
         <member name="M:Qlik.Sense.JsonRpc.Location.AsJwtViaProxy(System.String,System.Boolean)">
             <summary>
-            Defining the location as a connection to Qlik Sense using JWT Authentication
+            Defining the location as a connection to Qlik Sense using JWT Authentication.
             </summary>
             <param name="key">The JWT key to use for authentication.</param>
             <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
         </member>
         <member name="M:Qlik.Sense.JsonRpc.Location.AsStaticHeaderUserViaProxyAsync(System.String,System.String,System.Boolean,System.Boolean)">
              <summary>
-             Defining the location as a connection to Qlik Sense using a specific user
+             Defining the location as a connection to Qlik Sense using a specific user.
             
              Parameter proxyUsesSsl has been deprecated and will be removed in future releases. Use CustomUserHeaders to define Origin header.
              </summary>
@@ -461,6 +575,14 @@
              <param name="headerAuthenticationHeaderName">Authentication header name need to be specified if different from default. See settings in the management console</param>
              <param name="proxyUsesSsl">DEPRECATED: Parameter will be removed in future releases. Use CustomUserHeaders to define Origin header.</param>
              <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
+        </member>
+        <member name="M:Qlik.Sense.JsonRpc.Location.AsStaticHeaderUserViaProxy(System.String,System.String,System.Boolean)">
+            <summary>
+            Defining the location as a static header connection to Qlik Sense using a specific user.
+            </summary>
+            <param name="headerUserId">User id</param>
+            <param name="headerAuthenticationHeaderName">Authentication header name need to be specified if different from default. See settings in the management console</param>
+            <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
         </member>
         <member name="T:Qlik.Sense.JsonRpc.MethodInvocationErrorEventArgs">
             <summary>
@@ -841,7 +963,7 @@
         </member>
         <member name="P:Qlik.Sense.JsonRpc.RpcConnection.Timeout">
             <summary>
-            Timeout value used for synchronous calls to engine. Usually used together
+            Timeout value (in milliseconds) used for synchronous calls to engine. Usually used together
             with <see cref="P:Qlik.Sense.JsonRpc.RpcConnection.CancellationToken"/>.
             </summary>
         </member>
@@ -948,7 +1070,7 @@
             Open a connection to a Qlik Sense instance based on the current location configuration and the argument session.
             </summary>
             <param name="onMessage">Callback to active when messages are received from Qlik Sense.</param>
-            <param name="onError">Callback to activate when an exception has occured on the web socket connection to Qlik Sense.</param>
+            <param name="onError">Callback to activate when an exception has occurred on the web socket connection to Qlik Sense.</param>
             <param name="cancellationToken">The token used to synchronize shutdown events.</param>
             <returns>A task with the completion status of the connect operation as result.</returns>
         </member>
