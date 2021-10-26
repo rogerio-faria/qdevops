@@ -1237,6 +1237,108 @@
             </remarks>
             <value><c>true</c> if the connection is secure; otherwise, <c>false</c>.</value>
         </member>
+        <member name="P:MailKit.Net.Imap.ImapClient.IsEncrypted">
+            <summary>
+            Get whether or not the connection is encrypted (typically via SSL or TLS).
+            </summary>
+            <remarks>
+            Gets whether or not the connection is encrypted (typically via SSL or TLS).
+            </remarks>
+            <value><c>true</c> if the connection is encrypted; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.Net.Imap.ImapClient.IsSigned">
+            <summary>
+            Get whether or not the connection is signed (typically via SSL or TLS).
+            </summary>
+            <remarks>
+            Gets whether or not the connection is signed (typically via SSL or TLS).
+            </remarks>
+            <value><c>true</c> if the connection is signed; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.Net.Imap.ImapClient.SslProtocol">
+            <summary>
+            Get the negotiated SSL or TLS protocol version.
+            </summary>
+            <remarks>
+            <para>Gets the negotiated SSL or TLS protocol version once an SSL or TLS connection has been made.</para>
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\ImapExamples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS protocol version.</value>
+        </member>
+        <member name="P:MailKit.Net.Imap.ImapClient.SslCipherAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS cipher algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS cipher algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\ImapExamples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS cipher algorithm.</value>
+        </member>
+        <member name="P:MailKit.Net.Imap.ImapClient.SslCipherStrength">
+            <summary>
+            Get the negotiated SSL or TLS cipher algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS cipher algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\ImapExamples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS cipher algorithm strength.</value>
+        </member>
+        <member name="P:MailKit.Net.Imap.ImapClient.SslHashAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS hash algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS hash algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\ImapExamples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS hash algorithm.</value>
+        </member>
+        <member name="P:MailKit.Net.Imap.ImapClient.SslHashStrength">
+            <summary>
+            Get the negotiated SSL or TLS hash algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS hash algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\ImapExamples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS hash algorithm strength.</value>
+        </member>
+        <member name="P:MailKit.Net.Imap.ImapClient.SslKeyExchangeAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS key exchange algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS key exchange algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\ImapExamples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS key exchange algorithm.</value>
+        </member>
+        <member name="P:MailKit.Net.Imap.ImapClient.SslKeyExchangeStrength">
+            <summary>
+            Get the negotiated SSL or TLS key exchange algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS key exchange algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\ImapExamples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS key exchange algorithm strength.</value>
+        </member>
         <member name="P:MailKit.Net.Imap.ImapClient.IsAuthenticated">
             <summary>
             Get whether or not the client is currently authenticated with the IMAP server.
@@ -2042,6 +2144,30 @@
             </exception>
             <exception cref="T:MailKit.Net.Imap.ImapCommandException">
             The server replied with a NO or BAD response.
+            </exception>
+        </member>
+        <member name="E:MailKit.Net.Imap.ImapClient.WebAlert">
+            <summary>
+            Occurs when a Google Mail server sends a WEBALERT response code to the client.
+            </summary>
+            <remarks>
+            The <see cref="E:MailKit.Net.Imap.ImapClient.WebAlert"/> event is raised whenever the Google Mail server sends a
+            WEBALERT message.
+            </remarks>
+        </member>
+        <member name="M:MailKit.Net.Imap.ImapClient.OnWebAlert(System.Uri,System.String)">
+            <summary>
+            Raise the web alert event.
+            </summary>
+            <remarks>
+            Raises the web alert event.
+            </remarks>
+            <param name="uri">The web alert URI.</param>
+            <param name="message">The web alert message.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <para><paramref name="uri"/> is <c>null</c>.</para>
+            <para>-or-</para>
+            <para><paramref name="message"/> is <c>null</c>.</para>
             </exception>
         </member>
         <member name="M:MailKit.Net.Imap.ImapClient.Dispose(System.Boolean)">
@@ -4732,6 +4858,11 @@
         <member name="E:MailKit.Net.Imap.ImapEngine.Alert">
             <summary>
             Occurs when the engine receives an alert message from the server.
+            </summary>
+        </member>
+        <member name="E:MailKit.Net.Imap.ImapEngine.WebAlert">
+            <summary>
+            Occurs when the engine receives a webalert message from the server.
             </summary>
         </member>
         <member name="E:MailKit.Net.Imap.ImapEngine.FolderCreated">
@@ -17283,14 +17414,17 @@
             <param name="args">the argument list.</param>
             <param name="throwOnError">Throw an exception if there are any annotations without properties.</param>
         </member>
-        <member name="M:MailKit.Net.Imap.ImapUtils.FormatIndexSet(System.Collections.Generic.IList{System.Int32})">
+        <member name="M:MailKit.Net.Imap.ImapUtils.FormatIndexSet(MailKit.Net.Imap.ImapEngine,System.Collections.Generic.IList{System.Int32})">
             <summary>
             Formats the array of indexes as a string suitable for use with IMAP commands.
             </summary>
             <returns>The index set.</returns>
+            <param name="engine">The IMAP engine.</param>
             <param name="indexes">The indexes.</param>
             <exception cref="T:System.ArgumentNullException">
-            <paramref name="indexes"/> is <c>null</c>.
+            <para><paramref name="engine"/> is <c>null</c>.</para>
+            <para>-or-</para>
+            <para><paramref name="indexes"/> is <c>null</c>.</para>
             </exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
             One or more of the indexes has a negative value.
@@ -18807,6 +18941,108 @@
             Gets whether or not the connection is secure (typically via SSL or TLS).
             </remarks>
             <value><c>true</c> if the connection is secure; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.Net.Pop3.Pop3Client.IsEncrypted">
+            <summary>
+            Get whether or not the connection is encrypted (typically via SSL or TLS).
+            </summary>
+            <remarks>
+            Gets whether or not the connection is encrypted (typically via SSL or TLS).
+            </remarks>
+            <value><c>true</c> if the connection is encrypted; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.Net.Pop3.Pop3Client.IsSigned">
+            <summary>
+            Get whether or not the connection is signed (typically via SSL or TLS).
+            </summary>
+            <remarks>
+            Gets whether or not the connection is signed (typically via SSL or TLS).
+            </remarks>
+            <value><c>true</c> if the connection is signed; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.Net.Pop3.Pop3Client.SslProtocol">
+            <summary>
+            Get the negotiated SSL or TLS protocol version.
+            </summary>
+            <remarks>
+            <para>Gets the negotiated SSL or TLS protocol version once an SSL or TLS connection has been made.</para>
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\Pop3Examples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS protocol version.</value>
+        </member>
+        <member name="P:MailKit.Net.Pop3.Pop3Client.SslCipherAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS cipher algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS cipher algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\Pop3Examples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS cipher algorithm.</value>
+        </member>
+        <member name="P:MailKit.Net.Pop3.Pop3Client.SslCipherStrength">
+            <summary>
+            Get the negotiated SSL or TLS cipher algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS cipher algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\Pop3Examples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS cipher algorithm strength.</value>
+        </member>
+        <member name="P:MailKit.Net.Pop3.Pop3Client.SslHashAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS hash algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS hash algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\Pop3Examples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS hash algorithm.</value>
+        </member>
+        <member name="P:MailKit.Net.Pop3.Pop3Client.SslHashStrength">
+            <summary>
+            Get the negotiated SSL or TLS hash algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS hash algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\Pop3Examples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS hash algorithm strength.</value>
+        </member>
+        <member name="P:MailKit.Net.Pop3.Pop3Client.SslKeyExchangeAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS key exchange algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS key exchange algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\Pop3Examples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS key exchange algorithm.</value>
+        </member>
+        <member name="P:MailKit.Net.Pop3.Pop3Client.SslKeyExchangeStrength">
+            <summary>
+            Get the negotiated SSL or TLS key exchange algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS key exchange algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\Pop3Examples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS key exchange algorithm strength.</value>
         </member>
         <member name="P:MailKit.Net.Pop3.Pop3Client.IsAuthenticated">
             <summary>
@@ -23039,6 +23275,108 @@
             Gets whether or not the connection is secure (typically via SSL or TLS).
             </remarks>
             <value><c>true</c> if the connection is secure; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.Net.Smtp.SmtpClient.IsEncrypted">
+            <summary>
+            Get whether or not the connection is encrypted (typically via SSL or TLS).
+            </summary>
+            <remarks>
+            Gets whether or not the connection is encrypted (typically via SSL or TLS).
+            </remarks>
+            <value><c>true</c> if the connection is encrypted; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.Net.Smtp.SmtpClient.IsSigned">
+            <summary>
+            Get whether or not the connection is signed (typically via SSL or TLS).
+            </summary>
+            <remarks>
+            Gets whether or not the connection is signed (typically via SSL or TLS).
+            </remarks>
+            <value><c>true</c> if the connection is signed; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.Net.Smtp.SmtpClient.SslProtocol">
+            <summary>
+            Get the negotiated SSL or TLS protocol version.
+            </summary>
+            <remarks>
+            <para>Gets the negotiated SSL or TLS protocol version once an SSL or TLS connection has been made.</para>
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\SmtpExamples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS protocol version.</value>
+        </member>
+        <member name="P:MailKit.Net.Smtp.SmtpClient.SslCipherAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS cipher algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS cipher algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\SmtpExamples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS cipher algorithm.</value>
+        </member>
+        <member name="P:MailKit.Net.Smtp.SmtpClient.SslCipherStrength">
+            <summary>
+            Get the negotiated SSL or TLS cipher algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS cipher algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\SmtpExamples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS cipher algorithm strength.</value>
+        </member>
+        <member name="P:MailKit.Net.Smtp.SmtpClient.SslHashAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS hash algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS hash algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\SmtpExamples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS hash algorithm.</value>
+        </member>
+        <member name="P:MailKit.Net.Smtp.SmtpClient.SslHashStrength">
+            <summary>
+            Get the negotiated SSL or TLS hash algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS hash algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\SmtpExamples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS hash algorithm strength.</value>
+        </member>
+        <member name="P:MailKit.Net.Smtp.SmtpClient.SslKeyExchangeAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS key exchange algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS key exchange algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\SmtpExamples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS key exchange algorithm.</value>
+        </member>
+        <member name="P:MailKit.Net.Smtp.SmtpClient.SslKeyExchangeStrength">
+            <summary>
+            Get the negotiated SSL or TLS key exchange algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS key exchange algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <example>
+            <code language="c#" source="Examples\SmtpExamples.cs" region="SslConnectionInformation"/>
+            </example>
+            <value>The negotiated SSL or TLS key exchange algorithm strength.</value>
         </member>
         <member name="P:MailKit.Net.Smtp.SmtpClient.IsAuthenticated">
             <summary>
@@ -27274,8 +27612,12 @@
             The supported authentication mechanisms in order of strongest to weakest.
             </summary>
             <remarks>
-            Used by the various clients when authenticating via SASL to determine
-            which order the SASL mechanisms supported by the server should be tried.
+            <para>Used by the various clients when authenticating via SASL to determine
+            which order the SASL mechanisms supported by the server should be tried.</para>
+            <note type="note">Even though NTLM is more secure than PLAIN or LOGIN (and
+            probably others), it is tried last only because it is less reliable due to
+            missing functionalioty to make it 100% compatible with all NTLM server
+            implementations.</note>
             </remarks>
         </member>
         <member name="M:MailKit.Security.SaslMechanism.#ctor(System.Uri,System.Net.ICredentials)">
@@ -28040,6 +28382,14 @@
             should return <value>true</value>.
             </remarks>
             <value><c>true</c> if the mechanism supports an initial response; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.Security.SaslMechanismNtlm.OSVersion">
+            <summary>
+            Gets or sets the Windows OS version to use in the NTLM negotiation (used for debuigging purposes).
+            </summary>
+            <remarks>
+            Gets or sets the Windows OS version to use in the NTLM negotiation (used for debuigging purposes).
+            </remarks>
         </member>
         <member name="P:MailKit.Security.SaslMechanismNtlm.Workstation">
             <summary>
@@ -32334,6 +32684,62 @@
             The new name of the folder.
             </remarks>
             <value>The new name.</value>
+        </member>
+        <member name="T:MailKit.AuthenticationSecret">
+            <summary>
+            An authentication secret.
+            </summary>
+            <remarks>
+            An authentication secret.
+            </remarks>
+        </member>
+        <member name="P:MailKit.AuthenticationSecret.StartIndex">
+            <summary>
+            Get the starting offset of the secret within a buffer.
+            </summary>
+            <remarks>
+            Gets the starting offset of the secret within a buffer.
+            </remarks>
+            <value>The start offset of the secret.</value>
+        </member>
+        <member name="P:MailKit.AuthenticationSecret.Length">
+            <summary>
+            Get the length of the secret within a buffer.
+            </summary>
+            <remarks>
+            Gets the length of the secret within a buffer.
+            </remarks>
+            <value>The length of the secret.</value>
+        </member>
+        <member name="M:MailKit.AuthenticationSecret.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Create a new <see cref="T:MailKit.AuthenticationSecret"/>.
+            </summary>
+            <remarks>
+            Creates a new <see cref="T:MailKit.AuthenticationSecret"/>.
+            </remarks>
+            <param name="startIndex">The start index of the secret.</param>
+            <param name="length">The length of the secret.</param>
+        </member>
+        <member name="T:MailKit.IAuthenticationSecretDetector">
+            <summary>
+            An interface for detecting authentication secrets.
+            </summary>
+            <remarks>
+            An interface for detecting authentication secrets.
+            </remarks>
+        </member>
+        <member name="M:MailKit.IAuthenticationSecretDetector.DetectSecrets(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Detect a list of secrets within a buffer.
+            </summary>
+            <remarks>
+            Detects a list of secrets within a buffer.
+            </remarks>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The buffer offset.</param>
+            <param name="count">The length of the buffer.</param>
+            <returns>A list of secrets.</returns>
         </member>
         <member name="T:MailKit.IMailFolder">
             <summary>
@@ -37379,8 +37785,9 @@
             An interface for message services such as SMTP, POP3, or IMAP.
             </summary>
             <remarks>
-            Implemented by <see cref="T:MailKit.Net.Smtp.SmtpClient"/>
-            and <see cref="T:MailKit.Net.Pop3.Pop3Client"/>.
+            Implemented by <see cref="T:MailKit.Net.Imap.ImapClient"/>,
+            <see cref="T:MailKit.Net.Pop3.Pop3Client"/> and
+            <see cref="T:MailKit.Net.Smtp.SmtpClient"/>.
             </remarks>
         </member>
         <member name="P:MailKit.IMailService.SyncRoot">
@@ -37394,13 +37801,12 @@
         </member>
         <member name="P:MailKit.IMailService.SslProtocols">
             <summary>
-            Gets or sets the SSL and TLS protocol versions that the client is allowed to use.
+            Gets or sets the set of enabled SSL and/or TLS protocol versions that the client is allowed to use.
             </summary>
             <remarks>
-            <para>Gets or sets the SSL and TLS protocol versions that the client is allowed to use.</para>
-            <para>By default, MailKit initializes this value to support only TLS v1.0 and greater and
-            does not support any version of SSL due to those protocols no longer being considered
-            secure.</para>
+            <para>By default, MailKit initializes this value to enable only TLS v1.2 and greater.
+            TLS v1.1, TLS v1.0 and all versions of SSL are not enabled by default due to them all being
+            susceptible to security vulnerabilities such as POODLE.</para>
             <para>This property should be set before calling any of the
             <a href="Overload_MailKit_IMailService_Connect.htm">Connect</a> methods.</para>
             </remarks>
@@ -37515,6 +37921,87 @@
             Gets whether or not the connection is secure (typically via SSL or TLS).
             </remarks>
             <value><c>true</c> if the connection is secure; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.IMailService.IsEncrypted">
+            <summary>
+            Get whether or not the connection is encrypted (typically via SSL or TLS).
+            </summary>
+            <remarks>
+            Gets whether or not the connection is encrypted (typically via SSL or TLS).
+            </remarks>
+            <value><c>true</c> if the connection is encrypted; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.IMailService.IsSigned">
+            <summary>
+            Get whether or not the connection is signed (typically via SSL or TLS).
+            </summary>
+            <remarks>
+            Gets whether or not the connection is signed (typically via SSL or TLS).
+            </remarks>
+            <value><c>true</c> if the connection is signed; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.IMailService.SslProtocol">
+            <summary>
+            Get the negotiated SSL or TLS protocol version.
+            </summary>
+            <remarks>
+            <para>Gets the negotiated SSL or TLS protocol version once an SSL or TLS connection has been made.</para>
+            </remarks>
+            <value>The negotiated SSL or TLS protocol version.</value>
+        </member>
+        <member name="P:MailKit.IMailService.SslCipherAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS cipher algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS cipher algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <value>The negotiated SSL or TLS cipher algorithm.</value>
+        </member>
+        <member name="P:MailKit.IMailService.SslCipherStrength">
+            <summary>
+            Get the negotiated SSL or TLS cipher algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS cipher algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <value>The negotiated SSL or TLS cipher algorithm strength.</value>
+        </member>
+        <member name="P:MailKit.IMailService.SslHashAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS hash algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS hash algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <value>The negotiated SSL or TLS hash algorithm.</value>
+        </member>
+        <member name="P:MailKit.IMailService.SslHashStrength">
+            <summary>
+            Get the negotiated SSL or TLS hash algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS hash algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <value>The negotiated SSL or TLS hash algorithm strength.</value>
+        </member>
+        <member name="P:MailKit.IMailService.SslKeyExchangeAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS key exchange algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS key exchange algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <value>The negotiated SSL or TLS key exchange algorithm.</value>
+        </member>
+        <member name="P:MailKit.IMailService.SslKeyExchangeStrength">
+            <summary>
+            Get the negotiated SSL or TLS key exchange algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS key exchange algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <value>The negotiated SSL or TLS key exchange algorithm strength.</value>
         </member>
         <member name="P:MailKit.IMailService.Timeout">
             <summary>
@@ -38453,7 +38940,8 @@
             An interface for retreiving messages from a spool.
             </summary>
             <remarks>
-            An interface for retreiving messages from a spool.
+            <para>An interface for retreiving messages from a spool.</para>
+            <para>Implemented by <see cref="T:MailKit.Net.Pop3.Pop3Client"/>.</para>
             </remarks>
         </member>
         <member name="P:MailKit.IMailSpool.Count">
@@ -38487,6 +38975,16 @@
             </summary>
             <remarks>
             Gets the message count.
+            </remarks>
+            <returns>The message count.</returns>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:MailKit.IMailSpool.GetMessageCountAsync(System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously get the message count.
+            </summary>
+            <remarks>
+            Asynchronously gets the message count.
             </remarks>
             <returns>The message count.</returns>
             <param name="cancellationToken">The cancellation token.</param>
@@ -38926,10 +39424,11 @@
         </member>
         <member name="T:MailKit.IMailStore">
             <summary>
-            An interface for retreiving messages from a message store such as IMAP.
+            An interface for retreiving messages from a message store.
             </summary>
             <remarks>
-            Implemented by <see cref="T:MailKit.Net.Imap.ImapClient"/>.
+            <para>An interface for retreiving messages from a message store.</para>
+            <para>Implemented by <see cref="T:MailKit.Net.Imap.ImapClient"/>.</para>
             </remarks>
         </member>
         <member name="P:MailKit.IMailStore.PersonalNamespaces">
@@ -39445,7 +39944,8 @@
             An interface for sending messages.
             </summary>
             <remarks>
-            An interface for sending messages.
+            <para>An interface for sending messages.</para>
+            <para>Implemented by <see cref="T:MailKit.Net.Smtp.SmtpClient"/>.</para>
             </remarks>
         </member>
         <member name="M:MailKit.IMailTransport.Send(MimeKit.MimeMessage,System.Threading.CancellationToken,MailKit.ITransferProgress)">
@@ -40027,6 +40527,15 @@
             <example>
             <code language="c#" source="Examples\SmtpExamples.cs" region="ProtocolLogger" />
             </example>
+        </member>
+        <member name="P:MailKit.IProtocolLogger.AuthenticationSecretDetector">
+            <summary>
+            Get or set the authentication secret detector.
+            </summary>
+            <remarks>
+            Gets or sets the authentication secret detector.
+            </remarks>
+            <value>The authentication secret detector.</value>
         </member>
         <member name="M:MailKit.IProtocolLogger.LogConnect(System.Uri)">
             <summary>
@@ -56019,17 +56528,17 @@
         </member>
         <member name="P:MailKit.MailService.SslProtocols">
             <summary>
-            Gets or sets the SSL and TLS protocol versions that the client is allowed to use.
+            Gets or sets the set of enabled SSL and/or TLS protocol versions that the client is allowed to use.
             </summary>
             <remarks>
-            <para>Gets or sets the SSL and TLS protocol versions that the client is allowed to use.</para>
-            <para>By default, MailKit initializes this value to support only TLS v1.2 and greater and
-            does not support TLS v1.1, TLS v1.0 or any version of SSL due to those protocols being
+            <para>Gets or sets the enabled SSL and/or TLS protocol versions that the client is allowed to use.</para>
+            <para>By default, MailKit initializes this value to enable only TLS v1.2 and greater.
+            TLS v1.1, TLS v1.0 and all versions of SSL are not enabled by default due to them all being
             susceptible to security vulnerabilities such as POODLE.</para>
             <para>This property should be set before calling any of the
             <a href="Overload_MailKit_MailService_Connect.htm">Connect</a> methods.</para>
             </remarks>
-            <value>The SSL and TLS protocol versions that are supported.</value>
+            <value>The SSL and TLS protocol versions that are enabled.</value>
         </member>
         <member name="P:MailKit.MailService.ClientCertificates">
             <summary>
@@ -56128,6 +56637,87 @@
             Gets whether or not the connection is secure (typically via SSL or TLS).
             </remarks>
             <value><c>true</c> if the connection is secure; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.MailService.IsEncrypted">
+            <summary>
+            Get whether or not the connection is encrypted (typically via SSL or TLS).
+            </summary>
+            <remarks>
+            Gets whether or not the connection is encrypted (typically via SSL or TLS).
+            </remarks>
+            <value><c>true</c> if the connection is encrypted; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.MailService.IsSigned">
+            <summary>
+            Get whether or not the connection is signed (typically via SSL or TLS).
+            </summary>
+            <remarks>
+            Gets whether or not the connection is signed (typically via SSL or TLS).
+            </remarks>
+            <value><c>true</c> if the connection is signed; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.MailService.SslProtocol">
+            <summary>
+            Get the negotiated SSL or TLS protocol version.
+            </summary>
+            <remarks>
+            <para>Gets the negotiated SSL or TLS protocol version once an SSL or TLS connection has been made.</para>
+            </remarks>
+            <value>The negotiated SSL or TLS protocol version.</value>
+        </member>
+        <member name="P:MailKit.MailService.SslCipherAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS cipher algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS cipher algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <value>The negotiated SSL or TLS cipher algorithm.</value>
+        </member>
+        <member name="P:MailKit.MailService.SslCipherStrength">
+            <summary>
+            Get the negotiated SSL or TLS cipher algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS cipher algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <value>The negotiated SSL or TLS cipher algorithm strength.</value>
+        </member>
+        <member name="P:MailKit.MailService.SslHashAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS hash algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS hash algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <value>The negotiated SSL or TLS hash algorithm.</value>
+        </member>
+        <member name="P:MailKit.MailService.SslHashStrength">
+            <summary>
+            Get the negotiated SSL or TLS hash algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS hash algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <value>The negotiated SSL or TLS hash algorithm strength.</value>
+        </member>
+        <member name="P:MailKit.MailService.SslKeyExchangeAlgorithm">
+            <summary>
+            Get the negotiated SSL or TLS key exchange algorithm.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS key exchange algorithm once an SSL or TLS connection has been made.
+            </remarks>
+            <value>The negotiated SSL or TLS key exchange algorithm.</value>
+        </member>
+        <member name="P:MailKit.MailService.SslKeyExchangeStrength">
+            <summary>
+            Get the negotiated SSL or TLS key exchange algorithm strength.
+            </summary>
+            <remarks>
+            Gets the negotiated SSL or TLS key exchange algorithm strength once an SSL or TLS connection has been made.
+            </remarks>
+            <value>The negotiated SSL or TLS key exchange algorithm strength.</value>
         </member>
         <member name="P:MailKit.MailService.IsAuthenticated">
             <summary>
@@ -61669,6 +62259,15 @@
             Creates a new <see cref="T:MailKit.NullProtocolLogger"/>.
             </remarks>
         </member>
+        <member name="P:MailKit.NullProtocolLogger.AuthenticationSecretDetector">
+            <summary>
+            Get or set the authentication secret detector.
+            </summary>
+            <remarks>
+            Gets or sets the authentication secret detector.
+            </remarks>
+            <value>The authentication secret detector.</value>
+        </member>
         <member name="M:MailKit.NullProtocolLogger.LogConnect(System.Uri)">
             <summary>
             Logs a connection to the specified URI.
@@ -61852,6 +62451,42 @@
             Gets or sets the server prefix to use when logging server messages.
             </remarks>
             <value>The server prefix.</value>
+        </member>
+        <member name="P:MailKit.ProtocolLogger.RedactSecrets">
+            <summary>
+            Get or set whether or not authentication secrets should be redacted.
+            </summary>
+            <remarks>
+            Gets or sets whether or not authentication secrets should be redacted.
+            </remarks>
+            <value><c>true</c> if authentication secrets should be redacted; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.ProtocolLogger.LogTimestamps">
+            <summary>
+            Get or set whether timestamps should be logged.
+            </summary>
+            <remarks>
+            Gets or sets whether or not timestamps should be logged.
+            </remarks>
+            <value><c>true</c> if timestamps should be logged; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MailKit.ProtocolLogger.TimestampFormat">
+            <summary>
+            Get or set the date and time serialization format that should be used when logging timestamps.
+            </summary>
+            <remarks>
+            Gets or sets the date and time serialization format that should be used when logging timestamps.
+            </remarks>
+            <value>The date and time serialization format that should be used when logging timestamps.</value>
+        </member>
+        <member name="P:MailKit.ProtocolLogger.AuthenticationSecretDetector">
+            <summary>
+            Get or set the authentication secret detector.
+            </summary>
+            <remarks>
+            Gets or sets the authentication secret detector.
+            </remarks>
+            <value>The authentication secret detector.</value>
         </member>
         <member name="M:MailKit.ProtocolLogger.LogConnect(System.Uri)">
             <summary>
@@ -63182,6 +63817,40 @@
             <exception cref="T:System.ArgumentNullException">
             <paramref name="token"/> is <c>null</c>.
             </exception>
+        </member>
+        <member name="T:MailKit.WebAlertEventArgs">
+            <summary>
+            Alert event arguments.
+            </summary>
+            <remarks>
+            Some <see cref="T:MailKit.IMailStore"/> implementations, such as
+            <see cref="T:MailKit.Net.Imap.ImapClient"/>, will emit WebAlert
+            events when they receive web alert messages from the server.
+            </remarks>
+        </member>
+        <member name="M:MailKit.WebAlertEventArgs.#ctor(System.Uri,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MailKit.WebAlertEventArgs"/> class.
+            </summary>
+            <remarks>
+            Creates a new <see cref="T:MailKit.WebAlertEventArgs"/>.
+            </remarks>
+            <param name="uri">The web URI.</param>
+            <param name="message">The alert message.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <para><paramref name="uri"/> is <c>null</c>.</para>
+            <para>-or-</para>
+            <para><paramref name="message"/> is <c>null</c>.</para>
+            </exception>
+        </member>
+        <member name="P:MailKit.WebAlertEventArgs.WebUri">
+            <summary>
+            Gets the web URI.
+            </summary>
+            <remarks>
+            The URI that the user should visit to resolve the issue.
+            </remarks>
+            <value>The web URI.</value>
         </member>
     </members>
 </doc>

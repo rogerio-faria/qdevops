@@ -48,6 +48,10 @@
             Gets the length of the value.
             </summary>
         </member>
+        <member name="P:HtmlAgilityPack.HtmlAttribute.UseOriginalName">
+            <summary>Gets or sets a value indicating whether the attribute should use the original name.</summary>
+            <value>True if the attribute should use the original name, false if not.</value>
+        </member>
         <member name="P:HtmlAgilityPack.HtmlAttribute.Name">
             <summary>
             Gets the qualified name of the attribute.
@@ -71,6 +75,11 @@
         <member name="P:HtmlAgilityPack.HtmlAttribute.QuoteType">
             <summary>
             Specifies what type of quote the data should be wrapped in
+            </summary>
+        </member>
+        <member name="P:HtmlAgilityPack.HtmlAttribute.InternalQuoteType">
+            <summary>
+            Specifies what type of quote the data should be wrapped in (internal to keep backward compatibility)
             </summary>
         </member>
         <member name="P:HtmlAgilityPack.HtmlAttribute.StreamPosition">
@@ -124,6 +133,19 @@
         <member name="F:HtmlAgilityPack.AttributeValueQuote.DoubleQuote">
             <summary>
             A double quote mark "
+            </summary>
+        </member>
+        <member name="F:HtmlAgilityPack.AttributeValueQuote.None">
+            <summary>
+            No quote mark
+            </summary>
+        </member>
+        <member name="F:HtmlAgilityPack.AttributeValueQuote.WithoutValue">
+            <summary>Without the value such as '&lt;span readonly&gt;'</summary>
+        </member>
+        <member name="F:HtmlAgilityPack.AttributeValueQuote.Initial">
+            <summary>
+            The initial value (current value)
             </summary>
         </member>
         <member name="T:HtmlAgilityPack.HtmlAttributeCollection">
@@ -417,6 +439,9 @@
             Defines if attribute value output must be optimized (not bound with double quotes if it is possible). Default is false.
             </summary>
         </member>
+        <member name="F:HtmlAgilityPack.HtmlDocument.GlobalAttributeValueQuote">
+            <summary>Defines the global attribute value quote. When specified, it will always win.</summary>
+        </member>
         <member name="F:HtmlAgilityPack.HtmlDocument.OptionOutputOriginalCase">
             <summary>
             Defines if name must be output with it's original case. Useful for asp.net tags and attributes. Default is false.
@@ -437,6 +462,11 @@
         <member name="F:HtmlAgilityPack.HtmlDocument.OptionStopperNodeName">
             <summary>
             Defines the name of a node that will throw the StopperNodeException when found as an end node. Default is null.
+            </summary>
+        </member>
+        <member name="F:HtmlAgilityPack.HtmlDocument.OptionDefaultUseOriginalName">
+            <summary>
+            Defines if attributes should use original names by default, rather than lower case. Default is false.
             </summary>
         </member>
         <member name="F:HtmlAgilityPack.HtmlDocument.OptionUseIdAttribute">
@@ -978,6 +1008,11 @@
             Gets the stream position of the area between the opening and closing tag of the node, relative to the start of the document.
             </summary>
         </member>
+        <member name="P:HtmlAgilityPack.HtmlNode.OuterStartIndex">
+            <summary>
+            Gets the stream position of the area of the beginning of the tag, relative to the start of the document.
+            </summary>
+        </member>
         <member name="P:HtmlAgilityPack.HtmlNode.InnerLength">
             <summary>
             Gets the length of the area between the opening and closing tag of the node.
@@ -1055,6 +1090,14 @@
             Creates an HTML node from a string representing literal HTML.
             </summary>
             <param name="html">The HTML text.</param>
+            <returns>The newly created node instance.</returns>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlNode.CreateNode(System.String,System.Action{HtmlAgilityPack.HtmlDocument})">
+            <summary>
+            Creates an HTML node from a string representing literal HTML.
+            </summary>
+            <param name="html">The HTML text.</param>
+            <param name="htmlDocumentBuilder">The HTML Document builder.</param>
             <returns>The newly created node instance.</returns>
         </member>
         <member name="M:HtmlAgilityPack.HtmlNode.IsCDataElement(System.String)">
@@ -1341,6 +1384,18 @@
             <summary>Removes all id for node described by node.</summary>
             <param name="node">The node.</param>
         </member>
+        <member name="M:HtmlAgilityPack.HtmlNode.MoveChild(HtmlAgilityPack.HtmlNode)">
+            <summary>Move a node already associated and append it to this node instead.</summary>
+            <param name="child">The child node to move.</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlNode.MoveChildren(HtmlAgilityPack.HtmlNodeCollection)">
+            <summary>Move a children collection already associated and append it to this node instead.</summary>
+            <param name="children">The children collection already associated to move to another node.</param>
+        </member>
+        <member name="M:HtmlAgilityPack.HtmlNode.RemoveChildren(HtmlAgilityPack.HtmlNodeCollection)">
+            <summary>Removes the children collection for this node.</summary>
+            <param name="oldChildren">The old children collection to remove.</param>
+        </member>
         <member name="M:HtmlAgilityPack.HtmlNode.RemoveChild(HtmlAgilityPack.HtmlNode)">
             <summary>
             Removes the specified child node.
@@ -1550,14 +1605,14 @@
         </member>
         <member name="M:HtmlAgilityPack.HtmlNode.SelectSingleNode(System.String)">
             <summary>
-            Selects the first XmlNode that matches the XPath expression.
+            Selects the first XmlNode that matches the <see cref="P:HtmlAgilityPack.HtmlNode.XPath"/> expression.
             </summary>
             <param name="xpath">The XPath expression. May not be null.</param>
             <returns>The first <see cref="T:HtmlAgilityPack.HtmlNode"/> that matches the XPath query or a null reference if no matching node was found.</returns>
         </member>
         <member name="M:HtmlAgilityPack.HtmlNode.SelectSingleNode(System.Xml.XPath.XPathExpression)">
             <summary>
-            Selects a list of nodes matching the <see cref="P:HtmlAgilityPack.HtmlNode.XPath"/> expression.
+            Selects the first XmlNode that matches the <see cref="P:HtmlAgilityPack.HtmlNode.XPath"/> expression.
             </summary>
             <param name="xpath">The XPath expression.</param>
             <returns>An <see cref="T:HtmlAgilityPack.HtmlNodeCollection"/> containing a collection of nodes matching the <see cref="P:HtmlAgilityPack.HtmlNode.XPath"/> query, or <c>null</c> if no node matched the XPath expression.</returns>
@@ -1810,6 +1865,9 @@
             Initialize the HtmlNodeCollection with the base parent node
             </summary>
             <param name="parentnode">The base node of the collection</param>
+        </member>
+        <member name="P:HtmlAgilityPack.HtmlNodeCollection.ParentNode">
+            <summary>Gets the parent node associated to the collection.</summary>
         </member>
         <member name="P:HtmlAgilityPack.HtmlNodeCollection.Item(HtmlAgilityPack.HtmlNode)">
             <summary>
