@@ -249,6 +249,13 @@
             <param name="cookieHeaderName">The name of the cookie specified in the QMC</param>
             <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
         </member>
+        <member name="M:Qlik.Sense.JsonRpc.ILocation.AsTicketViaProxy(System.String,System.Boolean)">
+            <summary>
+            Authenticate using an ticket retrieved from a Qlik Proxy Service (QPS).
+            </summary>
+            <param name="ticket">The ticket returned by QPS.</param>
+            <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
+        </member>
         <member name="M:Qlik.Sense.JsonRpc.ILocation.AsNtlmUserViaProxyAsync(System.Boolean,System.Net.NetworkCredential,System.Boolean)">
              <summary>
              Defining the location as a connection to Qlik Sense using NTLM Authentication.
@@ -539,6 +546,13 @@
             </summary>
             <param name="sessionId">The sessionId</param>
             <param name="cookieHeaderName">The name of the cookie specified in the QMC</param>
+            <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
+        </member>
+        <member name="M:Qlik.Sense.JsonRpc.Location.AsTicketViaProxy(System.String,System.Boolean)">
+            <summary>
+            Authenticate using an ticket retrieved from a Qlik Proxy Service (QPS).
+            </summary>
+            <param name="ticket">The ticket returned by QPS.</param>
             <param name="certificateValidation">Indicates if invalid certificates should be ignored</param>
         </member>
         <member name="M:Qlik.Sense.JsonRpc.Location.AsNtlmUserViaProxyAsync(System.Boolean,System.Net.NetworkCredential,System.Boolean)">
@@ -890,7 +904,7 @@
             <param name="continueWith">Response handler that is used to change the <see cref="T:Qlik.Sense.JsonRpc.Response"/> object into an instance of T.</param>
             <typeparam name="T">Dynamic type that should be returned</typeparam>
             <returns>Task that will resolve into a handled instance of T</returns>
-            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="request"/>is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown if either <paramref name="request"/> or <paramref name="continueWith"/> is <c>null</c>.</exception>
         </member>
         <member name="P:Qlik.Sense.JsonRpc.RpcConnection.InboundSerializer">
             <summary>
@@ -916,7 +930,7 @@
             Method for creating the JsonSerializer used to serialize requests to an
             the RPC connection. The method is called the first time the property
             <see cref="P:Qlik.Sense.JsonRpc.RpcConnection.OutboundSerializer"/> is accessed, which is typically when
-            the method <see cref="M:Qlik.Sense.JsonRpc.RpcConnection.SendAsync``1(Qlik.Sense.JsonRpc.Request,System.Func{Qlik.Sense.JsonRpc.Response,``0})"/> is called.
+            the method <see cref="M:Qlik.Sense.JsonRpc.RpcConnection.SendAsync``1(Qlik.Sense.JsonRpc.Request)"/> is called.
             </summary>
             <returns>The JsonSerializer instance.</returns>
         </member>

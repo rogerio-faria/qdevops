@@ -826,7 +826,7 @@
             A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
             </returns>
         </member>
-        <member name="M:Qlik.Sense.Client.AppExtensions.GetAppField(Qlik.Engine.IApp,System.String,System.Boolean,System.Int32)">
+        <member name="M:Qlik.Sense.Client.AppExtensions.GetAppField(Qlik.Engine.IApp,System.String,System.Boolean,System.Int32,System.String)">
             <summary>
             Get app field. The AppField instance is a session object and must be disposed to avoid session object leakage.
             </summary>
@@ -834,9 +834,10 @@
             <param name="name">Name of the field</param>
             <param name="showAlternatives">Show alternatives</param>
             <param name="pageSize">The size of the page returned, default 20</param>
-            <returns>The IAppfield object</returns>
+            <param name="stateName">The alternate state to use.</param>
+            <returns>The IAppField object</returns>
         </member>
-        <member name="M:Qlik.Sense.Client.AppExtensions.GetAppFieldAsync(Qlik.Engine.IApp,System.String,System.Boolean,System.Int32)">
+        <member name="M:Qlik.Sense.Client.AppExtensions.GetAppFieldAsync(Qlik.Engine.IApp,System.String,System.Boolean,System.Int32,System.String)">
             <summary>
             Get app field. The AppField instance returned by this method is a session object and must be disposed to avoid session object leakage.
             </summary>
@@ -844,7 +845,8 @@
             <param name="name">Name of the field</param>
             <param name="showAlternatives">Show alternatives</param>
             <param name="pageSize">The size of the page returned, default 20</param>
-            <returns>A task with the IAppField object</returns>
+            <param name="stateName">The alternate state to use.</param>
+            <returns>A task with the IAppField object as result</returns>
         </member>
         <member name="M:Qlik.Sense.Client.AppExtensions.OnGetAppFieldAsync(Qlik.Engine.Communication.IO.Response)">
             <summary>
@@ -935,6 +937,22 @@
         <member name="M:Qlik.Sense.Client.AppExtensions.GetVariableListAsync(Qlik.Engine.IApp)">
             <summary>This method creates and returns a session object that must be disposed to avoid session object leakage.</summary>
         </member>
+        <member name="M:Qlik.Sense.Client.AppExtensions.GetSelectionObserver(Qlik.Engine.IApp,System.String)">
+            <summary>
+            Get a selection observer instance.
+            </summary>
+            <param name="app">The app for which to observe selections.</param>
+            <param name="stateName">The name of the selection state to observe. The value <c>null</c> implies the default state.</param>
+            <returns>A selection observer instance.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.AppExtensions.GetSelectionObserverAsync(Qlik.Engine.IApp,System.String)">
+            <summary>
+            Get a selection observer instance.
+            </summary>
+            <param name="app">The app for which to observe selections.</param>
+            <param name="stateName">The name of the selection state to observe. The value <c>null</c> implies the default state.</param>
+            <returns>A selection observer instance.</returns>
+        </member>
         <member name="T:Qlik.Sense.Client.AppField">
             <summary>
             Is a field that has selection methods for list objects and can get notifications on changes.
@@ -954,6 +972,21 @@
             </summary>
             <param name="pages">the pages to retrieve</param>
             <returns>the data available in the pages requested</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.AppField.GetAllFieldValues(System.Int32)">
+            <summary>
+            Get all values for the field.
+            </summary>
+            <param name="pageSize">The number of field values to retrieve per iteration.</param>
+            <returns>The lazily evaluated complete set of values for the field.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.AppField.GetAllFieldValues(Qlik.Engine.StateEnumType,System.Int32)">
+            <summary>
+            Get all values for the field that have a specific state.
+            </summary>
+            <param name="state">The state of the values to retrieved (e.g., <code>StateEnumType.SELECTED</code>, <code>StateEnumType.OPTION</code>)</param>
+            <param name="pageSize">The number of field values to retrieve per iteration.</param>
+            <returns>The lazily evaluated complete set of values for the field for the specified state.</returns>
         </member>
         <member name="M:Qlik.Sense.Client.AppField.GetOptional(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPage})">
             <summary>
@@ -8862,6 +8895,21 @@
             Is a field that has selection methods for list objects and can get notifications on changes. 
             </summary>
         </member>
+        <member name="M:Qlik.Sense.Client.IAppField.GetAllFieldValues(System.Int32)">
+            <summary>
+            Get all values for the field.
+            </summary>
+            <param name="pageSize">The number of field values to retrieve per iteration.</param>
+            <returns>The lazily evaluated complete set of values for the field.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.IAppField.GetAllFieldValues(Qlik.Engine.StateEnumType,System.Int32)">
+            <summary>
+            Get all values for the field that have a specific state.
+            </summary>
+            <param name="state">The state of the values to retrieved (e.g., <code>StateEnumType.SELECTED</code>, <code>StateEnumType.ALTERNATIVE</code>)</param>
+            <param name="pageSize">The number of field values to retrieve per iteration.</param>
+            <returns>The lazily evaluated complete set of values for the field for the specified state.</returns>
+        </member>
         <member name="M:Qlik.Sense.Client.IAppField.GetLocked(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPage})">
             <summary>
             Get Locked data from specific pages
@@ -10450,6 +10498,51 @@
         <member name="M:Qlik.Sense.Client.SheetCell.#ctor">
             <summary>Creates an instance of the SheetCell class</summary>
         </member>
+        <member name="P:Qlik.Sense.Client.ExtendedCurrentSelectionProperties.Fields">
+            <summary><para>List of fields</para><para>JSON property name: fields</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.ExtendedCurrentSelectionProperties.#ctor">
+            <summary>Creates an instance of the ExtendedCurrentSelectionProperties class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.SingleFieldContainerDef.HyperCubeDef">
+            <summary><para>JSON property name: qHyperCubeDef</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.SingleFieldContainerDef.#ctor">
+            <summary>Creates an instance of the SingleFieldContainerDef class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.FieldListProperties.FieldListDef">
+            <summary><para>JSON property name: qFieldListDef</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.FieldListProperties.#ctor">
+            <summary>Creates an instance of the FieldListProperties class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MeasureListProperties.MeasureListDef">
+            <summary><para>JSON property name: qMeasureListDef</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.MeasureListProperties.#ctor">
+            <summary>Creates an instance of the MeasureListProperties class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MeasureObjectViewListDef.Data">
+            <summary><para>Data.</para><para>JSON property name: qData</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MeasureObjectViewListDef.Type">
+            <summary><para>Object type.</para><para>JSON property name: qType</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.MeasureObjectViewListDef.#ctor">
+            <summary>Creates an instance of the MeasureObjectViewListDef class</summary>
+        </member>
+        <member name="T:Qlik.Sense.Client.MeasureObjectViewDef">
+            <summary>Data.</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MeasureObjectViewDef.Title">
+            <summary><para>Title of the master measure.</para><para>JSON property name: title</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MeasureObjectViewDef.Tags">
+            <summary><para>Tags added to the master measure. Optional.</para><para>JSON property name: tags</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.MeasureObjectViewDef.#ctor">
+            <summary>Creates an instance of the MeasureObjectViewDef class</summary>
+        </member>
         <member name="P:Qlik.Sense.Client.SheetListProperties.AppObjectListDef">
             <summary><para>JSON property name: qAppObjectListDef</para></summary>
         </member>
@@ -10486,6 +10579,60 @@
         <member name="M:Qlik.Sense.Client.SheetObjectViewDef.#ctor">
             <summary>Creates an instance of the SheetObjectViewDef class</summary>
         </member>
+        <member name="P:Qlik.Sense.Client.MasterObjectListProperties.AppObjectListDef">
+            <summary><para>JSON property name: qAppObjectListDef</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.MasterObjectListProperties.#ctor">
+            <summary>Creates an instance of the MasterObjectListProperties class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MasterObjectObjectViewListDef.Data">
+            <summary><para>Data.</para><para>JSON property name: qData</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MasterObjectObjectViewListDef.Type">
+            <summary><para>Object type.</para><para>JSON property name: qType</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.MasterObjectObjectViewListDef.#ctor">
+            <summary>Creates an instance of the MasterObjectObjectViewListDef class</summary>
+        </member>
+        <member name="T:Qlik.Sense.Client.MasterObjectObjectViewDef">
+            <summary>Data.</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MasterObjectObjectViewDef.Title">
+            <summary><para>Name of the master object.</para><para>JSON property name: title</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MasterObjectObjectViewDef.Description">
+            <summary><para>Description of the master object.</para><para>JSON property name: description</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MasterObjectObjectViewDef.Visualization">
+            <summary><para>Type of visualization.</para><para>JSON property name: visualization</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.MasterObjectObjectViewDef.#ctor">
+            <summary>Creates an instance of the MasterObjectObjectViewDef class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.CurrentSelectionProperties.SelectionObjectDef">
+            <summary><para>JSON property name: qSelectionObjectDef</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.CurrentSelectionProperties.#ctor">
+            <summary>Creates an instance of the CurrentSelectionProperties class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.SelectionObserverProperties.Fields">
+            <summary><para>List of fields</para><para>JSON property name: fields</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.SelectionObserverProperties.SelectionObjectDef">
+            <summary><para>JSON property name: qSelectionObjectDef</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserverProperties.#ctor">
+            <summary>Creates an instance of the SelectionObserverProperties class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.FieldSelectionObserverDef.FieldName">
+            <summary><para>Field name</para><para>JSON property name: fieldName</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.FieldSelectionObserverDef.HyperCubeDef">
+            <summary><para>JSON property name: qHyperCubeDef</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.FieldSelectionObserverDef.#ctor">
+            <summary>Creates an instance of the FieldSelectionObserverDef class</summary>
+        </member>
         <member name="T:Qlik.Sense.Client.BookmarkListProperties">
             <summary>Properties for defining list of bookmarks.</summary>
         </member>
@@ -10521,69 +10668,6 @@
         </member>
         <member name="M:Qlik.Sense.Client.BookmarkObjectViewDef.#ctor">
             <summary>Creates an instance of the BookmarkObjectViewDef class</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MasterObjectListProperties.AppObjectListDef">
-            <summary><para>JSON property name: qAppObjectListDef</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.MasterObjectListProperties.#ctor">
-            <summary>Creates an instance of the MasterObjectListProperties class</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MasterObjectObjectViewListDef.Data">
-            <summary><para>Data.</para><para>JSON property name: qData</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MasterObjectObjectViewListDef.Type">
-            <summary><para>Object type.</para><para>JSON property name: qType</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.MasterObjectObjectViewListDef.#ctor">
-            <summary>Creates an instance of the MasterObjectObjectViewListDef class</summary>
-        </member>
-        <member name="T:Qlik.Sense.Client.MasterObjectObjectViewDef">
-            <summary>Data.</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MasterObjectObjectViewDef.Title">
-            <summary><para>Name of the master object.</para><para>JSON property name: title</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MasterObjectObjectViewDef.Description">
-            <summary><para>Description of the master object.</para><para>JSON property name: description</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MasterObjectObjectViewDef.Visualization">
-            <summary><para>Type of visualization.</para><para>JSON property name: visualization</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.MasterObjectObjectViewDef.#ctor">
-            <summary>Creates an instance of the MasterObjectObjectViewDef class</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MeasureListProperties.MeasureListDef">
-            <summary><para>JSON property name: qMeasureListDef</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.MeasureListProperties.#ctor">
-            <summary>Creates an instance of the MeasureListProperties class</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MeasureObjectViewListDef.Data">
-            <summary><para>Data.</para><para>JSON property name: qData</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MeasureObjectViewListDef.Type">
-            <summary><para>Object type.</para><para>JSON property name: qType</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.MeasureObjectViewListDef.#ctor">
-            <summary>Creates an instance of the MeasureObjectViewListDef class</summary>
-        </member>
-        <member name="T:Qlik.Sense.Client.MeasureObjectViewDef">
-            <summary>Data.</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MeasureObjectViewDef.Title">
-            <summary><para>Title of the master measure.</para><para>JSON property name: title</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MeasureObjectViewDef.Tags">
-            <summary><para>Tags added to the master measure. Optional.</para><para>JSON property name: tags</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.MeasureObjectViewDef.#ctor">
-            <summary>Creates an instance of the MeasureObjectViewDef class</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.CurrentSelectionProperties.SelectionObjectDef">
-            <summary><para>JSON property name: qSelectionObjectDef</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.CurrentSelectionProperties.#ctor">
-            <summary>Creates an instance of the CurrentSelectionProperties class</summary>
         </member>
         <member name="T:Qlik.Sense.Client.MetaAttributes">
             <summary>The metadata object used by all app objects</summary>
@@ -10804,24 +10888,6 @@
         <member name="M:Qlik.Sense.Client.DimensionObjectViewDef.#ctor">
             <summary>Creates an instance of the DimensionObjectViewDef class</summary>
         </member>
-        <member name="P:Qlik.Sense.Client.ExtendedCurrentSelectionProperties.Fields">
-            <summary><para>List of fields</para><para>JSON property name: fields</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.ExtendedCurrentSelectionProperties.#ctor">
-            <summary>Creates an instance of the ExtendedCurrentSelectionProperties class</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.SingleFieldContainerDef.HyperCubeDef">
-            <summary><para>JSON property name: qHyperCubeDef</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.SingleFieldContainerDef.#ctor">
-            <summary>Creates an instance of the SingleFieldContainerDef class</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.FieldListProperties.FieldListDef">
-            <summary><para>JSON property name: qFieldListDef</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.FieldListProperties.#ctor">
-            <summary>Creates an instance of the FieldListProperties class</summary>
-        </member>
         <member name="P:Qlik.Sense.Client.DimensionProperties.MetaDef">
             <summary><para>The metadata object used by all app objects</para><para>JSON property name: qMetaDef</para></summary>
         </member>
@@ -10849,17 +10915,92 @@
         <member name="P:Qlik.Sense.Client.GenericObjectList.QlikConnection">
             <summary>Reference to property Layout.Session</summary>
         </member>
+        <member name="P:Qlik.Sense.Client.FieldList.Items">
+            <summary>Reference to property Layout.FieldList.Items</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MeasureList.Items">
+            <summary>Reference to property Layout.MeasureList.Items</summary>
+        </member>
         <member name="P:Qlik.Sense.Client.SheetList.Items">
             <summary>Reference to property Layout.AppObjectList.Items</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.BookmarkList.Items">
-            <summary>Reference to property Layout.BookmarkList.Items</summary>
         </member>
         <member name="P:Qlik.Sense.Client.MasterObjectList.Items">
             <summary>Reference to property Layout.AppObjectList.Items</summary>
         </member>
-        <member name="P:Qlik.Sense.Client.MeasureList.Items">
-            <summary>Reference to property Layout.MeasureList.Items</summary>
+        <member name="T:Qlik.Sense.Client.SelectionObserver">
+            <summary>
+            The selection observer class provides an interface for inspecting the current set of selected field values for an app.
+            </summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.SetSelectionState(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.SetSelectionStateAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.GetSelectionState">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.GetSelectionStateAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.HasAnySelections">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.HasAnySelectionsAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.GetNumberOfFieldsWithSelections">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.GetNumberOfFieldsWithSelectionsAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.GetSelectionObserver(Qlik.Engine.IApp,System.String)">
+            <summary>
+            Create a SelectionObserver instance.
+            </summary>
+            <param name="app">The app to observe.</param>
+            <param name="stateName">The name of the selection state to observe.</param>
+            <returns>An ISelectionObserver instance.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.GetSelectionObserverAsync(Qlik.Engine.IApp,System.String)">
+            <summary>
+            Create a SelectionObserver instance.
+            </summary>
+            <param name="app">The app to observe.</param>
+            <param name="stateName">The name of the selection state to observe.</param>
+            <returns>An ISelectionObserver instance.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.GetNamesOfFieldsWithSelections">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.GetNamesOfFieldsWithSelectionsAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.FieldHasSelections(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.FieldHasSelectionsAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.GetFieldSelectionCount(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.GetFieldSelectionCountAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.GetSelectionPager(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.GetSelectionPagerAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserver.GetAllSelectedValues(System.String,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="P:Qlik.Sense.Client.BookmarkList.Items">
+            <summary>Reference to property Layout.BookmarkList.Items</summary>
         </member>
         <member name="P:Qlik.Sense.Client.AppPropertiesObject.SheetTitleBgColor">
             <summary>Reference to property Layout.SheetTitleBgColor</summary>
@@ -11133,9 +11274,6 @@
         <member name="P:Qlik.Sense.Client.DimensionList.Items">
             <summary>Reference to property Layout.DimensionList.Items</summary>
         </member>
-        <member name="P:Qlik.Sense.Client.FieldList.Items">
-            <summary>Reference to property Layout.FieldList.Items</summary>
-        </member>
         <member name="P:Qlik.Sense.Client.Dimension.MetaAttributes">
             <summary>Reference to property Layout.Meta</summary>
         </member>
@@ -11160,6 +11298,36 @@
         <member name="P:Qlik.Sense.Client.Measure.QlikConnection">
             <summary>Reference to property Layout.Session</summary>
         </member>
+        <member name="P:Qlik.Sense.Client.ExtendedCurrentSelectionLayout.Fields">
+            <summary><para>List of fields</para><para>JSON property name: fields</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.ExtendedCurrentSelectionLayout.#ctor">
+            <summary>Creates an instance of the ExtendedCurrentSelectionLayout class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.SingleFieldContainer.HyperCube">
+            <summary><para>JSON property name: qHyperCube</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.SingleFieldContainer.#ctor">
+            <summary>Creates an instance of the SingleFieldContainer class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.FieldListLayout.FieldList">
+            <summary><para>JSON property name: qFieldList</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.FieldListLayout.#ctor">
+            <summary>Creates an instance of the FieldListLayout class</summary>
+        </member>
+        <member name="T:Qlik.Sense.Client.MeasureObjectView">
+            <summary>Data.</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MeasureObjectView.Title">
+            <summary><para>Title of the master measure.</para><para>JSON property name: title</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MeasureObjectView.Tags">
+            <summary><para>Tags added to the master measure. Optional.</para><para>JSON property name: tags</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.MeasureObjectView.#ctor">
+            <summary>Creates an instance of the MeasureObjectView class</summary>
+        </member>
         <member name="P:Qlik.Sense.Client.SheetObjectView.Cells">
             <summary><para>JSON property name: cells</para></summary>
         </member>
@@ -11181,6 +11349,45 @@
         <member name="M:Qlik.Sense.Client.SheetObjectView.#ctor">
             <summary>Creates an instance of the SheetObjectView class</summary>
         </member>
+        <member name="T:Qlik.Sense.Client.MasterObjectObjectView">
+            <summary>Data.</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MasterObjectObjectView.Title">
+            <summary><para>Name of the master object.</para><para>JSON property name: title</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MasterObjectObjectView.Description">
+            <summary><para>Description of the master object.</para><para>JSON property name: description</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MasterObjectObjectView.Visualization">
+            <summary><para>Type of visualization.</para><para>JSON property name: visualization</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.MasterObjectObjectView.#ctor">
+            <summary>Creates an instance of the MasterObjectObjectView class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.CurrentSelectionLayout.SelectionObject">
+            <summary><para>JSON property name: qSelectionObject</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.CurrentSelectionLayout.#ctor">
+            <summary>Creates an instance of the CurrentSelectionLayout class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.SelectionObserverLayout.Fields">
+            <summary><para>List of fields</para><para>JSON property name: fields</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.SelectionObserverLayout.SelectionObject">
+            <summary><para>JSON property name: qSelectionObject</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.SelectionObserverLayout.#ctor">
+            <summary>Creates an instance of the SelectionObserverLayout class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.FieldSelectionObserver.FieldName">
+            <summary><para>Field name</para><para>JSON property name: fieldName</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.FieldSelectionObserver.HyperCube">
+            <summary><para>JSON property name: qHyperCube</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.FieldSelectionObserver.#ctor">
+            <summary>Creates an instance of the FieldSelectionObserver class</summary>
+        </member>
         <member name="P:Qlik.Sense.Client.BookmarkObjectView.Description">
             <summary><para>Description of the bookmark.</para><para>JSON property name: description</para></summary>
         </member>
@@ -11198,39 +11405,6 @@
         </member>
         <member name="M:Qlik.Sense.Client.BookmarkObjectView.#ctor">
             <summary>Creates an instance of the BookmarkObjectView class</summary>
-        </member>
-        <member name="T:Qlik.Sense.Client.MasterObjectObjectView">
-            <summary>Data.</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MasterObjectObjectView.Title">
-            <summary><para>Name of the master object.</para><para>JSON property name: title</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MasterObjectObjectView.Description">
-            <summary><para>Description of the master object.</para><para>JSON property name: description</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MasterObjectObjectView.Visualization">
-            <summary><para>Type of visualization.</para><para>JSON property name: visualization</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.MasterObjectObjectView.#ctor">
-            <summary>Creates an instance of the MasterObjectObjectView class</summary>
-        </member>
-        <member name="T:Qlik.Sense.Client.MeasureObjectView">
-            <summary>Data.</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MeasureObjectView.Title">
-            <summary><para>Title of the master measure.</para><para>JSON property name: title</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MeasureObjectView.Tags">
-            <summary><para>Tags added to the master measure. Optional.</para><para>JSON property name: tags</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.MeasureObjectView.#ctor">
-            <summary>Creates an instance of the MeasureObjectView class</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.CurrentSelectionLayout.SelectionObject">
-            <summary><para>JSON property name: qSelectionObject</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.CurrentSelectionLayout.#ctor">
-            <summary>Creates an instance of the CurrentSelectionLayout class</summary>
         </member>
         <member name="P:Qlik.Sense.Client.StaticContentUrlContainer.StaticContentUrl">
             <summary><para>JSON property name: qStaticContentUrl</para></summary>
@@ -11340,29 +11514,17 @@
         <member name="M:Qlik.Sense.Client.DimensionObjectView.#ctor">
             <summary>Creates an instance of the DimensionObjectView class</summary>
         </member>
-        <member name="P:Qlik.Sense.Client.ExtendedCurrentSelectionLayout.Fields">
-            <summary><para>List of fields</para><para>JSON property name: fields</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.ExtendedCurrentSelectionLayout.#ctor">
-            <summary>Creates an instance of the ExtendedCurrentSelectionLayout class</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.SingleFieldContainer.HyperCube">
-            <summary><para>JSON property name: qHyperCube</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.SingleFieldContainer.#ctor">
-            <summary>Creates an instance of the SingleFieldContainer class</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.FieldListLayout.FieldList">
-            <summary><para>JSON property name: qFieldList</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.FieldListLayout.#ctor">
-            <summary>Creates an instance of the FieldListLayout class</summary>
-        </member>
         <member name="M:Qlik.Sense.Client.DimensionLayout.#ctor">
             <summary>Creates an instance of the DimensionLayout class</summary>
         </member>
         <member name="M:Qlik.Sense.Client.MeasureLayout.#ctor">
             <summary>Creates an instance of the MeasureLayout class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MeasureObjectViewList.Items">
+            <summary><para>JSON property name: qItems</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.MeasureObjectViewList.#ctor">
+            <summary>Creates an instance of the MeasureObjectViewList class</summary>
         </member>
         <member name="P:Qlik.Sense.Client.SheetObjectViewList.Items">
             <summary><para>JSON property name: qItems</para></summary>
@@ -11370,23 +11532,17 @@
         <member name="M:Qlik.Sense.Client.SheetObjectViewList.#ctor">
             <summary>Creates an instance of the SheetObjectViewList class</summary>
         </member>
-        <member name="P:Qlik.Sense.Client.BookmarkObjectViewList.Items">
-            <summary><para>JSON property name: qItems</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.BookmarkObjectViewList.#ctor">
-            <summary>Creates an instance of the BookmarkObjectViewList class</summary>
-        </member>
         <member name="P:Qlik.Sense.Client.MasterObjectObjectViewList.Items">
             <summary><para>JSON property name: qItems</para></summary>
         </member>
         <member name="M:Qlik.Sense.Client.MasterObjectObjectViewList.#ctor">
             <summary>Creates an instance of the MasterObjectObjectViewList class</summary>
         </member>
-        <member name="P:Qlik.Sense.Client.MeasureObjectViewList.Items">
+        <member name="P:Qlik.Sense.Client.BookmarkObjectViewList.Items">
             <summary><para>JSON property name: qItems</para></summary>
         </member>
-        <member name="M:Qlik.Sense.Client.MeasureObjectViewList.#ctor">
-            <summary>Creates an instance of the MeasureObjectViewList class</summary>
+        <member name="M:Qlik.Sense.Client.BookmarkObjectViewList.#ctor">
+            <summary>Creates an instance of the BookmarkObjectViewList class</summary>
         </member>
         <member name="P:Qlik.Sense.Client.VariableObjectViewList.Items">
             <summary><para>JSON property name: qItems</para></summary>
@@ -11406,11 +11562,23 @@
         <member name="M:Qlik.Sense.Client.DimensionObjectViewList.#ctor">
             <summary>Creates an instance of the DimensionObjectViewList class</summary>
         </member>
+        <member name="P:Qlik.Sense.Client.MeasureListLayout.MeasureList">
+            <summary><para>JSON property name: qMeasureList</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.MeasureListLayout.#ctor">
+            <summary>Creates an instance of the MeasureListLayout class</summary>
+        </member>
         <member name="P:Qlik.Sense.Client.SheetListLayout.AppObjectList">
             <summary><para>JSON property name: qAppObjectList</para></summary>
         </member>
         <member name="M:Qlik.Sense.Client.SheetListLayout.#ctor">
             <summary>Creates an instance of the SheetListLayout class</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.MasterObjectListLayout.AppObjectList">
+            <summary><para>JSON property name: qAppObjectList</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.MasterObjectListLayout.#ctor">
+            <summary>Creates an instance of the MasterObjectListLayout class</summary>
         </member>
         <member name="T:Qlik.Sense.Client.BookmarkListLayout">
             <summary>Properties for defining list of bookmarks.</summary>
@@ -11420,18 +11588,6 @@
         </member>
         <member name="M:Qlik.Sense.Client.BookmarkListLayout.#ctor">
             <summary>Creates an instance of the BookmarkListLayout class</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MasterObjectListLayout.AppObjectList">
-            <summary><para>JSON property name: qAppObjectList</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.MasterObjectListLayout.#ctor">
-            <summary>Creates an instance of the MasterObjectListLayout class</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.MeasureListLayout.MeasureList">
-            <summary><para>JSON property name: qMeasureList</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.MeasureListLayout.#ctor">
-            <summary>Creates an instance of the MeasureListLayout class</summary>
         </member>
         <member name="T:Qlik.Sense.Client.VariableListLayout">
             <summary>Properties for defining list of variables.</summary>
@@ -11448,17 +11604,17 @@
         <member name="M:Qlik.Sense.Client.DimensionListLayout.#ctor">
             <summary>Creates an instance of the DimensionListLayout class</summary>
         </member>
+        <member name="P:Qlik.Sense.Client.MeasureObjectViewListContainer.Data">
+            <summary><para>Data.</para><para>JSON property name: qData</para></summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.MeasureObjectViewListContainer.#ctor">
+            <summary>Creates an instance of the MeasureObjectViewListContainer class</summary>
+        </member>
         <member name="P:Qlik.Sense.Client.SheetObjectViewListContainer.Data">
             <summary><para>JSON property name: qData</para></summary>
         </member>
         <member name="M:Qlik.Sense.Client.SheetObjectViewListContainer.#ctor">
             <summary>Creates an instance of the SheetObjectViewListContainer class</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.BookmarkObjectViewListContainer.Data">
-            <summary><para>JSON property name: qData</para></summary>
-        </member>
-        <member name="M:Qlik.Sense.Client.BookmarkObjectViewListContainer.#ctor">
-            <summary>Creates an instance of the BookmarkObjectViewListContainer class</summary>
         </member>
         <member name="P:Qlik.Sense.Client.MasterObjectObjectViewListContainer.Data">
             <summary><para>Data.</para><para>JSON property name: qData</para></summary>
@@ -11466,11 +11622,11 @@
         <member name="M:Qlik.Sense.Client.MasterObjectObjectViewListContainer.#ctor">
             <summary>Creates an instance of the MasterObjectObjectViewListContainer class</summary>
         </member>
-        <member name="P:Qlik.Sense.Client.MeasureObjectViewListContainer.Data">
-            <summary><para>Data.</para><para>JSON property name: qData</para></summary>
+        <member name="P:Qlik.Sense.Client.BookmarkObjectViewListContainer.Data">
+            <summary><para>JSON property name: qData</para></summary>
         </member>
-        <member name="M:Qlik.Sense.Client.MeasureObjectViewListContainer.#ctor">
-            <summary>Creates an instance of the MeasureObjectViewListContainer class</summary>
+        <member name="M:Qlik.Sense.Client.BookmarkObjectViewListContainer.#ctor">
+            <summary>Creates an instance of the BookmarkObjectViewListContainer class</summary>
         </member>
         <member name="P:Qlik.Sense.Client.VariableObjectViewListContainer.Data">
             <summary><para>JSON property name: qData</para></summary>
@@ -11498,6 +11654,125 @@
         </member>
         <member name="P:Qlik.Sense.Client.IGenericObjectList.QlikConnection">
             <summary>Reference to property Layout.Session</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IFieldList.Items">
+            <summary>Reference to property Layout.FieldList.Items</summary>
+        </member>
+        <member name="T:Qlik.Sense.Client.ISelectionObserver">
+            <summary>
+            The selection observer class provides an interface for inspecting the current set of selected field values for an app.
+            </summary>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.SetSelectionState(System.String)">
+            <summary>
+            Set the state for which to observe selections.
+            </summary>
+            <param name="stateName">The name of the selection state to observe. The value <c>null</c> implies the default state.</param>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.SetSelectionStateAsync(System.String)">
+            <summary>
+            Set the state for which to observe selections.
+            </summary>
+            <param name="stateName">The name of the selection state to observe. The value <c>null</c> implies the default state.</param>
+            <returns>A task that completes when the selection state has been set.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.GetSelectionState">
+            <summary>
+            Get the state for which the object currently observes selections.
+            </summary>
+            <returns>The name of the currently observed selection state.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.GetSelectionStateAsync">
+            <summary>
+            Get the state for which the object currently observes selections.
+            </summary>
+            <returns>The name of the currently observed selection state.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.HasAnySelections">
+            <summary>
+            Check if there are currently any selected values in any fields.
+            </summary>
+            <returns>A boolean indicating if there are any selections.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.HasAnySelectionsAsync">
+            <summary>
+            Check if there are currently any selected values in any fields.
+            </summary>
+            <returns>A boolean indicating if there are any selections.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.GetNumberOfFieldsWithSelections">
+            <summary>
+            Check how many fields that currently have any selected values.
+            </summary>
+            <returns>The number of fields with any selections.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.GetNumberOfFieldsWithSelectionsAsync">
+            <summary>
+            Check how many fields that currently have any selected values.
+            </summary>
+            <returns>The number of fields with any selections.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.GetNamesOfFieldsWithSelections">
+            <summary>
+            Get the names of all fields that currently have any selected values.
+            </summary>
+            <returns>An IEnumerable with the name of all fields with any selections.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.GetNamesOfFieldsWithSelectionsAsync">
+            <summary>
+            Get the names of all fields that currently have any selected values.
+            </summary>
+            <returns>An IEnumerable with the name of all fields with any selections.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.FieldHasSelections(System.String)">
+            <summary>
+            Check if there are currently any selected values in the specified field.
+            </summary>
+            <param name="fieldName">The name of the field to check.</param>
+            <returns>A boolean indicating if there are any selections.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.FieldHasSelectionsAsync(System.String)">
+            <summary>
+            Check if there are currently any selected values in the specified field.
+            </summary>
+            <param name="fieldName">The name of the field to check.</param>
+            <returns>A boolean indicating if there are any selections.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.GetFieldSelectionCount(System.String)">
+            <summary>
+            Get the number of selected values of the specified field.
+            </summary>
+            <param name="fieldName">The name of the field to check.</param>
+            <returns>The number of selected values of the specified field.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.GetFieldSelectionCountAsync(System.String)">
+            <summary>
+            Get the number of selected values of the specified field.
+            </summary>
+            <param name="fieldName">The name of the field to check.</param>
+            <returns>The number of selected values of the specified field.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.GetSelectionPager(System.String)">
+            <summary>
+            Get a data pager for paging across the selected value of the field.
+            </summary>
+            <param name="fieldName">The name of the field for which to create the pager.</param>
+            <returns>A data pager for the selections of the specified field.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.GetSelectionPagerAsync(System.String)">
+            <summary>
+            Get a data pager for paging across the selected value of the field.
+            </summary>
+            <param name="fieldName">The name of the field for which to create the pager.</param>
+            <returns>A data pager for the selections of the specified field.</returns>
+        </member>
+        <member name="M:Qlik.Sense.Client.ISelectionObserver.GetAllSelectedValues(System.String,System.Int32)">
+            <summary>
+            Get all selected values for the specified field.
+            </summary>
+            <param name="fieldName">The name of the field to check.</param>
+            <param name="pageSize">The number of selected field values to retrieve per engine call.</param>
+            <returns>The number of selected values of the specified field.</returns>
         </member>
         <member name="P:Qlik.Sense.Client.IAppPropertiesObject.SheetTitleBgColor">
             <summary>Reference to property Layout.SheetTitleBgColor</summary>
@@ -11712,9 +11987,6 @@
         <member name="M:Qlik.Sense.Client.ISheet.CreatePivottableAsync(Qlik.Engine.AsyncHandle,System.String,Qlik.Sense.Client.Visualizations.PivottableProperties)">
             <param name="asyncHandle">Handle to asynchronous method request</param>
         </member>
-        <member name="P:Qlik.Sense.Client.IFieldList.Items">
-            <summary>Reference to property Layout.FieldList.Items</summary>
-        </member>
         <member name="P:Qlik.Sense.Client.IDimension.MetaAttributes">
             <summary>Reference to property Layout.Meta</summary>
         </member>
@@ -11739,17 +12011,17 @@
         <member name="P:Qlik.Sense.Client.IMeasure.QlikConnection">
             <summary>Reference to property Layout.Session</summary>
         </member>
+        <member name="P:Qlik.Sense.Client.IMeasureList.Items">
+            <summary>Reference to property Layout.MeasureList.Items</summary>
+        </member>
         <member name="P:Qlik.Sense.Client.ISheetList.Items">
             <summary>Reference to property Layout.AppObjectList.Items</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IBookmarkList.Items">
-            <summary>Reference to property Layout.BookmarkList.Items</summary>
         </member>
         <member name="P:Qlik.Sense.Client.IMasterObjectList.Items">
             <summary>Reference to property Layout.AppObjectList.Items</summary>
         </member>
-        <member name="P:Qlik.Sense.Client.IMeasureList.Items">
-            <summary>Reference to property Layout.MeasureList.Items</summary>
+        <member name="P:Qlik.Sense.Client.IBookmarkList.Items">
+            <summary>Reference to property Layout.BookmarkList.Items</summary>
         </member>
         <member name="P:Qlik.Sense.Client.IVariableList.Items">
             <summary>Reference to property Layout.VariableList.Items</summary>
@@ -11787,6 +12059,33 @@
         <member name="P:Qlik.Sense.Client.ISheetCell.Type">
             <summary><para>Type of object.</para><para>JSON property name: type</para></summary>
         </member>
+        <member name="P:Qlik.Sense.Client.IExtendedCurrentSelectionProperties.Fields">
+            <summary><para>List of fields</para><para>JSON property name: fields</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.ISingleFieldContainerDef.HyperCubeDef">
+            <summary><para>JSON property name: qHyperCubeDef</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IFieldListProperties.FieldListDef">
+            <summary><para>JSON property name: qFieldListDef</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMeasureListProperties.MeasureListDef">
+            <summary><para>JSON property name: qMeasureListDef</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMeasureObjectViewListDef.Data">
+            <summary><para>Data.</para><para>JSON property name: qData</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMeasureObjectViewListDef.Type">
+            <summary><para>Object type.</para><para>JSON property name: qType</para></summary>
+        </member>
+        <member name="T:Qlik.Sense.Client.IMeasureObjectViewDef">
+            <summary>Data.</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMeasureObjectViewDef.Title">
+            <summary><para>Title of the master measure.</para><para>JSON property name: title</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMeasureObjectViewDef.Tags">
+            <summary><para>Tags added to the master measure. Optional.</para><para>JSON property name: tags</para></summary>
+        </member>
         <member name="P:Qlik.Sense.Client.ISheetListProperties.AppObjectListDef">
             <summary><para>JSON property name: qAppObjectListDef</para></summary>
         </member>
@@ -11814,6 +12113,42 @@
         <member name="P:Qlik.Sense.Client.ISheetObjectViewDef.Description">
             <summary><para>JSON property name: description</para></summary>
         </member>
+        <member name="P:Qlik.Sense.Client.IMasterObjectListProperties.AppObjectListDef">
+            <summary><para>JSON property name: qAppObjectListDef</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMasterObjectObjectViewListDef.Data">
+            <summary><para>Data.</para><para>JSON property name: qData</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMasterObjectObjectViewListDef.Type">
+            <summary><para>Object type.</para><para>JSON property name: qType</para></summary>
+        </member>
+        <member name="T:Qlik.Sense.Client.IMasterObjectObjectViewDef">
+            <summary>Data.</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMasterObjectObjectViewDef.Title">
+            <summary><para>Name of the master object.</para><para>JSON property name: title</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMasterObjectObjectViewDef.Description">
+            <summary><para>Description of the master object.</para><para>JSON property name: description</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMasterObjectObjectViewDef.Visualization">
+            <summary><para>Type of visualization.</para><para>JSON property name: visualization</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.ICurrentSelectionProperties.SelectionObjectDef">
+            <summary><para>JSON property name: qSelectionObjectDef</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.ISelectionObserverProperties.Fields">
+            <summary><para>List of fields</para><para>JSON property name: fields</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.ISelectionObserverProperties.SelectionObjectDef">
+            <summary><para>JSON property name: qSelectionObjectDef</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IFieldSelectionObserverDef.FieldName">
+            <summary><para>Field name</para><para>JSON property name: fieldName</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IFieldSelectionObserverDef.HyperCubeDef">
+            <summary><para>JSON property name: qHyperCubeDef</para></summary>
+        </member>
         <member name="T:Qlik.Sense.Client.IBookmarkListProperties">
             <summary>Properties for defining list of bookmarks.</summary>
         </member>
@@ -11840,48 +12175,6 @@
         </member>
         <member name="P:Qlik.Sense.Client.IBookmarkObjectViewDef.CreationDate">
             <summary><para>Creation date of the bookmark.</para><para>JSON property name: creationDate</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMasterObjectListProperties.AppObjectListDef">
-            <summary><para>JSON property name: qAppObjectListDef</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMasterObjectObjectViewListDef.Data">
-            <summary><para>Data.</para><para>JSON property name: qData</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMasterObjectObjectViewListDef.Type">
-            <summary><para>Object type.</para><para>JSON property name: qType</para></summary>
-        </member>
-        <member name="T:Qlik.Sense.Client.IMasterObjectObjectViewDef">
-            <summary>Data.</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMasterObjectObjectViewDef.Title">
-            <summary><para>Name of the master object.</para><para>JSON property name: title</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMasterObjectObjectViewDef.Description">
-            <summary><para>Description of the master object.</para><para>JSON property name: description</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMasterObjectObjectViewDef.Visualization">
-            <summary><para>Type of visualization.</para><para>JSON property name: visualization</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMeasureListProperties.MeasureListDef">
-            <summary><para>JSON property name: qMeasureListDef</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMeasureObjectViewListDef.Data">
-            <summary><para>Data.</para><para>JSON property name: qData</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMeasureObjectViewListDef.Type">
-            <summary><para>Object type.</para><para>JSON property name: qType</para></summary>
-        </member>
-        <member name="T:Qlik.Sense.Client.IMeasureObjectViewDef">
-            <summary>Data.</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMeasureObjectViewDef.Title">
-            <summary><para>Title of the master measure.</para><para>JSON property name: title</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMeasureObjectViewDef.Tags">
-            <summary><para>Tags added to the master measure. Optional.</para><para>JSON property name: tags</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.ICurrentSelectionProperties.SelectionObjectDef">
-            <summary><para>JSON property name: qSelectionObjectDef</para></summary>
         </member>
         <member name="T:Qlik.Sense.Client.IMetaAttributes">
             <summary>The metadata object used by all app objects</summary>
@@ -12048,20 +12341,29 @@
         <member name="P:Qlik.Sense.Client.IDimensionObjectViewDef.Grouping">
             <summary><para>JSON property name: grouping</para></summary>
         </member>
-        <member name="P:Qlik.Sense.Client.IExtendedCurrentSelectionProperties.Fields">
-            <summary><para>List of fields</para><para>JSON property name: fields</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.ISingleFieldContainerDef.HyperCubeDef">
-            <summary><para>JSON property name: qHyperCubeDef</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IFieldListProperties.FieldListDef">
-            <summary><para>JSON property name: qFieldListDef</para></summary>
-        </member>
         <member name="P:Qlik.Sense.Client.IDimensionProperties.MetaDef">
             <summary><para>The metadata object used by all app objects</para><para>JSON property name: qMetaDef</para></summary>
         </member>
         <member name="P:Qlik.Sense.Client.IMeasureProperties.MetaDef">
             <summary><para>The metadata object used by all app objects</para><para>JSON property name: qMetaDef</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IExtendedCurrentSelectionLayout.Fields">
+            <summary><para>List of fields</para><para>JSON property name: fields</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.ISingleFieldContainer.HyperCube">
+            <summary><para>JSON property name: qHyperCube</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IFieldListLayout.FieldList">
+            <summary><para>JSON property name: qFieldList</para></summary>
+        </member>
+        <member name="T:Qlik.Sense.Client.IMeasureObjectView">
+            <summary>Data.</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMeasureObjectView.Title">
+            <summary><para>Title of the master measure.</para><para>JSON property name: title</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMeasureObjectView.Tags">
+            <summary><para>Tags added to the master measure. Optional.</para><para>JSON property name: tags</para></summary>
         </member>
         <member name="P:Qlik.Sense.Client.ISheetObjectView.Cells">
             <summary><para>JSON property name: cells</para></summary>
@@ -12081,6 +12383,33 @@
         <member name="P:Qlik.Sense.Client.ISheetObjectView.Description">
             <summary><para>JSON property name: description</para></summary>
         </member>
+        <member name="T:Qlik.Sense.Client.IMasterObjectObjectView">
+            <summary>Data.</summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMasterObjectObjectView.Title">
+            <summary><para>Name of the master object.</para><para>JSON property name: title</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMasterObjectObjectView.Description">
+            <summary><para>Description of the master object.</para><para>JSON property name: description</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMasterObjectObjectView.Visualization">
+            <summary><para>Type of visualization.</para><para>JSON property name: visualization</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.ICurrentSelectionLayout.SelectionObject">
+            <summary><para>JSON property name: qSelectionObject</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.ISelectionObserverLayout.Fields">
+            <summary><para>List of fields</para><para>JSON property name: fields</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.ISelectionObserverLayout.SelectionObject">
+            <summary><para>JSON property name: qSelectionObject</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IFieldSelectionObserver.FieldName">
+            <summary><para>Field name</para><para>JSON property name: fieldName</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IFieldSelectionObserver.HyperCube">
+            <summary><para>JSON property name: qHyperCube</para></summary>
+        </member>
         <member name="P:Qlik.Sense.Client.IBookmarkObjectView.Description">
             <summary><para>Description of the bookmark.</para><para>JSON property name: description</para></summary>
         </member>
@@ -12095,30 +12424,6 @@
         </member>
         <member name="P:Qlik.Sense.Client.IBookmarkObjectView.CreationDate">
             <summary><para>Creation date of the bookmark.</para><para>JSON property name: creationDate</para></summary>
-        </member>
-        <member name="T:Qlik.Sense.Client.IMasterObjectObjectView">
-            <summary>Data.</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMasterObjectObjectView.Title">
-            <summary><para>Name of the master object.</para><para>JSON property name: title</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMasterObjectObjectView.Description">
-            <summary><para>Description of the master object.</para><para>JSON property name: description</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMasterObjectObjectView.Visualization">
-            <summary><para>Type of visualization.</para><para>JSON property name: visualization</para></summary>
-        </member>
-        <member name="T:Qlik.Sense.Client.IMeasureObjectView">
-            <summary>Data.</summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMeasureObjectView.Title">
-            <summary><para>Title of the master measure.</para><para>JSON property name: title</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMeasureObjectView.Tags">
-            <summary><para>Tags added to the master measure. Optional.</para><para>JSON property name: tags</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.ICurrentSelectionLayout.SelectionObject">
-            <summary><para>JSON property name: qSelectionObject</para></summary>
         </member>
         <member name="P:Qlik.Sense.Client.IStaticContentUrlContainer.StaticContentUrl">
             <summary><para>JSON property name: qStaticContentUrl</para></summary>
@@ -12201,25 +12506,16 @@
         <member name="P:Qlik.Sense.Client.IDimensionObjectView.Grouping">
             <summary><para>JSON property name: grouping</para></summary>
         </member>
-        <member name="P:Qlik.Sense.Client.IExtendedCurrentSelectionLayout.Fields">
-            <summary><para>List of fields</para><para>JSON property name: fields</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.ISingleFieldContainer.HyperCube">
-            <summary><para>JSON property name: qHyperCube</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IFieldListLayout.FieldList">
-            <summary><para>JSON property name: qFieldList</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.ISheetObjectViewList.Items">
+        <member name="P:Qlik.Sense.Client.IMeasureObjectViewList.Items">
             <summary><para>JSON property name: qItems</para></summary>
         </member>
-        <member name="P:Qlik.Sense.Client.IBookmarkObjectViewList.Items">
+        <member name="P:Qlik.Sense.Client.ISheetObjectViewList.Items">
             <summary><para>JSON property name: qItems</para></summary>
         </member>
         <member name="P:Qlik.Sense.Client.IMasterObjectObjectViewList.Items">
             <summary><para>JSON property name: qItems</para></summary>
         </member>
-        <member name="P:Qlik.Sense.Client.IMeasureObjectViewList.Items">
+        <member name="P:Qlik.Sense.Client.IBookmarkObjectViewList.Items">
             <summary><para>JSON property name: qItems</para></summary>
         </member>
         <member name="P:Qlik.Sense.Client.IVariableObjectViewList.Items">
@@ -12231,7 +12527,13 @@
         <member name="P:Qlik.Sense.Client.IDimensionObjectViewList.Items">
             <summary><para>JSON property name: qItems</para></summary>
         </member>
+        <member name="P:Qlik.Sense.Client.IMeasureListLayout.MeasureList">
+            <summary><para>JSON property name: qMeasureList</para></summary>
+        </member>
         <member name="P:Qlik.Sense.Client.ISheetListLayout.AppObjectList">
+            <summary><para>JSON property name: qAppObjectList</para></summary>
+        </member>
+        <member name="P:Qlik.Sense.Client.IMasterObjectListLayout.AppObjectList">
             <summary><para>JSON property name: qAppObjectList</para></summary>
         </member>
         <member name="T:Qlik.Sense.Client.IBookmarkListLayout">
@@ -12239,12 +12541,6 @@
         </member>
         <member name="P:Qlik.Sense.Client.IBookmarkListLayout.BookmarkList">
             <summary><para>JSON property name: qBookmarkList</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMasterObjectListLayout.AppObjectList">
-            <summary><para>JSON property name: qAppObjectList</para></summary>
-        </member>
-        <member name="P:Qlik.Sense.Client.IMeasureListLayout.MeasureList">
-            <summary><para>JSON property name: qMeasureList</para></summary>
         </member>
         <member name="T:Qlik.Sense.Client.IVariableListLayout">
             <summary>Properties for defining list of variables.</summary>
@@ -12255,17 +12551,17 @@
         <member name="P:Qlik.Sense.Client.IDimensionListLayout.DimensionList">
             <summary><para>JSON property name: qDimensionList</para></summary>
         </member>
-        <member name="P:Qlik.Sense.Client.ISheetObjectViewListContainer.Data">
-            <summary><para>JSON property name: qData</para></summary>
+        <member name="P:Qlik.Sense.Client.IMeasureObjectViewListContainer.Data">
+            <summary><para>Data.</para><para>JSON property name: qData</para></summary>
         </member>
-        <member name="P:Qlik.Sense.Client.IBookmarkObjectViewListContainer.Data">
+        <member name="P:Qlik.Sense.Client.ISheetObjectViewListContainer.Data">
             <summary><para>JSON property name: qData</para></summary>
         </member>
         <member name="P:Qlik.Sense.Client.IMasterObjectObjectViewListContainer.Data">
             <summary><para>Data.</para><para>JSON property name: qData</para></summary>
         </member>
-        <member name="P:Qlik.Sense.Client.IMeasureObjectViewListContainer.Data">
-            <summary><para>Data.</para><para>JSON property name: qData</para></summary>
+        <member name="P:Qlik.Sense.Client.IBookmarkObjectViewListContainer.Data">
+            <summary><para>JSON property name: qData</para></summary>
         </member>
         <member name="P:Qlik.Sense.Client.IVariableObjectViewListContainer.Data">
             <summary><para>JSON property name: qData</para></summary>

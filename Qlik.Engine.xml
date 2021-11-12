@@ -207,6 +207,12 @@
             <typeparam name="TI">The interface to return</typeparam>
             <returns>A task with the interface as result</returns>
         </member>
+        <member name="M:Qlik.Engine.App.CreateGenericSessionObjectAsync``1(Qlik.Engine.AsyncHandle,System.Func{Qlik.Engine.Communication.IO.Response,``0},Qlik.Engine.GenericObjectProperties)">
+            <inheritdoc />
+        </member>
+        <member name="M:Qlik.Engine.App.CreateSessionVariableAsync``1(Qlik.Engine.AsyncHandle,System.Func{Qlik.Engine.Communication.IO.Response,``0},Qlik.Engine.GenericVariableProperties)">
+            <inheritdoc />
+        </member>
         <member name="M:Qlik.Engine.App.GetField(System.String,System.String)">
             <summary><para>Returns a handle to a field.</para></summary>
             <param name="fieldName">Name of the field.</param>
@@ -1322,16 +1328,6 @@
              <param name="prop">Information about the object.</param>
              <remark>The linking object cannot be a transient object.</remark>
         </member>
-        <member name="M:Qlik.Engine.App.CreateGenericSessionObjectAsync``1(Qlik.Engine.AsyncHandle,System.Func{Qlik.Engine.Communication.IO.Response,``0},Qlik.Engine.GenericObjectProperties)">
-             <param name="asyncHandle">Handle to asynchronous method request</param>
-             <param name="onResult">Continuation function</param>
-             <summary><para>Creates a transient object. For example, you can use a transient object to create an app overview or a story overview.</para>
-            <para>It is possible to create a transient object that is linked to another object.</para>
-            <para>A linked object is an object that points to a linking object. The linking object is defined in the properties of the linked object (in <c>qExtendsId</c> ).</para>
-            <para>The linked object has the same properties as the linking object.</para></summary>
-             <param name="prop">Information about the object.</param>
-             <remark>The linking object cannot be a transient object.</remark>
-        </member>
         <member name="M:Qlik.Engine.App.DestroyGenericSessionObject(System.String)">
             <summary><para>Removes a transient object.</para></summary>
             <param name="id">Identifier of the transient object to remove.</param>
@@ -1890,20 +1886,6 @@
         </member>
         <member name="M:Qlik.Engine.App.CreateSessionVariableAsync(Qlik.Engine.AsyncHandle,Qlik.Engine.GenericVariableProperties)">
              <param name="asyncHandle">Handle to asynchronous method request</param>
-             <summary><para>Creates a transient variable.</para>
-            <para>### Definition</para>
-            <para>A variable in Qlik Sense is a named entity, containing a data value. This value can be static or be the result of a calculation. A variable acquires its value at the same time that the variable is created or after when updating the properties of the variable. Variables can be used in bookmarks and can contain numeric or alphanumeric data. Any change made to the variable is applied everywhere the variable is used.</para>
-            <para>When a variable is used in an expression, it is substituted by its value or the variable's definition.</para>
-            <para>### Example</para>
-            <para>The variable <c>x</c> contains the text string <c>Sum(Sales)</c> .</para>
-            <para>In a chart, you define the expression <c>$(x)/12</c> . The effect is exactly the same as having the chart expression <c>Sum(Sales)/12</c> .</para>
-            <para>However, if you change the value of the variable <c>x</c> to <c>Sum(Budget)</c> , the data in the chart are immediately recalculated with the expression interpreted as <c>Sum(Budget)/12</c> .</para></summary>
-             <param name="prop">Name of the variable. Variable names are case sensitive.</param>
-             <remark>To set some properties to the variable, use the _SetProperties method_. </remark>
-        </member>
-        <member name="M:Qlik.Engine.App.CreateSessionVariableAsync``1(Qlik.Engine.AsyncHandle,System.Func{Qlik.Engine.Communication.IO.Response,``0},Qlik.Engine.GenericVariableProperties)">
-             <param name="asyncHandle">Handle to asynchronous method request</param>
-             <param name="onResult">Continuation function</param>
              <summary><para>Creates a transient variable.</para>
             <para>### Definition</para>
             <para>A variable in Qlik Sense is a named entity, containing a data value. This value can be static or be the result of a calculation. A variable acquires its value at the same time that the variable is created or after when updating the properties of the variable. Variables can be used in bookmarks and can contain numeric or alphanumeric data. Any change made to the variable is applied everywhere the variable is used.</para>
@@ -2870,20 +2852,20 @@
             <summary><para>Applies a bookmark to reduce (slice) the data on. Returns a url and file size to the reduced application. Section Access is always applied.</para></summary>
             <param name="options">BookmarkId used to reduced the app on and an expire time.</param>
             <return>Result containing the URL to download the exported file and the size of the file.</return>
-            <remark>This API is only available on Sense Enterprice on Windows</remark>
+            <remark>This API is only available on Sense Enterprise on Windows</remark>
         </member>
         <member name="M:Qlik.Engine.App.ExportReducedDataAsync(Qlik.Engine.NxDownloadOptions)">
             <summary><para>Applies a bookmark to reduce (slice) the data on. Returns a url and file size to the reduced application. Section Access is always applied.</para></summary>
             <param name="options">BookmarkId used to reduced the app on and an expire time.</param>
             <return>Result containing the URL to download the exported file and the size of the file.</return>
-            <remark>This API is only available on Sense Enterprice on Windows</remark>
+            <remark>This API is only available on Sense Enterprise on Windows</remark>
         </member>
         <member name="M:Qlik.Engine.App.ExportReducedDataAsync(Qlik.Engine.AsyncHandle,Qlik.Engine.NxDownloadOptions)">
             <param name="asyncHandle">Handle to asynchronous method request</param>
             <summary><para>Applies a bookmark to reduce (slice) the data on. Returns a url and file size to the reduced application. Section Access is always applied.</para></summary>
             <param name="options">BookmarkId used to reduced the app on and an expire time.</param>
             <return>Result containing the URL to download the exported file and the size of the file.</return>
-            <remark>This API is only available on Sense Enterprice on Windows</remark>
+            <remark>This API is only available on Sense Enterprise on Windows</remark>
         </member>
         <member name="M:Qlik.Engine.App.ExportReducedDataAsync``1(Qlik.Engine.AsyncHandle,System.Func{Qlik.Engine.Communication.IO.Response,``0},Qlik.Engine.NxDownloadOptions)">
             <param name="asyncHandle">Handle to asynchronous method request</param>
@@ -2891,7 +2873,7 @@
             <summary><para>Applies a bookmark to reduce (slice) the data on. Returns a url and file size to the reduced application. Section Access is always applied.</para></summary>
             <param name="options">BookmarkId used to reduced the app on and an expire time.</param>
             <return>Result containing the URL to download the exported file and the size of the file.</return>
-            <remark>This API is only available on Sense Enterprice on Windows</remark>
+            <remark>This API is only available on Sense Enterprise on Windows</remark>
         </member>
         <member name="M:Qlik.Engine.App.GetSetAnalysis(System.String,System.String)">
              <summary><para>Returns a set analysis expression from active selections or from a saved bookmark. Fields on the fly and Calculated dimensions will not be included in the generated expressions, instead a message indicating 'missing fields' will provided within the expression.</para>
@@ -4455,6 +4437,16 @@
             <exception cref="T:Qlik.Engine.Communication.CertificateManager.CertificatesNotFoundInStoreException">Thrown if no certificate named "QlikClient" is found in store.</exception>
             <returns>A certificate collection containing the Qlik Sense client certificate.</returns>
         </member>
+        <member name="M:Qlik.Engine.Communication.CertificateManager.LoadCertificateFromDirectory(System.String,System.String)">
+            <summary>
+            Loads the Qlik Sense certificate used for direct connections from a folder.
+            </summary>
+            <param name="path">The path to the folder containing the certificates.</param>
+            <param name="certificatePassword">The password to use when reading the certificate.</param>
+            <exception cref="T:System.IO.DirectoryNotFoundException">Thrown if argument directory is not found.</exception>
+            <exception cref="T:System.IO.FileNotFoundException">Thrown if argument directory does not contain a client certificate file.</exception>
+            <returns>A certificate collection containing the Qlik Sense client certificate.</returns>
+        </member>
         <member name="M:Qlik.Engine.Communication.CertificateManager.LoadCertificateFromDirectory(System.String,System.Security.SecureString)">
             <summary>
             Loads the Qlik Sense certificate used for direct connections from a folder.
@@ -4906,6 +4898,7 @@
             <param name="request">The request object to send.</param>
             <param name="continueWith">The continuation method to used when deserializing the response.</param>
             <returns>A task with the continuation method applies to the received response as result.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if either <paramref name="request"/> or <paramref name="continueWith"/> is <c>null</c>.</exception>
         </member>
         <member name="M:Qlik.Engine.Communication.QlikConnection.RetryOnAbort``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32,System.Int32)">
             <summary>
@@ -5358,6 +5351,16 @@
         <member name="T:Qlik.Engine.GenericObject">
              <summary><para>This class describes all the methods that apply at generic object level.</para>
             <para>The <c>handle</c> member in the JSON request for all methods listed in this section is the handle of the generic object.</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.GenericObject.IsTransient">
+            <summary>
+            Indicates whether or not this object is a session object.
+            </summary>
+        </member>
+        <member name="M:Qlik.Engine.GenericObject.MarkAsTransient">
+            <summary>
+            Mark object as being a session object and ensure that it is correctly destroyed when the .NET object is disposed.
+            </summary>
         </member>
         <member name="M:Qlik.Engine.GenericObject.GetChildAsync(Qlik.Engine.AsyncHandle,System.String)">
             <param name="asyncHandle">Handle to asynchronous method request</param>
@@ -8171,6 +8174,190 @@
             
             </summary>
             <param name="typeName"></param>
+        </member>
+        <member name="T:Qlik.Engine.GenericVariable">
+             <summary><para>This class describes all the methods that apply at generic variable level.</para>
+            <para>The <c>handle</c> member in the JSON request for all methods listed in this section is the handle of the generic variable.</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.GenericVariable.IsTransient">
+            <summary>
+            Indicates whether or not this object is a session variable.
+            </summary>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.MarkAsTransient">
+            <summary>
+            Mark object as being a session variable and ensure that it is correctly destroyed when the .NET object is disposed.
+            </summary>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.GetLayout">
+             <summary><para>Evaluates an object and displays its properties including the dynamic properties.</para>
+            <para>If the member <c>delta</c> is set to true in the request object, only the delta is evaluated.</para></summary>
+             <return>Information on the object</return>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.GetLayoutAsync">
+             <summary><para>Evaluates an object and displays its properties including the dynamic properties.</para>
+            <para>If the member <c>delta</c> is set to true in the request object, only the delta is evaluated.</para></summary>
+             <return>Information on the object</return>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.GetLayoutAsync(Qlik.Engine.AsyncHandle)">
+             <param name="asyncHandle">Handle to asynchronous method request</param>
+             <summary><para>Evaluates an object and displays its properties including the dynamic properties.</para>
+            <para>If the member <c>delta</c> is set to true in the request object, only the delta is evaluated.</para></summary>
+             <return>Information on the object</return>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.ApplyPatches(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
+            <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties.</para></summary>
+            <param name="patches">Array of patches.</param>
+            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.ApplyPatchesAsync(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
+            <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties.</para></summary>
+            <param name="patches">Array of patches.</param>
+            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.ApplyPatchesAsync(Qlik.Engine.AsyncHandle,System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
+            <param name="asyncHandle">Handle to asynchronous method request</param>
+            <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties.</para></summary>
+            <param name="patches">Array of patches.</param>
+            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.SetProperties(Qlik.Engine.GenericVariableProperties)">
+            <summary><para>Sets some properties for a variable.</para></summary>
+            <param name="prop">Information about the variable.</param>
+            <remark>The identifier of a variable cannot be modified.</remark>
+            <remark>You cannot update the properties of a script-defined variable using the _SetProperties method_. </remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.SetPropertiesAsync(Qlik.Engine.GenericVariableProperties)">
+            <summary><para>Sets some properties for a variable.</para></summary>
+            <param name="prop">Information about the variable.</param>
+            <remark>The identifier of a variable cannot be modified.</remark>
+            <remark>You cannot update the properties of a script-defined variable using the _SetProperties method_. </remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.SetPropertiesAsync(Qlik.Engine.AsyncHandle,Qlik.Engine.GenericVariableProperties)">
+            <param name="asyncHandle">Handle to asynchronous method request</param>
+            <summary><para>Sets some properties for a variable.</para></summary>
+            <param name="prop">Information about the variable.</param>
+            <remark>The identifier of a variable cannot be modified.</remark>
+            <remark>You cannot update the properties of a script-defined variable using the _SetProperties method_. </remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.GetProperties">
+             <summary><para>Shows the properties of an object.</para>
+            <para>The following is always returned in the output:</para></summary>
+             <return>Information about the generic object</return>
+             <remark>If the member **delta** is set to true in the request, only the delta is retrieved. </remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.GetPropertiesAsync">
+             <summary><para>Shows the properties of an object.</para>
+            <para>The following is always returned in the output:</para></summary>
+             <return>Information about the generic object</return>
+             <remark>If the member **delta** is set to true in the request, only the delta is retrieved. </remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.GetPropertiesAsync(Qlik.Engine.AsyncHandle)">
+             <param name="asyncHandle">Handle to asynchronous method request</param>
+             <summary><para>Shows the properties of an object.</para>
+            <para>The following is always returned in the output:</para></summary>
+             <return>Information about the generic object</return>
+             <remark>If the member **delta** is set to true in the request, only the delta is retrieved. </remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.GetInfo">
+            <summary><para>Returns the type and identifier of the object.</para></summary>
+            <return>{ "qId": "&lt;identifier&gt;", "qType": "&lt;type&gt;" }</return>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.GetInfoAsync">
+            <summary><para>Returns the type and identifier of the object.</para></summary>
+            <return>{ "qId": "&lt;identifier&gt;", "qType": "&lt;type&gt;" }</return>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.GetInfoAsync(Qlik.Engine.AsyncHandle)">
+            <param name="asyncHandle">Handle to asynchronous method request</param>
+            <summary><para>Returns the type and identifier of the object.</para></summary>
+            <return>{ "qId": "&lt;identifier&gt;", "qType": "&lt;type&gt;" }</return>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.GetInfoAsync``1(Qlik.Engine.AsyncHandle,System.Func{Qlik.Engine.Communication.IO.Response,``0})">
+            <param name="asyncHandle">Handle to asynchronous method request</param>
+            <param name="onResult">Continuation function</param>
+            <summary><para>Returns the type and identifier of the object.</para></summary>
+            <return>{ "qId": "&lt;identifier&gt;", "qType": "&lt;type&gt;" }</return>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.SetStringValue(System.String)">
+            <summary><para>Sets a string value to a variable.</para></summary>
+            <param name="val">Value of the variable. The string can contain an expression.</param>
+            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.SetStringValueAsync(System.String)">
+            <summary><para>Sets a string value to a variable.</para></summary>
+            <param name="val">Value of the variable. The string can contain an expression.</param>
+            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.SetStringValueAsync(Qlik.Engine.AsyncHandle,System.String)">
+            <param name="asyncHandle">Handle to asynchronous method request</param>
+            <summary><para>Sets a string value to a variable.</para></summary>
+            <param name="val">Value of the variable. The string can contain an expression.</param>
+            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.SetNumValue(System.Double)">
+            <summary><para>Sets a numerical value to a variable.</para></summary>
+            <param name="val">Value of the variable.</param>
+            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.SetNumValueAsync(System.Double)">
+            <summary><para>Sets a numerical value to a variable.</para></summary>
+            <param name="val">Value of the variable.</param>
+            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.SetNumValueAsync(Qlik.Engine.AsyncHandle,System.Double)">
+            <param name="asyncHandle">Handle to asynchronous method request</param>
+            <summary><para>Sets a numerical value to a variable.</para></summary>
+            <param name="val">Value of the variable.</param>
+            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.SetDualValue(System.String,System.Double)">
+            <summary><para>Sets the value of a dual variable.</para></summary>
+            <param name="text">String representation of a dual value. Set this parameter to "", if the string representation is to be Null.</param>
+            <param name="num">Numeric representation of a dual value.</param>
+            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.SetDualValueAsync(System.String,System.Double)">
+            <summary><para>Sets the value of a dual variable.</para></summary>
+            <param name="text">String representation of a dual value. Set this parameter to "", if the string representation is to be Null.</param>
+            <param name="num">Numeric representation of a dual value.</param>
+            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.SetDualValueAsync(Qlik.Engine.AsyncHandle,System.String,System.Double)">
+            <param name="asyncHandle">Handle to asynchronous method request</param>
+            <summary><para>Sets the value of a dual variable.</para></summary>
+            <param name="text">String representation of a dual value. Set this parameter to "", if the string representation is to be Null.</param>
+            <param name="num">Numeric representation of a dual value.</param>
+            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.GetRawContent">
+            <summary><para>Returns the raw value of a variable.</para></summary>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.GetRawContentAsync">
+            <summary><para>Returns the raw value of a variable.</para></summary>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.GetRawContentAsync(Qlik.Engine.AsyncHandle)">
+            <param name="asyncHandle">Handle to asynchronous method request</param>
+            <summary><para>Returns the raw value of a variable.</para></summary>
+        </member>
+        <member name="M:Qlik.Engine.GenericVariable.GetRawContentAsync``1(Qlik.Engine.AsyncHandle,System.Func{Qlik.Engine.Communication.IO.Response,``0})">
+            <param name="asyncHandle">Handle to asynchronous method request</param>
+            <param name="onResult">Continuation function</param>
+            <summary><para>Returns the raw value of a variable.</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.GenericVariable.Info">
+            <summary>Reference to property Layout.Info</summary>
+        </member>
+        <member name="P:Qlik.Engine.GenericVariable.Meta">
+            <summary>Reference to property Layout.Meta</summary>
+        </member>
+        <member name="P:Qlik.Engine.GenericVariable.Text">
+            <summary>Reference to property Layout.Text</summary>
+        </member>
+        <member name="P:Qlik.Engine.GenericVariable.Num">
+            <summary>Reference to property Layout.Num</summary>
+        </member>
+        <member name="P:Qlik.Engine.GenericVariable.IsScriptCreated">
+            <summary>Reference to property Layout.IsScriptCreated</summary>
         </member>
         <member name="T:Qlik.Engine.Hub">
             <summary>
@@ -12598,20 +12785,20 @@
             <summary><para>Applies a bookmark to reduce (slice) the data on. Returns a url and file size to the reduced application. Section Access is always applied.</para></summary>
             <param name="options">BookmarkId used to reduced the app on and an expire time.</param>
             <return>Result containing the URL to download the exported file and the size of the file.</return>
-            <remark>This API is only available on Sense Enterprice on Windows</remark>
+            <remark>This API is only available on Sense Enterprise on Windows</remark>
         </member>
         <member name="M:Qlik.Engine.IApp.ExportReducedDataAsync(Qlik.Engine.NxDownloadOptions)">
             <summary><para>Applies a bookmark to reduce (slice) the data on. Returns a url and file size to the reduced application. Section Access is always applied.</para></summary>
             <param name="options">BookmarkId used to reduced the app on and an expire time.</param>
             <return>Result containing the URL to download the exported file and the size of the file.</return>
-            <remark>This API is only available on Sense Enterprice on Windows</remark>
+            <remark>This API is only available on Sense Enterprise on Windows</remark>
         </member>
         <member name="M:Qlik.Engine.IApp.ExportReducedDataAsync(Qlik.Engine.AsyncHandle,Qlik.Engine.NxDownloadOptions)">
             <param name="asyncHandle">Handle to asynchronous method request</param>
             <summary><para>Applies a bookmark to reduce (slice) the data on. Returns a url and file size to the reduced application. Section Access is always applied.</para></summary>
             <param name="options">BookmarkId used to reduced the app on and an expire time.</param>
             <return>Result containing the URL to download the exported file and the size of the file.</return>
-            <remark>This API is only available on Sense Enterprice on Windows</remark>
+            <remark>This API is only available on Sense Enterprise on Windows</remark>
         </member>
         <member name="M:Qlik.Engine.IApp.ExportReducedDataAsync``1(Qlik.Engine.AsyncHandle,System.Func{Qlik.Engine.Communication.IO.Response,``0},Qlik.Engine.NxDownloadOptions)">
             <param name="asyncHandle">Handle to asynchronous method request</param>
@@ -12619,7 +12806,7 @@
             <summary><para>Applies a bookmark to reduce (slice) the data on. Returns a url and file size to the reduced application. Section Access is always applied.</para></summary>
             <param name="options">BookmarkId used to reduced the app on and an expire time.</param>
             <return>Result containing the URL to download the exported file and the size of the file.</return>
-            <remark>This API is only available on Sense Enterprice on Windows</remark>
+            <remark>This API is only available on Sense Enterprise on Windows</remark>
         </member>
         <member name="M:Qlik.Engine.IApp.GetSetAnalysis(System.String,System.String)">
              <summary><para>Returns a set analysis expression from active selections or from a saved bookmark. Fields on the fly and Calculated dimensions will not be included in the generated expressions, instead a message indicating 'missing fields' will provided within the expression.</para>
@@ -18579,6 +18766,21 @@
             App identifier
             </summary>
         </member>
+        <member name="T:Qlik.Engine.ITransient">
+            <summary>
+            Interface for tagging an object as transient. Typically used to ensure that session objects are automatically destroyed during dispose.
+            </summary>
+        </member>
+        <member name="P:Qlik.Engine.ITransient.IsTransient">
+            <summary>
+            Indicates whether or not an object is transient.
+            </summary>
+        </member>
+        <member name="M:Qlik.Engine.ITransient.MarkAsTransient">
+            <summary>
+            Mark the object as transient.
+            </summary>
+        </member>
         <member name="T:Qlik.Engine.ListObjectPager">
             <summary>
             A class providing a paging interface for a list object.
@@ -18591,6 +18793,15 @@
             <param name="pagerContainer">The generic object containing the list object.</param>
             <param name="path">The property path to the list object in the properties structure of the generic object.</param>
         </member>
+        <member name="M:Qlik.Engine.ListObjectPager.GetAllCells(System.Int32)">
+            <summary>
+            Get all cells values.
+            <para>Equivalent to: <code>GetAllData(pageSize).Select(c => c.First())</code>.
+            </para>
+            </summary>
+            <param name="pageSize">The number of values to retrieve per iteration.</param>
+            <returns>The lazily evaluated complete set of cells values for the pager.</returns>
+        </member>
         <member name="M:Qlik.Engine.ListObjectPager.GetDataAsync(Qlik.Engine.GenericObject,Qlik.Engine.AsyncHandle,System.String,System.Collections.Generic.IEnumerable{Qlik.Engine.NxPage})">
             <summary>
             The method used for retrieving data from the list object.
@@ -18600,6 +18811,13 @@
             <summary>
             Handles the location of the Qlik Sense instance
             </summary>
+        </member>
+        <member name="M:Qlik.Engine.Location.LocalDesktop(System.Int32)">
+            <summary>
+            Gets a reference to a local Qlik Sense Desktop instance.
+            </summary>
+            <param name="port">Engine websocket port number. Default is 4848</param>
+            <returns>A reference to the location</returns>
         </member>
         <member name="M:Qlik.Engine.Location.FromUri(System.Uri)">
             <summary>
@@ -18881,11 +19099,70 @@
         <member name="M:Qlik.Engine.LocationExtensions.ActiveAppAsync(Qlik.Engine.ILocation,Qlik.Engine.IAppIdentifier,Qlik.Engine.ISession)">
             <summary>
             Connect to an already active Qlik Sense app
+            This method opens a websocket connection.
             </summary>
             <param name="location">Location object of the Qlik Sense instance</param>
             <param name="appIdentifier">Token to identify an unique app</param>
             <param name="session">Defines a specific app session, that can be connected to.</param>
             <returns>Returns a task, the result contains the IApp</returns>
+        </member>
+        <member name="M:Qlik.Engine.LocationExtensions.SessionApp(Qlik.Engine.ILocation,Qlik.Engine.ISession)">
+            <summary>
+            Create and connect to a new session app.
+            This method opens a websocket connection.
+            </summary>
+            <param name="location">Location object of the Qlik Sense instance</param>
+            <param name="session">Session information to use. Default value is <c>Session.Random</c></param>
+            <returns>The result of the session app creation call.</returns>
+        </member>
+        <member name="M:Qlik.Engine.LocationExtensions.SessionAppAsync(Qlik.Engine.ILocation,Qlik.Engine.ISession)">
+            <summary>
+            Create and connect to a new session app.
+            This method opens a websocket connection.
+            </summary>
+            <param name="location">Location object of the Qlik Sense instance</param>
+            <param name="session">Session information to use. Default value is <c>Session.Random</c></param>
+            <returns>A task with the result of the session app creation call as result.</returns>
+        </member>
+        <member name="M:Qlik.Engine.LocationExtensions.SessionAppFromApp(Qlik.Engine.ILocation,System.String,Qlik.Engine.ISession)">
+            <summary>
+            Create and connect to a new session app based on another app.
+            This method opens a websocket connection.
+            </summary>
+            <param name="location">Location object of the Qlik Sense instance</param>
+            <param name="appId">The ID of the app.</param>
+            <param name="session">Session information to use. Default value is <c>Session.Random</c></param>
+            <returns>The result of the session app creation call.</returns>
+        </member>
+        <member name="M:Qlik.Engine.LocationExtensions.SessionAppFromAppAsync(Qlik.Engine.ILocation,System.String,Qlik.Engine.ISession)">
+            <summary>
+            Create and connect to a new session app based on another app.
+            This method opens a websocket connection.
+            </summary>
+            <param name="location">Location object of the Qlik Sense instance</param>
+            <param name="appId">The ID of the app.</param>
+            <param name="session">Session information to use. Default value is <c>Session.Random</c></param>
+            <returns>A task with the result of the session app creation call as result.</returns>
+        </member>
+        <member name="M:Qlik.Engine.LocationExtensions.SessionAppFromApp(Qlik.Engine.ILocation,Qlik.Engine.IAppIdentifier,Qlik.Engine.ISession)">
+            <summary>
+            Create and connect to a new session app based on another app.
+            This method opens a websocket connection.
+            </summary>
+            <param name="location">Location object of the Qlik Sense instance</param>
+            <param name="appIdentifier">The identifier of the app.</param>
+            <param name="session">Session information to use. Default value is <c>Session.Random</c></param>
+            <returns>The result of the session app creation call.</returns>
+        </member>
+        <member name="M:Qlik.Engine.LocationExtensions.SessionAppFromAppAsync(Qlik.Engine.ILocation,Qlik.Engine.IAppIdentifier,Qlik.Engine.ISession)">
+            <summary>
+            Create and connect to a new session app based on another app.
+            This method opens a websocket connection.
+            </summary>
+            <param name="location">Location object of the Qlik Sense instance</param>
+            <param name="appIdentifier">The identifier of the app.</param>
+            <param name="session">Session information to use. Default value is <c>Session.Random</c></param>
+            <returns>A task with the result of the session app creation call as result.</returns>
         </member>
         <member name="T:Qlik.Engine.MethodInvocationException">
             <summary>
@@ -19711,12 +19988,6 @@
         <member name="P:Qlik.Engine.LineageGraphEdge.Relation">
             <summary><para>Type of relation.</para><para>JSON property name: qRelation</para></summary>
         </member>
-        <member name="P:Qlik.Engine.LineageGraphEdge.Directed">
-            <summary><para>Directed, True</para><para>JSON property name: qDirected</para></summary>
-        </member>
-        <member name="P:Qlik.Engine.LineageGraphEdge.Label">
-            <summary><para>Label of the edge.</para><para>JSON property name: qLabel</para></summary>
-        </member>
         <member name="P:Qlik.Engine.LineageGraphEdge.MetaData">
             <summary><para>Extra metadata on the edges, e.g. expression etc.</para><para>JSON property name: qMetaData</para></summary>
         </member>
@@ -19823,6 +20094,18 @@
         </member>
         <member name="M:Qlik.Engine.MediaListItem.#ctor">
             <summary>Creates an instance of the MediaListItem class</summary>
+        </member>
+        <member name="P:Qlik.Engine.MongoDataProps.DiscoupledVectors">
+            <summary><para>JSON property name: qDiscoupledVectors</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.MongoFieldProperties.FieldName">
+            <summary><para>JSON property name: qFieldName</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.MongoFieldProperties.OneAndOnlyOneSelections">
+            <summary><para>JSON property name: qOneAndOnlyOneSelections</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.MongoFields.FieldStates">
+            <summary><para>JSON property name: qFieldStates</para></summary>
         </member>
         <member name="P:Qlik.Engine.NxAppLayout.Title">
             <summary><para>Title of the app.</para><para>JSON property name: qTitle</para></summary>
@@ -20090,6 +20373,9 @@
         </member>
         <member name="P:Qlik.Engine.NxCell.MiniChart">
             <summary><para>JSON property name: qMiniChart</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.NxCell.InExtRow">
+            <summary><para>True when cell value comes from a dynamic script.</para><para>JSON property name: qInExtRow</para></summary>
         </member>
         <member name="M:Qlik.Engine.NxCell.#ctor">
             <summary>Creates an instance of the NxCell class</summary>
@@ -21813,6 +22099,15 @@
         <member name="P:Qlik.Engine.ObjectInterface.GenericId">
             <summary><para>Object ID.</para><para>JSON property name: qGenericId</para></summary>
         </member>
+        <member name="P:Qlik.Engine.OneAndOnlyOneSelection.SelectedIndex">
+            <summary><para>JSON property name: qSelectedIndex</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.OneAndOnlyOneSelection.Cardinality">
+            <summary><para>JSON property name: qCardinality</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.OneAndOnlyOneSelection.Value">
+            <summary><para>JSON property name: qValue</para></summary>
+        </member>
         <member name="P:Qlik.Engine.PersistedObjectMeta.ContentHash">
             <summary><para>JSON property name: qContentHash</para></summary>
         </member>
@@ -22763,180 +23058,6 @@
         </member>
         <member name="P:Qlik.Engine.GenericMeasure.Meta">
             <summary>Reference to property Layout.Meta</summary>
-        </member>
-        <member name="T:Qlik.Engine.GenericVariable">
-             <summary><para>This class describes all the methods that apply at generic variable level.</para>
-            <para>The <c>handle</c> member in the JSON request for all methods listed in this section is the handle of the generic variable.</para></summary>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.GetLayout">
-             <summary><para>Evaluates an object and displays its properties including the dynamic properties.</para>
-            <para>If the member <c>delta</c> is set to true in the request object, only the delta is evaluated.</para></summary>
-             <return>Information on the object</return>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.GetLayoutAsync">
-             <summary><para>Evaluates an object and displays its properties including the dynamic properties.</para>
-            <para>If the member <c>delta</c> is set to true in the request object, only the delta is evaluated.</para></summary>
-             <return>Information on the object</return>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.GetLayoutAsync(Qlik.Engine.AsyncHandle)">
-             <param name="asyncHandle">Handle to asynchronous method request</param>
-             <summary><para>Evaluates an object and displays its properties including the dynamic properties.</para>
-            <para>If the member <c>delta</c> is set to true in the request object, only the delta is evaluated.</para></summary>
-             <return>Information on the object</return>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.ApplyPatches(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.ApplyPatchesAsync(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.ApplyPatchesAsync(Qlik.Engine.AsyncHandle,System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.SetProperties(Qlik.Engine.GenericVariableProperties)">
-            <summary><para>Sets some properties for a variable.</para></summary>
-            <param name="prop">Information about the variable.</param>
-            <remark>The identifier of a variable cannot be modified.</remark>
-            <remark>You cannot update the properties of a script-defined variable using the _SetProperties method_. </remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.SetPropertiesAsync(Qlik.Engine.GenericVariableProperties)">
-            <summary><para>Sets some properties for a variable.</para></summary>
-            <param name="prop">Information about the variable.</param>
-            <remark>The identifier of a variable cannot be modified.</remark>
-            <remark>You cannot update the properties of a script-defined variable using the _SetProperties method_. </remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.SetPropertiesAsync(Qlik.Engine.AsyncHandle,Qlik.Engine.GenericVariableProperties)">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Sets some properties for a variable.</para></summary>
-            <param name="prop">Information about the variable.</param>
-            <remark>The identifier of a variable cannot be modified.</remark>
-            <remark>You cannot update the properties of a script-defined variable using the _SetProperties method_. </remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.GetProperties">
-             <summary><para>Shows the properties of an object.</para>
-            <para>The following is always returned in the output:</para></summary>
-             <return>Information about the generic object</return>
-             <remark>If the member **delta** is set to true in the request, only the delta is retrieved. </remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.GetPropertiesAsync">
-             <summary><para>Shows the properties of an object.</para>
-            <para>The following is always returned in the output:</para></summary>
-             <return>Information about the generic object</return>
-             <remark>If the member **delta** is set to true in the request, only the delta is retrieved. </remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.GetPropertiesAsync(Qlik.Engine.AsyncHandle)">
-             <param name="asyncHandle">Handle to asynchronous method request</param>
-             <summary><para>Shows the properties of an object.</para>
-            <para>The following is always returned in the output:</para></summary>
-             <return>Information about the generic object</return>
-             <remark>If the member **delta** is set to true in the request, only the delta is retrieved. </remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.GetInfo">
-            <summary><para>Returns the type and identifier of the object.</para></summary>
-            <return>{ "qId": "&lt;identifier&gt;", "qType": "&lt;type&gt;" }</return>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.GetInfoAsync">
-            <summary><para>Returns the type and identifier of the object.</para></summary>
-            <return>{ "qId": "&lt;identifier&gt;", "qType": "&lt;type&gt;" }</return>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.GetInfoAsync(Qlik.Engine.AsyncHandle)">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Returns the type and identifier of the object.</para></summary>
-            <return>{ "qId": "&lt;identifier&gt;", "qType": "&lt;type&gt;" }</return>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.GetInfoAsync``1(Qlik.Engine.AsyncHandle,System.Func{Qlik.Engine.Communication.IO.Response,``0})">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <param name="onResult">Continuation function</param>
-            <summary><para>Returns the type and identifier of the object.</para></summary>
-            <return>{ "qId": "&lt;identifier&gt;", "qType": "&lt;type&gt;" }</return>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.SetStringValue(System.String)">
-            <summary><para>Sets a string value to a variable.</para></summary>
-            <param name="val">Value of the variable. The string can contain an expression.</param>
-            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.SetStringValueAsync(System.String)">
-            <summary><para>Sets a string value to a variable.</para></summary>
-            <param name="val">Value of the variable. The string can contain an expression.</param>
-            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.SetStringValueAsync(Qlik.Engine.AsyncHandle,System.String)">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Sets a string value to a variable.</para></summary>
-            <param name="val">Value of the variable. The string can contain an expression.</param>
-            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.SetNumValue(System.Double)">
-            <summary><para>Sets a numerical value to a variable.</para></summary>
-            <param name="val">Value of the variable.</param>
-            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.SetNumValueAsync(System.Double)">
-            <summary><para>Sets a numerical value to a variable.</para></summary>
-            <param name="val">Value of the variable.</param>
-            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.SetNumValueAsync(Qlik.Engine.AsyncHandle,System.Double)">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Sets a numerical value to a variable.</para></summary>
-            <param name="val">Value of the variable.</param>
-            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.SetDualValue(System.String,System.Double)">
-            <summary><para>Sets the value of a dual variable.</para></summary>
-            <param name="text">String representation of a dual value. Set this parameter to "", if the string representation is to be Null.</param>
-            <param name="num">Numeric representation of a dual value.</param>
-            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.SetDualValueAsync(System.String,System.Double)">
-            <summary><para>Sets the value of a dual variable.</para></summary>
-            <param name="text">String representation of a dual value. Set this parameter to "", if the string representation is to be Null.</param>
-            <param name="num">Numeric representation of a dual value.</param>
-            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.SetDualValueAsync(Qlik.Engine.AsyncHandle,System.String,System.Double)">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Sets the value of a dual variable.</para></summary>
-            <param name="text">String representation of a dual value. Set this parameter to "", if the string representation is to be Null.</param>
-            <param name="num">Numeric representation of a dual value.</param>
-            <remark>These changes are not persistent. They only last the duration of the engine session.</remark>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.GetRawContent">
-            <summary><para>Returns the raw value of a variable.</para></summary>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.GetRawContentAsync">
-            <summary><para>Returns the raw value of a variable.</para></summary>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.GetRawContentAsync(Qlik.Engine.AsyncHandle)">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Returns the raw value of a variable.</para></summary>
-        </member>
-        <member name="M:Qlik.Engine.GenericVariable.GetRawContentAsync``1(Qlik.Engine.AsyncHandle,System.Func{Qlik.Engine.Communication.IO.Response,``0})">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <param name="onResult">Continuation function</param>
-            <summary><para>Returns the raw value of a variable.</para></summary>
-        </member>
-        <member name="P:Qlik.Engine.GenericVariable.Info">
-            <summary>Reference to property Layout.Info</summary>
-        </member>
-        <member name="P:Qlik.Engine.GenericVariable.Meta">
-            <summary>Reference to property Layout.Meta</summary>
-        </member>
-        <member name="P:Qlik.Engine.GenericVariable.Text">
-            <summary>Reference to property Layout.Text</summary>
-        </member>
-        <member name="P:Qlik.Engine.GenericVariable.Num">
-            <summary>Reference to property Layout.Num</summary>
-        </member>
-        <member name="P:Qlik.Engine.GenericVariable.IsScriptCreated">
-            <summary>Reference to property Layout.IsScriptCreated</summary>
         </member>
         <member name="T:Qlik.Engine.Field">
              <summary><para>This class describes all the methods that apply at field level.</para>
@@ -24812,9 +24933,19 @@
             Invokes the Close Event
             </summary>
         </member>
+        <member name="E:Qlik.Engine.QixClassBase.Disposing">
+            <summary>
+            This event fires when the Qlik Sense entity is being disposed.
+            </summary>
+        </member>
+        <member name="M:Qlik.Engine.QixClassBase.OnDisposing">
+            <summary>
+            Invokes the Disposing Event
+            </summary>
+        </member>
         <member name="E:Qlik.Engine.QixClassBase.Changed">
             <summary>
-            This event fires when a modification has occured to the Qlik Sense entity's selection state, data or properties.
+            This event fires when a modification has occurred to the Qlik Sense entity's selection state, data or properties.
             </summary>
             <remarks>
               This event will only be triggered if the Qlik Sense entity is considered to be up to date when the change occurs.
@@ -25949,12 +26080,6 @@
         <member name="P:Qlik.Engine.ILineageGraphEdge.Relation">
             <summary><para>Type of relation.</para><para>JSON property name: qRelation</para></summary>
         </member>
-        <member name="P:Qlik.Engine.ILineageGraphEdge.Directed">
-            <summary><para>Directed, True</para><para>JSON property name: qDirected</para></summary>
-        </member>
-        <member name="P:Qlik.Engine.ILineageGraphEdge.Label">
-            <summary><para>Label of the edge.</para><para>JSON property name: qLabel</para></summary>
-        </member>
         <member name="P:Qlik.Engine.ILineageGraphEdge.MetaData">
             <summary><para>Extra metadata on the edges, e.g. expression etc.</para><para>JSON property name: qMetaData</para></summary>
         </member>
@@ -26040,6 +26165,18 @@
             <para>Media files located:</para>
             <para>* in the _/content/default/_ folder are outside the qvf file.</para>
             <para>* in the _/media/ folder_ are embedded in the qvf file.</para><para>JSON property name: qUrl</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.IMongoDataProps.DiscoupledVectors">
+            <summary><para>JSON property name: qDiscoupledVectors</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.IMongoFieldProperties.FieldName">
+            <summary><para>JSON property name: qFieldName</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.IMongoFieldProperties.OneAndOnlyOneSelections">
+            <summary><para>JSON property name: qOneAndOnlyOneSelections</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.IMongoFields.FieldStates">
+            <summary><para>JSON property name: qFieldStates</para></summary>
         </member>
         <member name="P:Qlik.Engine.INxAppLayout.Title">
             <summary><para>Title of the app.</para><para>JSON property name: qTitle</para></summary>
@@ -26286,6 +26423,9 @@
         </member>
         <member name="P:Qlik.Engine.INxCell.MiniChart">
             <summary><para>JSON property name: qMiniChart</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.INxCell.InExtRow">
+            <summary><para>True when cell value comes from a dynamic script.</para><para>JSON property name: qInExtRow</para></summary>
         </member>
         <member name="P:Qlik.Engine.INxCellMark.DimIx">
             <summary><para>JSON property name: qDimIx</para></summary>
@@ -27906,6 +28046,15 @@
         </member>
         <member name="P:Qlik.Engine.IObjectInterface.GenericId">
             <summary><para>Object ID.</para><para>JSON property name: qGenericId</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.IOneAndOnlyOneSelection.SelectedIndex">
+            <summary><para>JSON property name: qSelectedIndex</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.IOneAndOnlyOneSelection.Cardinality">
+            <summary><para>JSON property name: qCardinality</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.IOneAndOnlyOneSelection.Value">
+            <summary><para>JSON property name: qValue</para></summary>
         </member>
         <member name="P:Qlik.Engine.IPersistedObjectMeta.ContentHash">
             <summary><para>JSON property name: qContentHash</para></summary>
