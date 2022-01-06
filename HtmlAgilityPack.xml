@@ -2472,6 +2472,10 @@
             Occurs before an HTTP request is executed.
             </summary>
         </member>
+        <member name="P:HtmlAgilityPack.HtmlWeb.AutomaticDecompression">
+            <summary>Gets or sets the automatic decompression.</summary>
+            <value>The automatic decompression.</value>
+        </member>
         <member name="P:HtmlAgilityPack.HtmlWeb.AutoDetectEncoding">
             <summary>
             Gets or Sets a value indicating if document encoding must be automatically detected.

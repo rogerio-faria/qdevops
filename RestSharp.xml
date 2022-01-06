@@ -48,74 +48,6 @@
             </summary>
             <param name="credentials"></param>
         </member>
-        <member name="T:RestSharp.Authenticators.OAuth2Authenticator">
-            <summary>
-            Base class for OAuth 2 Authenticators.
-            </summary>
-            <remarks>
-            Since there are many ways to authenticate in OAuth2,
-            this is used as a base class to differentiate between
-            other authenticators.
-            Any other OAuth2 authenticators must derive from this
-            abstract class.
-            </remarks>
-        </member>
-        <member name="M:RestSharp.Authenticators.OAuth2Authenticator.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:RestSharp.Authenticators.OAuth2Authenticator" /> class.
-            </summary>
-            <param name="accessToken">
-            The access token.
-            </param>
-        </member>
-        <member name="P:RestSharp.Authenticators.OAuth2Authenticator.AccessToken">
-            <summary>
-            Gets the access token.
-            </summary>
-        </member>
-        <member name="T:RestSharp.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator">
-            <summary>
-            The OAuth 2 authenticator using the authorization request header field.
-            </summary>
-            <remarks>
-            Based on http://tools.ietf.org/html/draft-ietf-oauth-v2-10#section-5.1.1
-            </remarks>
-        </member>
-        <member name="M:RestSharp.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:RestSharp.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator" /> class.
-            </summary>
-            <param name="accessToken">
-            The access token.
-            </param>
-        </member>
-        <member name="M:RestSharp.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator.#ctor(System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:RestSharp.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator" /> class.
-            </summary>
-            <param name="accessToken">
-            The access token.
-            </param>
-            <param name="tokenType">
-            The token type.
-            </param>
-        </member>
-        <member name="T:RestSharp.Authenticators.OAuth2UriQueryParameterAuthenticator">
-            <summary>
-            The OAuth 2 authenticator using URI query parameter.
-            </summary>
-            <remarks>
-            Based on http://tools.ietf.org/html/draft-ietf-oauth-v2-10#section-5.1.2
-            </remarks>
-        </member>
-        <member name="M:RestSharp.Authenticators.OAuth2UriQueryParameterAuthenticator.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:RestSharp.Authenticators.OAuth2UriQueryParameterAuthenticator" /> class.
-            </summary>
-            <param name="accessToken">
-            The access token.
-            </param>
-        </member>
         <member name="F:RestSharp.Authenticators.OAuth.OAuthTools.Encoding">
             <summary>
             All text parameters are UTF-8 encoded (per section 5.1).
@@ -315,6 +247,74 @@
             <param name="accessTokenSecret"></param>
             <param name="signatureMethod"></param>
             <returns></returns>
+        </member>
+        <member name="T:RestSharp.Authenticators.OAuth2Authenticator">
+            <summary>
+            Base class for OAuth 2 Authenticators.
+            </summary>
+            <remarks>
+            Since there are many ways to authenticate in OAuth2,
+            this is used as a base class to differentiate between
+            other authenticators.
+            Any other OAuth2 authenticators must derive from this
+            abstract class.
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Authenticators.OAuth2Authenticator.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Authenticators.OAuth2Authenticator" /> class.
+            </summary>
+            <param name="accessToken">
+            The access token.
+            </param>
+        </member>
+        <member name="P:RestSharp.Authenticators.OAuth2Authenticator.AccessToken">
+            <summary>
+            Gets the access token.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator">
+            <summary>
+            The OAuth 2 authenticator using the authorization request header field.
+            </summary>
+            <remarks>
+            Based on http://tools.ietf.org/html/draft-ietf-oauth-v2-10#section-5.1.1
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator" /> class.
+            </summary>
+            <param name="accessToken">
+            The access token.
+            </param>
+        </member>
+        <member name="M:RestSharp.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator" /> class.
+            </summary>
+            <param name="accessToken">
+            The access token.
+            </param>
+            <param name="tokenType">
+            The token type.
+            </param>
+        </member>
+        <member name="T:RestSharp.Authenticators.OAuth2UriQueryParameterAuthenticator">
+            <summary>
+            The OAuth 2 authenticator using URI query parameter.
+            </summary>
+            <remarks>
+            Based on http://tools.ietf.org/html/draft-ietf-oauth-v2-10#section-5.1.2
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Authenticators.OAuth2UriQueryParameterAuthenticator.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Authenticators.OAuth2UriQueryParameterAuthenticator" /> class.
+            </summary>
+            <param name="accessToken">
+            The access token.
+            </param>
         </member>
         <member name="T:RestSharp.ParameterType">
             <summary>

@@ -3631,7 +3631,7 @@
         </member>
         <member name="M:NLog.Config.LoggingRule.#ctor(System.String,NLog.Targets.Target)">
             <summary>
-            Create a (disabled) <see cref="T:NLog.Config.LoggingRule" />. You should call <see cref="M:NLog.Config.LoggingRule.EnableLoggingForLevel(NLog.LogLevel)"/> or see cref="EnableLoggingForLevels"/> to enable logging.
+            Create a (disabled) <see cref="T:NLog.Config.LoggingRule" />. You should call <see cref="M:NLog.Config.LoggingRule.EnableLoggingForLevel(NLog.LogLevel)"/> or <see cref="M:NLog.Config.LoggingRule.EnableLoggingForLevels(NLog.LogLevel,NLog.LogLevel)"/> to enable logging.
             </summary>
             <param name="loggerNamePattern">Logger name pattern used for <see cref="P:NLog.Config.LoggingRule.LoggerNamePattern"/>. It may include one or more '*' or '?' wildcards at any position.</param>
             <param name="target">Target to be written to when the rule matches.</param>
@@ -3714,7 +3714,7 @@
             <summary>
             Enables logging the levels between (included) <paramref name="minLevel"/> and <paramref name="maxLevel"/>. All the other levels will be disabled.
             </summary>
-            <param name="minLevel">>Minimum log level needed to trigger this rule.</param>
+            <param name="minLevel">Minimum log level needed to trigger this rule.</param>
             <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
         </member>
         <member name="M:NLog.Config.LoggingRule.ToString">
