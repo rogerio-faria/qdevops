@@ -9,7 +9,7 @@ By the way, you can create your own functions.
 ## Sample commands
 #### List apps from Qlik Sense Desktop
 ```
-qdevops -u=desktop -l
+qdevops -u desktop -l
 ```
 #### Add a Qlik Sense Server reference file
 This command will ask individually for each parameter need to connect to Qlik Sense. These parameters will be saved on JSON format, under '.\servers' folder.
@@ -18,31 +18,31 @@ qdevops -i -a
 ```
 This command create a master.txt file with connection information that can be used later
 ```
-qdevops -a=master.txt,https://myserver.domain.com/,qproxy,login,MyDomain\MyUser,MyPass
+qdevops -a master.txt https://myserver.domain.com/ qproxy login MyDomain\MyUser MyPass
 ```
 
 
 #### Export variables from a server
 ```
-qdevops -u=master.txt -v=export,dbc91f77-ec37-4b01-9fe8-9241423aaac8,vars.txt
+qdevops -u master.txt -v export dbc91f77-ec37-4b01-9fe8-9241423aaac8 vars.txt
 ```
 
 
 
 #### Save all scripts, master items and chart objects to a folder
 ```
-qdevops -u=master.txt -s=c:\qlik-scripts\,gsmdvo
+qdevops -u master.txt -s c:\qlik-scripts\ gsmdvo
 ```
 
 
 #### Check all command options
 ```
-qdevops -h=<COMMAND>
+qdevops -h <COMMAND>
 ```
 
 #### Got a Key, Activated it
 ```
-qdevops -key=activate,<GET-AT-QDEVOPS.DESQ.COM.BR>
+qdevops -key activate <GET-AT-QDEVOPS.DESQ.COM.BR>
 ```
 
 
