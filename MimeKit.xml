@@ -2586,7 +2586,7 @@
             <remarks>
             Gets the type of the property.
             </remarks>
-            <remarks>The type of the property.</remarks>
+            <value>The type of the property.</value>
         </member>
         <member name="P:MimeKit.Cryptography.AuthenticationMethodProperty.Property">
             <summary>
@@ -6737,6 +6737,7 @@
             single 256-octet string in a TXT record, and RSA keys significantly longer than 1024
             bits don't fit in 256 octets.</note>
             </remarks>
+            <value>The minimum allowed RSA key length.</value>
         </member>
         <member name="M:MimeKit.Cryptography.DkimVerifierBase.Enable(MimeKit.Cryptography.DkimSignatureAlgorithm)">
             <summary>
@@ -12184,26 +12185,41 @@
             <summary>
             The PKCS #1 v1.5 encryption padding.
             </summary>
+            <remarks>
+            The PKCS #1 v1.5 encryption padding.
+            </remarks>
         </member>
         <member name="F:MimeKit.Cryptography.RsaEncryptionPadding.OaepSha1">
             <summary>
             The Optimal Asymmetric Encryption Padding (OAEP) scheme using the default (SHA-1) hash algorithm.
             </summary>
+            <remarks>
+            The Optimal Asymmetric Encryption Padding (OAEP) scheme using the default (SHA-1) hash algorithm.
+            </remarks>
         </member>
         <member name="F:MimeKit.Cryptography.RsaEncryptionPadding.OaepSha256">
             <summary>
             The Optimal Asymmetric Encryption Padding (OAEP) scheme using the SHA-256 hash algorithm.
             </summary>
+            <remarks>
+            The Optimal Asymmetric Encryption Padding (OAEP) scheme using the SHA-256 hash algorithm.
+            </remarks>
         </member>
         <member name="F:MimeKit.Cryptography.RsaEncryptionPadding.OaepSha384">
             <summary>
             The Optimal Asymmetric Encryption Padding (OAEP) scheme using the SHA-384 hash algorithm.
             </summary>
+            <remarks>
+            The Optimal Asymmetric Encryption Padding (OAEP) scheme using the SHA-384 hash algorithm.
+            </remarks>
         </member>
         <member name="F:MimeKit.Cryptography.RsaEncryptionPadding.OaepSha512">
             <summary>
             The Optimal Asymmetric Encryption Padding (OAEP) scheme using the SHA-512 hash algorithm.
             </summary>
+            <remarks>
+            The Optimal Asymmetric Encryption Padding (OAEP) scheme using the SHA-512 hash algorithm.
+            </remarks>
         </member>
         <member name="P:MimeKit.Cryptography.RsaEncryptionPadding.Scheme">
             <summary>
@@ -12221,6 +12237,7 @@
             <remarks>
             Gets the hash algorithm used for RSAES-OAEP padding.
             </remarks>
+            <value>The hash algorithm used for RSAES-OAEP padding.</value>
         </member>
         <member name="M:MimeKit.Cryptography.RsaEncryptionPadding.Equals(MimeKit.Cryptography.RsaEncryptionPadding)">
             <summary>
@@ -12331,11 +12348,17 @@
             <summary>
             The PKCS #1 v1.5 signature padding.
             </summary>
+            <remarks>
+            The PKCS #1 v1.5 signature padding.
+            </remarks>
         </member>
         <member name="F:MimeKit.Cryptography.RsaSignaturePadding.Pss">
             <summary>
             The Probibilistic Signature Scheme (PSS) padding.
             </summary>
+            <remarks>
+            The Probibilistic Signature Scheme (PSS) padding.
+            </remarks>
         </member>
         <member name="P:MimeKit.Cryptography.RsaSignaturePadding.Scheme">
             <summary>
@@ -18165,13 +18188,17 @@
             when sent via 7bit transports such as SMTP.
             </remarks>
         </member>
-        <member name="M:MimeKit.Encodings.QuotedPrintableEncoder.#ctor">
+        <member name="M:MimeKit.Encodings.QuotedPrintableEncoder.#ctor(System.Int32)">
             <summary>
             Initialize a new instance of the <see cref="T:MimeKit.Encodings.QuotedPrintableEncoder"/> class.
             </summary>
             <remarks>
             Creates a new quoted-printable encoder.
             </remarks>
+            <param name="maxLineLength">The maximum number of octets allowed per line (not counting the CRLF). Must be between <c>60</c> and <c>998</c> (inclusive).</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="maxLineLength"/> is not between <c>60</c> and <c>998</c> (inclusive).
+            </exception>
         </member>
         <member name="M:MimeKit.Encodings.QuotedPrintableEncoder.Clone">
             <summary>
@@ -19485,6 +19512,10 @@
             Releases the unmanaged resources used by the <see cref="T:MimeKit.IO.ChainedStream"/> and
             optionally releases the managed resources.
             </summary>
+            <remarks>
+            Releases the unmanaged resources used by the <see cref="T:MimeKit.IO.ChainedStream"/> and
+            optionally releases the managed resources.
+            </remarks>
             <param name="disposing"><c>true</c> to release both managed and unmanaged resources;
             <c>false</c> to release only the unmanaged resources.</param>
         </member>
@@ -19951,6 +19982,10 @@
             Releases the unmanaged resources used by the <see cref="T:MimeKit.IO.FilteredStream"/> and
             optionally releases the managed resources.
             </summary>
+            <remarks>
+            Releases the unmanaged resources used by the <see cref="T:MimeKit.IO.FilteredStream"/> and
+            optionally releases the managed resources.
+            </remarks>
             <param name="disposing"><c>true</c> to release both managed and unmanaged resources;
             <c>false</c> to release only the unmanaged resources.</param>
         </member>
@@ -20283,6 +20318,10 @@
             Releases the unmanaged resources used by the <see cref="T:MimeKit.IO.MeasuringStream"/> and
             optionally releases the managed resources.
             </summary>
+            <remarks>
+            Releases the unmanaged resources used by the <see cref="T:MimeKit.IO.MeasuringStream"/> and
+            optionally releases the managed resources.
+            </remarks>
             <param name="disposing"><c>true</c> to release both managed and unmanaged resources;
             <c>false</c> to release only the unmanaged resources.</param>
         </member>
@@ -20576,6 +20615,10 @@
             Releases the unmanaged resources used by the <see cref="T:MimeKit.IO.MemoryBlockStream"/> and
             optionally releases the managed resources.
             </summary>
+            <remarks>
+            Releases the unmanaged resources used by the <see cref="T:MimeKit.IO.MemoryBlockStream"/> and
+            optionally releases the managed resources.
+            </remarks>
             <param name="disposing"><c>true</c> to release both managed and unmanaged resources;
             <c>false</c> to release only the unmanaged resources.</param>
         </member>
@@ -20982,7 +21025,7 @@
             <paramref name="encoder"/> is <c>null</c>.
             </exception>
         </member>
-        <member name="M:MimeKit.IO.Filters.EncoderFilter.Create(MimeKit.ContentEncoding)">
+        <member name="M:MimeKit.IO.Filters.EncoderFilter.Create(MimeKit.ContentEncoding,System.Int32)">
             <summary>
             Create a filter that will encode using specified encoding.
             </summary>
@@ -20991,8 +21034,12 @@
             </remarks>
             <returns>A new encoder filter.</returns>
             <param name="encoding">The encoding to create a filter for.</param>
+            <param name="maxLineLength">The maximum number of octets allowed per line (not counting the CRLF). Must be between <c>60</c> and <c>998</c> (inclusive).</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="maxLineLength"/> is not between <c>60</c> and <c>998</c> (inclusive).
+            </exception>
         </member>
-        <member name="M:MimeKit.IO.Filters.EncoderFilter.Create(System.String)">
+        <member name="M:MimeKit.IO.Filters.EncoderFilter.Create(System.String,System.Int32)">
             <summary>
             Create a filter that will encode using specified encoding.
             </summary>
@@ -21001,6 +21048,10 @@
             </remarks>
             <returns>A new encoder filter.</returns>
             <param name="name">The name of the encoding to create a filter for.</param>
+            <param name="maxLineLength">The maximum number of octets allowed per line (not counting the CRLF). Must be between <c>60</c> and <c>998</c> (inclusive).</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="maxLineLength"/> is not between <c>60</c> and <c>998</c> (inclusive).
+            </exception>
             <exception cref="T:System.ArgumentNullException">
             <paramref name="name"/> is <c>null</c>.
             </exception>
@@ -40517,6 +40568,7 @@
             adhere to the MIME specifications, this property can be used to force MimeKit to quote parameter values that would normally
             not require quoting.</para>
             </remarks>
+            <value><c>true</c> if Content-Type and Content-Disposition parameters should always be quoted; otherwise, <c>false</c>.</value>
         </member>
         <member name="M:MimeKit.FormatOptions.#ctor">
             <summary>

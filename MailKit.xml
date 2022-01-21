@@ -17465,9 +17465,9 @@
             <summary>
             An HTTP proxy client.
             </summary>
-            <remarkas>
+            <remarks>
             An HTTP proxy client.
-            </remarkas>
+            </remarks>
         </member>
         <member name="M:MailKit.Net.Proxy.HttpProxyClient.#ctor(System.String,System.Int32)">
             <summary>
@@ -17578,9 +17578,9 @@
             <summary>
             An HTTPS proxy client.
             </summary>
-            <remarkas>
+            <remarks>
             An HTTPS proxy client.
-            </remarkas>
+            </remarks>
         </member>
         <member name="M:MailKit.Net.Proxy.HttpsProxyClient.#ctor(System.String,System.Int32)">
             <summary>
@@ -18189,9 +18189,9 @@
             <summary>
             A SOCKS4a proxy client.
             </summary>
-            <remarkas>
+            <remarks>
             A SOCKS4a proxy client.
-            </remarkas>
+            </remarks>
         </member>
         <member name="M:MailKit.Net.Proxy.Socks4aClient.#ctor(System.String,System.Int32)">
             <summary>
@@ -18240,9 +18240,9 @@
             <summary>
             A SOCKS4 proxy client.
             </summary>
-            <remarkas>
+            <remarks>
             A SOCKS4 proxy client.
-            </remarkas>
+            </remarks>
         </member>
         <member name="M:MailKit.Net.Proxy.Socks4Client.#ctor(System.String,System.Int32)">
             <summary>
@@ -18360,9 +18360,9 @@
             <summary>
             A SOCKS5 proxy client.
             </summary>
-            <remarkas>
+            <remarks>
             A SOCKS5 proxy client.
-            </remarkas>
+            </remarks>
         </member>
         <member name="M:MailKit.Net.Proxy.Socks5Client.#ctor(System.String,System.Int32)">
             <summary>
@@ -21854,6 +21854,9 @@
             <summary>
             Initializes a new instance of the <see cref="T:MailKit.Search.OrderByAnnotation"/> class.
             </summary>
+            <remarks>
+            Creates a new <see cref="T:MailKit.Search.OrderByAnnotation"/>.
+            </remarks>
             <param name="entry">The annotation entry to sort by.</param>
             <param name="attribute">The annotation attribute to use for sorting.</param>
             <param name="order">The sort order.</param>
@@ -26346,6 +26349,7 @@
             <remarks>
             Gets the annotation properties.
             </remarks>
+            <value>The annotation properties.</value>
         </member>
         <member name="T:MailKit.AnnotationAccess">
             <summary>
@@ -26434,6 +26438,9 @@
             <summary>
             Initializes a new instance of the <see cref="T:MailKit.AnnotationAttribute"/> class.
             </summary>
+            <remarks>
+            Creates a new <see cref="T:MailKit.AnnotationAttribute"/>.
+            </remarks>
             <param name="specifier">The annotation attribute specifier.</param>
             <exception cref="T:System.ArgumentNullException">
             <paramref name="specifier"/> is <c>null</c>.
@@ -26449,6 +26456,7 @@
             <remarks>
             Gets the name of the annotation attribute.
             </remarks>
+            <value>The name of the annotation attribute.</value>
         </member>
         <member name="P:MailKit.AnnotationAttribute.Scope">
             <summary>
@@ -26457,6 +26465,7 @@
             <remarks>
             Gets the scope of the annotation attribute.
             </remarks>
+            <value>The scope of the annotation attribute.</value>
         </member>
         <member name="P:MailKit.AnnotationAttribute.Specifier">
             <summary>
@@ -26465,6 +26474,7 @@
             <remarks>
             Gets the annotation attribute specifier.
             </remarks>
+            <value>The annotation attribute specifier.</value>
         </member>
         <member name="M:MailKit.AnnotationAttribute.Equals(MailKit.AnnotationAttribute)">
             <summary>
@@ -26682,6 +26692,7 @@
             <remarks>
             Gets the part-specifier component of the annotation entry.
             </remarks>
+            <value>The part-specifier.</value>
         </member>
         <member name="P:MailKit.AnnotationEntry.Path">
             <summary>
@@ -26690,6 +26701,7 @@
             <remarks>
             Gets the path component of the annotation entry.
             </remarks>
+            <value>The path.</value>
         </member>
         <member name="P:MailKit.AnnotationEntry.Scope">
             <summary>
@@ -26698,6 +26710,7 @@
             <remarks>
             Gets the scope of the annotation.
             </remarks>
+            <value>The scope.</value>
         </member>
         <member name="M:MailKit.AnnotationEntry.Equals(MailKit.AnnotationEntry)">
             <summary>
@@ -28010,6 +28023,9 @@
             <summary>
             Initializes a new instance of the <see cref="T:MailKit.ConnectedEventArgs"/> class.
             </summary>
+            <remarks>
+            Creates a new <see cref="T:MailKit.ConnectedEventArgs"/>.
+            </remarks>
             <param name="host">The name of the host that the client connected to.</param>
             <param name="port">The port that the client connected to on the remote host.</param>
             <param name="options">The SSL/TLS options that were used when connecting to the remote host.</param>
@@ -28576,6 +28592,7 @@
             additional fields on a <see cref="T:MailKit.IMessageSummary"/> for messages that were requested as well as summaries for
             messages that were not requested at all.</para>
             </remarks>
+            <value>The mod-sequence value that indicates the last known state of the messages being requested.</value>
         </member>
         <member name="P:MailKit.FetchRequest.Items">
             <summary>
@@ -28584,6 +28601,7 @@
             <remarks>
             Gets or sets the message summary items to fetch.
             </remarks>
+            <value>The message summary items.</value>
         </member>
         <member name="P:MailKit.FetchRequest.Headers">
             <summary>
@@ -29698,6 +29716,7 @@
             additional fields on a <see cref="T:MailKit.IMessageSummary"/> for messages that were requested as well as summaries for
             messages that were not requested at all.</para>
             </remarks>
+            <value>The mod-sequence value that indicates the last known state of the messages being requested.</value>
         </member>
         <member name="P:MailKit.IFetchRequest.Items">
             <summary>
@@ -29706,6 +29725,7 @@
             <remarks>
             Gets or sets the message summary items to fetch.
             </remarks>
+            <value>The message summary items.</value>
         </member>
         <member name="P:MailKit.IFetchRequest.Headers">
             <summary>
@@ -29759,6 +29779,7 @@
             If annotations are supported, this property can be used to determine whether or not
             the <see cref="T:MailKit.IMailFolder"/> supports reading and writing annotations.
             </remarks>
+            <value>The annotation access level.</value>
         </member>
         <member name="P:MailKit.IMailFolder.AnnotationScopes">
             <summary>
@@ -29768,6 +29789,7 @@
             If annotations are supported, this property can be used to determine which
             annotation scopes are supported by the <see cref="T:MailKit.IMailFolder"/>.
             </remarks>
+            <value>The supported annotation scopes.</value>
         </member>
         <member name="P:MailKit.IMailFolder.MaxAnnotationSize">
             <summary>
@@ -29777,6 +29799,7 @@
             If annotations are supported, this property can be used to determine the
             maximum size of annotation values supported by the <see cref="T:MailKit.IMailFolder"/>.
             </remarks>
+            <value>The maximum size of annotation values supported by the folder.</value>
         </member>
         <member name="P:MailKit.IMailFolder.PermanentFlags">
             <summary>
@@ -41454,7 +41477,7 @@
         </member>
         <member name="P:MailKit.IMailService.SyncRoot">
             <summary>
-            Gets an object that can be used to synchronize access to the folder.
+            Get an object that can be used to synchronize access to the folder.
             </summary>
             <remarks>
             Gets an object that can be used to synchronize access to the folder.
@@ -41463,7 +41486,7 @@
         </member>
         <member name="P:MailKit.IMailService.SslProtocols">
             <summary>
-            Gets or sets the set of enabled SSL and/or TLS protocol versions that the client is allowed to use.
+            Get or set the set of enabled SSL and/or TLS protocol versions that the client is allowed to use.
             </summary>
             <remarks>
             <para>By default, MailKit initializes this value to enable only TLS v1.2 and greater.
@@ -41506,7 +41529,7 @@
         </member>
         <member name="P:MailKit.IMailService.ServerCertificateValidationCallback">
             <summary>
-            Get or sets a callback function to validate the server certificate.
+            Get or set a callback function to validate the server certificate.
             </summary>
             <remarks>
             <para>Gets or sets a callback function to validate the server certificate.</para>
@@ -44365,6 +44388,7 @@
             state will have their flags updated by the <a href="Overload_MailKit_IMailFolder_Store.htm">Store</a>
             or <a href="Overload_MailKit_IMailFolder_StoreAsync.htm">StoreAsync</a> mnethods.</para>
             </remarks>
+            <value>The mod-sequence value that indicates the last known state of the message(s) being updated.</value>
         </member>
         <member name="T:MailKit.ITransferProgress">
             <summary>
@@ -44455,6 +44479,7 @@
             If annotations are supported, this property can be used to determine whether or not
             the <see cref="T:MailKit.IMailFolder"/> supports reading and writing annotations.
             </remarks>
+            <value>The annotation access level.</value>
         </member>
         <member name="P:MailKit.MailFolder.AnnotationScopes">
             <summary>
@@ -44464,6 +44489,7 @@
             If annotations are supported, this property can be used to determine which
             annotation scopes are supported by the <see cref="T:MailKit.IMailFolder"/>.
             </remarks>
+            <value>The supported annotation scopes.</value>
         </member>
         <member name="P:MailKit.MailFolder.MaxAnnotationSize">
             <summary>
@@ -44473,6 +44499,7 @@
             If annotations are supported, this property can be used to determine the
             maximum size of annotation values supported by the <see cref="T:MailKit.IMailFolder"/>.
             </remarks>
+            <value>The maximum size of annotation values supported by the folder.</value>
         </member>
         <member name="P:MailKit.MailFolder.PermanentFlags">
             <summary>
@@ -53375,7 +53402,7 @@
         </member>
         <member name="P:MailKit.MailService.SyncRoot">
             <summary>
-            Gets an object that can be used to synchronize access to the service.
+            Get an object that can be used to synchronize access to the service.
             </summary>
             <remarks>
             <para>Gets an object that can be used to synchronize access to the service.</para>
@@ -53384,7 +53411,7 @@
         </member>
         <member name="P:MailKit.MailService.Protocol">
             <summary>
-            Gets the protocol supported by the message service.
+            Get the protocol supported by the message service.
             </summary>
             <remarks>
             Gets the protocol supported by the message service.
@@ -53402,7 +53429,7 @@
         </member>
         <member name="P:MailKit.MailService.SslProtocols">
             <summary>
-            Gets or sets the set of enabled SSL and/or TLS protocol versions that the client is allowed to use.
+            Get or set the set of enabled SSL and/or TLS protocol versions that the client is allowed to use.
             </summary>
             <remarks>
             <para>Gets or sets the enabled SSL and/or TLS protocol versions that the client is allowed to use.</para>
@@ -53416,7 +53443,7 @@
         </member>
         <member name="P:MailKit.MailService.ClientCertificates">
             <summary>
-            Gets or sets the client SSL certificates.
+            Get or set the client SSL certificates.
             </summary>
             <remarks>
             <para>Some servers may require the client SSL certificates in order
@@ -53446,7 +53473,7 @@
         </member>
         <member name="P:MailKit.MailService.ServerCertificateValidationCallback">
             <summary>
-            Get or sets a callback function to validate the server certificate.
+            Get or set a callback function to validate the server certificate.
             </summary>
             <remarks>
             <para>Gets or sets a callback function to validate the server certificate.</para>
@@ -60316,6 +60343,7 @@
             Gets the remapped unique identifier.
             </remarks>
             <param name="index">The unique identifier of the message in the source folder.</param>
+            <value>The remapped unique identifier.</value>
             <exception cref="T:System.ArgumentOutOfRangeException">
             <paramref name="index"/> is out of range.
             </exception>
