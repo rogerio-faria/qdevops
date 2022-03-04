@@ -36987,6 +36987,12 @@
             </remarks>
             <param name="args">The parsed state.</param>
         </member>
+        <member name="M:MimeKit.MimeParser.ReadToEos">
+            <summary>
+            This is a hack needed by the MessageDeliveryStatus.ParseStatusGroups() logic in order to work around an Office365 bug.
+            </summary>
+            <returns>The remainder of the parser's input stream (needed because the input stream may not be seekable).</returns>
+        </member>
         <member name="M:MimeKit.MimeParser.ParseHeaders(System.Threading.CancellationToken)">
             <summary>
             Parse a list of headers from the stream.
@@ -48029,7 +48035,7 @@
             Get the list of addresses in the Bcc header.
             </summary>
             <remarks>
-            Recipients in the Blind-Carpbon-Copy list will not be visible to
+            Recipients in the Blind-Carbon-Copy list will not be visible to
             the other recipients of the message.
             </remarks>
             <value>The list of addresses in the Bcc header.</value>

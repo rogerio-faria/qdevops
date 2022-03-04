@@ -57,6 +57,18 @@
             The Uri of the Qlik Sense server
             </summary>
         </member>
+        <member name="P:Qlik.Sense.JsonRpc.IGenericLocation.EnablePing">
+            <summary>
+            If this property is set to <c>true</c> then a websocket will be opened at the first possible opportunity by forcing a dummy
+            RPC request to the engine. If the value is <c>false</c> then a websocket will be opened only when the first RPC request is made.
+            Default value is: <c>true</c>
+            </summary>
+        </member>
+        <member name="P:Qlik.Sense.JsonRpc.IGenericLocation.WebSocketProxy">
+            <summary>
+            The proxy for WebSocket requests.
+            </summary>
+        </member>
         <member name="M:Qlik.Sense.JsonRpc.IGenericLocation.GetWebsocketUri(Qlik.Sense.JsonRpc.ISession,System.String)">
             <summary>
             Returns the full Uri used when performing a websocket connection.
@@ -76,6 +88,9 @@
             <summary>
             Class for defining and configuring Qlik Sense connections. 
             </summary>
+        </member>
+        <member name="P:Qlik.Sense.JsonRpc.GenericLocation.EnablePing">
+            <inheritdoc />
         </member>
         <member name="P:Qlik.Sense.JsonRpc.GenericLocation.SessionCookie">
             <summary>
@@ -104,9 +119,10 @@
             </summary>
         </member>
         <member name="P:Qlik.Sense.JsonRpc.GenericLocation.ServerUri">
-            <summary>
-            The Uri of the Qlik Sense server
-            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Qlik.Sense.JsonRpc.GenericLocation.WebSocketProxy">
+            <inheritdoc />
         </member>
         <member name="M:Qlik.Sense.JsonRpc.GenericLocation.GetWebsocketUri(Qlik.Sense.JsonRpc.ISession,System.String)">
             <summary>
@@ -327,6 +343,18 @@
             <typeparam name="T">The type to deserialize to.</typeparam>
             <param name="token">The Json token to deserialize.</param>
             <returns>The token deserialized as a an object of type T.</returns>
+        </member>
+        <member name="M:Qlik.Sense.JsonRpc.IRpcConnection.Log(System.String,System.String)">
+            <summary>
+            Post message to the DebugConsole. If no debug console is active, then the method has no effect.
+            </summary>
+            <param name="source">Source identifier.</param>
+            <param name="message">Message to post.</param>
+        </member>
+        <member name="E:Qlik.Sense.JsonRpc.IRpcConnection.PushMethodReceivedEvent">
+            <summary>
+            Event that is fired whenever a push method is received from Qlik Sense.
+            </summary>
         </member>
         <member name="T:Qlik.Sense.JsonRpc.ISession">
             <summary>
@@ -703,6 +731,21 @@
             The response object
             </summary>
         </member>
+        <member name="T:Qlik.Sense.JsonRpc.PushMethodReceivedEventArgs">
+            <summary>
+            The argument structure used for events that are fired when push methods are received from Qlik Sense.
+            </summary>
+        </member>
+        <member name="P:Qlik.Sense.JsonRpc.PushMethodReceivedEventArgs.Method">
+            <summary>
+            The push method identifier.
+            </summary>
+        </member>
+        <member name="P:Qlik.Sense.JsonRpc.PushMethodReceivedEventArgs.Params">
+            <summary>
+            The push method parameters.
+            </summary>
+        </member>
         <member name="M:Qlik.Sense.JsonRpc.IQcsLocation.AsApiKey(System.String)">
             <summary>
             Configure the location to use an API key for authentication.
@@ -975,6 +1018,9 @@
             </summary>
             <param name="message">The message to print.</param>
         </member>
+        <member name="M:Qlik.Sense.JsonRpc.RpcConnection.Log(System.String,System.String)">
+            <inheritdoc />
+        </member>
         <member name="P:Qlik.Sense.JsonRpc.RpcConnection.Timeout">
             <summary>
             Timeout value (in milliseconds) used for synchronous calls to engine. Usually used together
@@ -1008,6 +1054,9 @@
             <summary>
             Will catch all responses without registered receiver
             </summary>
+        </member>
+        <member name="E:Qlik.Sense.JsonRpc.RpcConnection.PushMethodReceivedEvent">
+            <inheritdoc />
         </member>
         <member name="T:Qlik.Sense.JsonRpc.RpcConnection.ClientNotificationSeverity">
             <summary>

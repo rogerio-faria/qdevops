@@ -1154,12 +1154,14 @@
             <param name="tTLOfTempState">Time to live in seconds for stored selection state</param>
             <return>An instance of type <see  cref="T:Qlik.Engine.StoreTempSelectionStateResult"/>.</return>
             <remark>The temporary selection state will be stored for 30min by default if TTL parameter is not present or positive. </remark>
+            <remark>StoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.App.StoreTempSelectionStateAsync(System.Int32)">
             <summary><para>Store current selection state temporarily.</para></summary>
             <param name="tTLOfTempState">Time to live in seconds for stored selection state</param>
             <return>An instance of type <see  cref="T:Qlik.Engine.StoreTempSelectionStateResult"/>.</return>
             <remark>The temporary selection state will be stored for 30min by default if TTL parameter is not present or positive. </remark>
+            <remark>StoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.App.StoreTempSelectionStateAsync(Qlik.Engine.AsyncHandle,System.Int32)">
             <param name="asyncHandle">Handle to asynchronous method request</param>
@@ -1167,6 +1169,7 @@
             <param name="tTLOfTempState">Time to live in seconds for stored selection state</param>
             <return>An instance of type <see  cref="T:Qlik.Engine.StoreTempSelectionStateResult"/>.</return>
             <remark>The temporary selection state will be stored for 30min by default if TTL parameter is not present or positive. </remark>
+            <remark>StoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.App.StoreTempSelectionStateAsync``1(Qlik.Engine.AsyncHandle,System.Func{Qlik.Engine.Communication.IO.Response,``0},System.Int32)">
             <param name="asyncHandle">Handle to asynchronous method request</param>
@@ -1175,25 +1178,30 @@
             <param name="tTLOfTempState">Time to live in seconds for stored selection state</param>
             <return>An instance of type <see  cref="T:Qlik.Engine.StoreTempSelectionStateResult"/>.</return>
             <remark>The temporary selection state will be stored for 30min by default if TTL parameter is not present or positive. </remark>
+            <remark>StoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.App.RestoreTempSelectionState(System.String)">
             <summary><para>Restore a temporary selection state identified by Id.</para></summary>
             <param name="id">Identifier of the temporary selection state</param>
+            <remark>RestoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.App.RestoreTempSelectionStateAsync(System.String)">
             <summary><para>Restore a temporary selection state identified by Id.</para></summary>
             <param name="id">Identifier of the temporary selection state</param>
+            <remark>RestoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.App.RestoreTempSelectionStateAsync(Qlik.Engine.AsyncHandle,System.String)">
             <param name="asyncHandle">Handle to asynchronous method request</param>
             <summary><para>Restore a temporary selection state identified by Id.</para></summary>
             <param name="id">Identifier of the temporary selection state</param>
+            <remark>RestoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.App.RestoreTempSelectionStateAsync``1(Qlik.Engine.AsyncHandle,System.Func{Qlik.Engine.Communication.IO.Response,``0},System.String)">
             <param name="asyncHandle">Handle to asynchronous method request</param>
             <param name="onResult">Continuation function</param>
             <summary><para>Restore a temporary selection state identified by Id.</para></summary>
             <param name="id">Identifier of the temporary selection state</param>
+            <remark>RestoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.App.GetTableProfileData(System.String)">
             <summary><para>Returns profile data for a given table.</para></summary>
@@ -4419,11 +4427,21 @@
             User created handle to asynchronous method request
             </summary>
         </member>
+        <member name="M:Qlik.Engine.AsyncHandle.#ctor">
+            <summary>
+            Create a reusable handle to asynchronous method request.
+            </summary>
+        </member>
         <member name="M:Qlik.Engine.AsyncHandle.#ctor(System.String)">
             <summary>
             Create a reusable handle to asynchronous method request
             </summary>
             <param name="handle">unique string value</param>
+        </member>
+        <member name="P:Qlik.Engine.AsyncHandle.Handle">
+            <summary>
+            The handle identifier.
+            </summary>
         </member>
         <member name="T:Qlik.Engine.Communication.CertificateManager">
             <summary>
@@ -6224,7 +6242,8 @@
              <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para>
             <para>It is possible to apply a patch to the properties of a generic object, that is not persistent. Such a patch is called a soft patch.</para>
             <para>In that case, the result of the operation on the properties (add, remove or delete) is not shown when doing <c>GetProperties</c> , and only a <c>GetLayout</c> call shows the result of the operation.</para>
-            <para>Properties that are not persistent are called soft properties. Once the engine session is over, soft properties are cleared.</para></summary>
+            <para>Properties that are not persistent are called soft properties. Once the engine session is over, soft properties are cleared. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
              <param name="patches">Array of patches.</param>
              <param name="softPatch">If set to true, it means that the properties to be applied are not persistent. The patch is a soft patch.
              The default value is false.</param>
@@ -6234,7 +6253,8 @@
              <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para>
             <para>It is possible to apply a patch to the properties of a generic object, that is not persistent. Such a patch is called a soft patch.</para>
             <para>In that case, the result of the operation on the properties (add, remove or delete) is not shown when doing <c>GetProperties</c> , and only a <c>GetLayout</c> call shows the result of the operation.</para>
-            <para>Properties that are not persistent are called soft properties. Once the engine session is over, soft properties are cleared.</para></summary>
+            <para>Properties that are not persistent are called soft properties. Once the engine session is over, soft properties are cleared. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
              <param name="patches">Array of patches.</param>
              <param name="softPatch">If set to true, it means that the properties to be applied are not persistent. The patch is a soft patch.
              The default value is false.</param>
@@ -6245,7 +6265,8 @@
              <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para>
             <para>It is possible to apply a patch to the properties of a generic object, that is not persistent. Such a patch is called a soft patch.</para>
             <para>In that case, the result of the operation on the properties (add, remove or delete) is not shown when doing <c>GetProperties</c> , and only a <c>GetLayout</c> call shows the result of the operation.</para>
-            <para>Properties that are not persistent are called soft properties. Once the engine session is over, soft properties are cleared.</para></summary>
+            <para>Properties that are not persistent are called soft properties. Once the engine session is over, soft properties are cleared. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
              <param name="patches">Array of patches.</param>
              <param name="softPatch">If set to true, it means that the properties to be applied are not persistent. The patch is a soft patch.
              The default value is false.</param>
@@ -6445,12 +6466,6 @@
             <para>The default maximum number of rows and columns in the Excel export file is:</para>
             <para>* 1048566 rows per sheet. For pivot tables: 1048566 column dimensions. 10 rows can be added after the export.</para>
             <para>* 16384 columns per sheet. If the number of columns exceeds the limit, the exported file is truncated and a warning message is sent.</para>
-            <para>### Default limitations in number of cells</para>
-            <para>The default maximum number of cells in the export file is:</para>
-            <para>* 1000000 to export to an Excel file</para>
-            <para>* 5000000 to export to a CSV file</para>
-            <para>The exported file is truncated if the number of cells exceeds the limit. A warning message with code 1000 is sent.</para>
-            <para>There is an option to export only the possible values ( <c>qExportState</c> is P).</para>
             <para>### Default limitation in number of columns</para>
             <para>The default maximum number of columns in the export file is:</para>
             <para>* 1000 to export to a CSV file</para>
@@ -6480,12 +6495,6 @@
             <para>The default maximum number of rows and columns in the Excel export file is:</para>
             <para>* 1048566 rows per sheet. For pivot tables: 1048566 column dimensions. 10 rows can be added after the export.</para>
             <para>* 16384 columns per sheet. If the number of columns exceeds the limit, the exported file is truncated and a warning message is sent.</para>
-            <para>### Default limitations in number of cells</para>
-            <para>The default maximum number of cells in the export file is:</para>
-            <para>* 1000000 to export to an Excel file</para>
-            <para>* 5000000 to export to a CSV file</para>
-            <para>The exported file is truncated if the number of cells exceeds the limit. A warning message with code 1000 is sent.</para>
-            <para>There is an option to export only the possible values ( <c>qExportState</c> is P).</para>
             <para>### Default limitation in number of columns</para>
             <para>The default maximum number of columns in the export file is:</para>
             <para>* 1000 to export to a CSV file</para>
@@ -6516,12 +6525,6 @@
             <para>The default maximum number of rows and columns in the Excel export file is:</para>
             <para>* 1048566 rows per sheet. For pivot tables: 1048566 column dimensions. 10 rows can be added after the export.</para>
             <para>* 16384 columns per sheet. If the number of columns exceeds the limit, the exported file is truncated and a warning message is sent.</para>
-            <para>### Default limitations in number of cells</para>
-            <para>The default maximum number of cells in the export file is:</para>
-            <para>* 1000000 to export to an Excel file</para>
-            <para>* 5000000 to export to a CSV file</para>
-            <para>The exported file is truncated if the number of cells exceeds the limit. A warning message with code 1000 is sent.</para>
-            <para>There is an option to export only the possible values ( <c>qExportState</c> is P).</para>
             <para>### Default limitation in number of columns</para>
             <para>The default maximum number of columns in the export file is:</para>
             <para>* 1000 to export to a CSV file</para>
@@ -6553,12 +6556,6 @@
             <para>The default maximum number of rows and columns in the Excel export file is:</para>
             <para>* 1048566 rows per sheet. For pivot tables: 1048566 column dimensions. 10 rows can be added after the export.</para>
             <para>* 16384 columns per sheet. If the number of columns exceeds the limit, the exported file is truncated and a warning message is sent.</para>
-            <para>### Default limitations in number of cells</para>
-            <para>The default maximum number of cells in the export file is:</para>
-            <para>* 1000000 to export to an Excel file</para>
-            <para>* 5000000 to export to a CSV file</para>
-            <para>The exported file is truncated if the number of cells exceeds the limit. A warning message with code 1000 is sent.</para>
-            <para>There is an option to export only the possible values ( <c>qExportState</c> is P).</para>
             <para>### Default limitation in number of columns</para>
             <para>The default maximum number of columns in the export file is:</para>
             <para>* 1000 to export to a CSV file</para>
@@ -8206,20 +8203,23 @@
              <return>Information on the object</return>
         </member>
         <member name="M:Qlik.Engine.GenericVariable.ApplyPatches(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.GenericVariable.ApplyPatchesAsync(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.GenericVariable.ApplyPatchesAsync(Qlik.Engine.AsyncHandle,System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <param name="asyncHandle">Handle to asynchronous method request</param>
+             <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.GenericVariable.SetProperties(Qlik.Engine.GenericVariableProperties)">
             <summary><para>Sets some properties for a variable.</para></summary>
@@ -10061,7 +10061,7 @@
         </member>
         <member name="P:Qlik.Engine.IApp.Session">
             <summary>
-            
+            The Qlik Sense engine session connection.
             </summary>
         </member>
         <member name="M:Qlik.Engine.IApp.GetObject``1(System.String)">
@@ -11043,12 +11043,14 @@
             <param name="tTLOfTempState">Time to live in seconds for stored selection state</param>
             <return>An instance of type <see  cref="T:Qlik.Engine.StoreTempSelectionStateResult"/>.</return>
             <remark>The temporary selection state will be stored for 30min by default if TTL parameter is not present or positive. </remark>
+            <remark>StoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.IApp.StoreTempSelectionStateAsync(System.Int32)">
             <summary><para>Store current selection state temporarily.</para></summary>
             <param name="tTLOfTempState">Time to live in seconds for stored selection state</param>
             <return>An instance of type <see  cref="T:Qlik.Engine.StoreTempSelectionStateResult"/>.</return>
             <remark>The temporary selection state will be stored for 30min by default if TTL parameter is not present or positive. </remark>
+            <remark>StoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.IApp.StoreTempSelectionStateAsync(Qlik.Engine.AsyncHandle,System.Int32)">
             <param name="asyncHandle">Handle to asynchronous method request</param>
@@ -11056,6 +11058,7 @@
             <param name="tTLOfTempState">Time to live in seconds for stored selection state</param>
             <return>An instance of type <see  cref="T:Qlik.Engine.StoreTempSelectionStateResult"/>.</return>
             <remark>The temporary selection state will be stored for 30min by default if TTL parameter is not present or positive. </remark>
+            <remark>StoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.IApp.StoreTempSelectionStateAsync``1(Qlik.Engine.AsyncHandle,System.Func{Qlik.Engine.Communication.IO.Response,``0},System.Int32)">
             <param name="asyncHandle">Handle to asynchronous method request</param>
@@ -11064,25 +11067,30 @@
             <param name="tTLOfTempState">Time to live in seconds for stored selection state</param>
             <return>An instance of type <see  cref="T:Qlik.Engine.StoreTempSelectionStateResult"/>.</return>
             <remark>The temporary selection state will be stored for 30min by default if TTL parameter is not present or positive. </remark>
+            <remark>StoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.IApp.RestoreTempSelectionState(System.String)">
             <summary><para>Restore a temporary selection state identified by Id.</para></summary>
             <param name="id">Identifier of the temporary selection state</param>
+            <remark>RestoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.IApp.RestoreTempSelectionStateAsync(System.String)">
             <summary><para>Restore a temporary selection state identified by Id.</para></summary>
             <param name="id">Identifier of the temporary selection state</param>
+            <remark>RestoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.IApp.RestoreTempSelectionStateAsync(Qlik.Engine.AsyncHandle,System.String)">
             <param name="asyncHandle">Handle to asynchronous method request</param>
             <summary><para>Restore a temporary selection state identified by Id.</para></summary>
             <param name="id">Identifier of the temporary selection state</param>
+            <remark>RestoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.IApp.RestoreTempSelectionStateAsync``1(Qlik.Engine.AsyncHandle,System.Func{Qlik.Engine.Communication.IO.Response,``0},System.String)">
             <param name="asyncHandle">Handle to asynchronous method request</param>
             <param name="onResult">Continuation function</param>
             <summary><para>Restore a temporary selection state identified by Id.</para></summary>
             <param name="id">Identifier of the temporary selection state</param>
+            <remark>RestoreTempSelectionState method is only supported in SaaS Editions of Qlik Sense.</remark>
         </member>
         <member name="M:Qlik.Engine.IApp.GetTableProfileData(System.String)">
             <summary><para>Returns profile data for a given table.</para></summary>
@@ -15085,7 +15093,8 @@
              <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para>
             <para>It is possible to apply a patch to the properties of a generic object, that is not persistent. Such a patch is called a soft patch.</para>
             <para>In that case, the result of the operation on the properties (add, remove or delete) is not shown when doing <c>GetProperties</c> , and only a <c>GetLayout</c> call shows the result of the operation.</para>
-            <para>Properties that are not persistent are called soft properties. Once the engine session is over, soft properties are cleared.</para></summary>
+            <para>Properties that are not persistent are called soft properties. Once the engine session is over, soft properties are cleared. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
              <param name="patches">Array of patches.</param>
              <param name="softPatch">If set to true, it means that the properties to be applied are not persistent. The patch is a soft patch.
              The default value is false.</param>
@@ -15095,7 +15104,8 @@
              <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para>
             <para>It is possible to apply a patch to the properties of a generic object, that is not persistent. Such a patch is called a soft patch.</para>
             <para>In that case, the result of the operation on the properties (add, remove or delete) is not shown when doing <c>GetProperties</c> , and only a <c>GetLayout</c> call shows the result of the operation.</para>
-            <para>Properties that are not persistent are called soft properties. Once the engine session is over, soft properties are cleared.</para></summary>
+            <para>Properties that are not persistent are called soft properties. Once the engine session is over, soft properties are cleared. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
              <param name="patches">Array of patches.</param>
              <param name="softPatch">If set to true, it means that the properties to be applied are not persistent. The patch is a soft patch.
              The default value is false.</param>
@@ -15106,7 +15116,8 @@
              <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para>
             <para>It is possible to apply a patch to the properties of a generic object, that is not persistent. Such a patch is called a soft patch.</para>
             <para>In that case, the result of the operation on the properties (add, remove or delete) is not shown when doing <c>GetProperties</c> , and only a <c>GetLayout</c> call shows the result of the operation.</para>
-            <para>Properties that are not persistent are called soft properties. Once the engine session is over, soft properties are cleared.</para></summary>
+            <para>Properties that are not persistent are called soft properties. Once the engine session is over, soft properties are cleared. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
              <param name="patches">Array of patches.</param>
              <param name="softPatch">If set to true, it means that the properties to be applied are not persistent. The patch is a soft patch.
              The default value is false.</param>
@@ -15306,12 +15317,6 @@
             <para>The default maximum number of rows and columns in the Excel export file is:</para>
             <para>* 1048566 rows per sheet. For pivot tables: 1048566 column dimensions. 10 rows can be added after the export.</para>
             <para>* 16384 columns per sheet. If the number of columns exceeds the limit, the exported file is truncated and a warning message is sent.</para>
-            <para>### Default limitations in number of cells</para>
-            <para>The default maximum number of cells in the export file is:</para>
-            <para>* 1000000 to export to an Excel file</para>
-            <para>* 5000000 to export to a CSV file</para>
-            <para>The exported file is truncated if the number of cells exceeds the limit. A warning message with code 1000 is sent.</para>
-            <para>There is an option to export only the possible values ( <c>qExportState</c> is P).</para>
             <para>### Default limitation in number of columns</para>
             <para>The default maximum number of columns in the export file is:</para>
             <para>* 1000 to export to a CSV file</para>
@@ -15341,12 +15346,6 @@
             <para>The default maximum number of rows and columns in the Excel export file is:</para>
             <para>* 1048566 rows per sheet. For pivot tables: 1048566 column dimensions. 10 rows can be added after the export.</para>
             <para>* 16384 columns per sheet. If the number of columns exceeds the limit, the exported file is truncated and a warning message is sent.</para>
-            <para>### Default limitations in number of cells</para>
-            <para>The default maximum number of cells in the export file is:</para>
-            <para>* 1000000 to export to an Excel file</para>
-            <para>* 5000000 to export to a CSV file</para>
-            <para>The exported file is truncated if the number of cells exceeds the limit. A warning message with code 1000 is sent.</para>
-            <para>There is an option to export only the possible values ( <c>qExportState</c> is P).</para>
             <para>### Default limitation in number of columns</para>
             <para>The default maximum number of columns in the export file is:</para>
             <para>* 1000 to export to a CSV file</para>
@@ -15377,12 +15376,6 @@
             <para>The default maximum number of rows and columns in the Excel export file is:</para>
             <para>* 1048566 rows per sheet. For pivot tables: 1048566 column dimensions. 10 rows can be added after the export.</para>
             <para>* 16384 columns per sheet. If the number of columns exceeds the limit, the exported file is truncated and a warning message is sent.</para>
-            <para>### Default limitations in number of cells</para>
-            <para>The default maximum number of cells in the export file is:</para>
-            <para>* 1000000 to export to an Excel file</para>
-            <para>* 5000000 to export to a CSV file</para>
-            <para>The exported file is truncated if the number of cells exceeds the limit. A warning message with code 1000 is sent.</para>
-            <para>There is an option to export only the possible values ( <c>qExportState</c> is P).</para>
             <para>### Default limitation in number of columns</para>
             <para>The default maximum number of columns in the export file is:</para>
             <para>* 1000 to export to a CSV file</para>
@@ -15414,12 +15407,6 @@
             <para>The default maximum number of rows and columns in the Excel export file is:</para>
             <para>* 1048566 rows per sheet. For pivot tables: 1048566 column dimensions. 10 rows can be added after the export.</para>
             <para>* 16384 columns per sheet. If the number of columns exceeds the limit, the exported file is truncated and a warning message is sent.</para>
-            <para>### Default limitations in number of cells</para>
-            <para>The default maximum number of cells in the export file is:</para>
-            <para>* 1000000 to export to an Excel file</para>
-            <para>* 5000000 to export to a CSV file</para>
-            <para>The exported file is truncated if the number of cells exceeds the limit. A warning message with code 1000 is sent.</para>
-            <para>There is an option to export only the possible values ( <c>qExportState</c> is P).</para>
             <para>### Default limitation in number of columns</para>
             <para>The default maximum number of columns in the export file is:</para>
             <para>* 1000 to export to a CSV file</para>
@@ -17005,6 +16992,16 @@
             
             </summary>
         </member>
+        <member name="E:Qlik.Engine.IHub.CommunicationErrorEvent">
+            <summary>
+            Triggered when a communication error occurs on the websocket used by the hub.
+            </summary>
+        </member>
+        <member name="P:Qlik.Engine.IHub.Session">
+            <summary>
+            The Qlik Sense engine session connection.
+            </summary>
+        </member>
         <member name="M:Qlik.Engine.IHub.GetProgressAsync(Qlik.Engine.AsyncHandle)">
             <summary>
             Gives information about the progress of the DoReload and DoSave calls.
@@ -17078,11 +17075,6 @@
             Cancels an ongoing request. The request is stopped.
             </summary>
             <param name="asyncHandle">Corresponds to the identifier for the call.</param>
-        </member>
-        <member name="E:Qlik.Engine.IHub.CommunicationErrorEvent">
-            <summary>
-            Eventhandler for communication error
-            </summary>
         </member>
         <member name="M:Qlik.Engine.IHub.AbortRequest(System.Int32)">
              <summary><para>Sets an abort flag on a specific request in the current engine session.</para>
@@ -20148,7 +20140,10 @@
             <summary><para>App thumbnail.</para><para>JSON property name: qThumbnail</para></summary>
         </member>
         <member name="P:Qlik.Engine.NxAppLayout.IsBDILiveMode">
-            <summary><para>If set to true, the app is in BDI Live mode.</para><para>JSON property name: qIsBDILiveMode</para></summary>
+            <summary><para>If set to true, the app is in BDI Live Mode.</para><para>JSON property name: qIsBDILiveMode</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.NxAppLayout.IsDirectQueryMode">
+            <summary><para>If set to true, the app is in Direct Query Mode.</para><para>JSON property name: qIsDirectQueryMode</para></summary>
         </member>
         <member name="M:Qlik.Engine.NxAppLayout.#ctor">
             <summary>Creates an instance of the NxAppLayout class</summary>
@@ -22470,20 +22465,23 @@
              <return>Information on the object.</return>
         </member>
         <member name="M:Qlik.Engine.GenericBookmark.ApplyPatches(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.GenericBookmark.ApplyPatchesAsync(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.GenericBookmark.ApplyPatchesAsync(Qlik.Engine.AsyncHandle,System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <param name="asyncHandle">Handle to asynchronous method request</param>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.GenericBookmark.SetProperties(Qlik.Engine.GenericBookmarkProperties)">
             <summary><para>Sets some properties for a bookmark.</para></summary>
@@ -22701,20 +22699,23 @@
             <return>Information on the object.</return>
         </member>
         <member name="M:Qlik.Engine.GenericDimension.ApplyPatches(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.GenericDimension.ApplyPatchesAsync(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.GenericDimension.ApplyPatchesAsync(Qlik.Engine.AsyncHandle,System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <param name="asyncHandle">Handle to asynchronous method request</param>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.GenericDimension.SetProperties(Qlik.Engine.GenericDimensionProperties)">
             <summary><para>Sets some properties for a dimension.</para></summary>
@@ -22891,20 +22892,23 @@
             <return>Information on the object.</return>
         </member>
         <member name="M:Qlik.Engine.GenericMeasure.ApplyPatches(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.GenericMeasure.ApplyPatchesAsync(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.GenericMeasure.ApplyPatchesAsync(Qlik.Engine.AsyncHandle,System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <param name="asyncHandle">Handle to asynchronous method request</param>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.GenericMeasure.SetProperties(Qlik.Engine.GenericMeasureProperties)">
             <summary><para>Sets some properties for a measure.</para></summary>
@@ -26219,7 +26223,10 @@
             <summary><para>App thumbnail.</para><para>JSON property name: qThumbnail</para></summary>
         </member>
         <member name="P:Qlik.Engine.INxAppLayout.IsBDILiveMode">
-            <summary><para>If set to true, the app is in BDI Live mode.</para><para>JSON property name: qIsBDILiveMode</para></summary>
+            <summary><para>If set to true, the app is in BDI Live Mode.</para><para>JSON property name: qIsBDILiveMode</para></summary>
+        </member>
+        <member name="P:Qlik.Engine.INxAppLayout.IsDirectQueryMode">
+            <summary><para>If set to true, the app is in Direct Query Mode.</para><para>JSON property name: qIsDirectQueryMode</para></summary>
         </member>
         <member name="P:Qlik.Engine.INxAppProperties.Title">
             <summary><para>App title.</para><para>JSON property name: qTitle</para></summary>
@@ -28311,20 +28318,23 @@
              <return>Information on the object.</return>
         </member>
         <member name="M:Qlik.Engine.IGenericBookmark.ApplyPatches(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.IGenericBookmark.ApplyPatchesAsync(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.IGenericBookmark.ApplyPatchesAsync(Qlik.Engine.AsyncHandle,System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <param name="asyncHandle">Handle to asynchronous method request</param>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.IGenericBookmark.SetProperties(Qlik.Engine.GenericBookmarkProperties)">
             <summary><para>Sets some properties for a bookmark.</para></summary>
@@ -28542,20 +28552,23 @@
             <return>Information on the object.</return>
         </member>
         <member name="M:Qlik.Engine.IGenericDimension.ApplyPatches(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.IGenericDimension.ApplyPatchesAsync(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.IGenericDimension.ApplyPatchesAsync(Qlik.Engine.AsyncHandle,System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <param name="asyncHandle">Handle to asynchronous method request</param>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.IGenericDimension.SetProperties(Qlik.Engine.GenericDimensionProperties)">
             <summary><para>Sets some properties for a dimension.</para></summary>
@@ -28732,20 +28745,23 @@
             <return>Information on the object.</return>
         </member>
         <member name="M:Qlik.Engine.IGenericMeasure.ApplyPatches(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.IGenericMeasure.ApplyPatchesAsync(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.IGenericMeasure.ApplyPatchesAsync(Qlik.Engine.AsyncHandle,System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <param name="asyncHandle">Handle to asynchronous method request</param>
+             <summary><para>Applies a patch to the properties of an object. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.IGenericMeasure.SetProperties(Qlik.Engine.GenericMeasureProperties)">
             <summary><para>Sets some properties for a measure.</para></summary>
@@ -28921,20 +28937,23 @@
              <return>Information on the object</return>
         </member>
         <member name="M:Qlik.Engine.IGenericVariable.ApplyPatches(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.IGenericVariable.ApplyPatchesAsync(System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.IGenericVariable.ApplyPatchesAsync(Qlik.Engine.AsyncHandle,System.Collections.Generic.IEnumerable{Qlik.Engine.NxPatch})">
-            <param name="asyncHandle">Handle to asynchronous method request</param>
-            <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties.</para></summary>
-            <param name="patches">Array of patches.</param>
-            <remark>Applying a patch takes less time than resetting all the properties.</remark>
+             <param name="asyncHandle">Handle to asynchronous method request</param>
+             <summary><para>Applies a patch to the properties of a variable. Allows an update to some of the properties. It should not be possible to patch "/qInfo/qId",</para>
+            <para>and it will be forbidden in the near future.</para></summary>
+             <param name="patches">Array of patches.</param>
+             <remark>Applying a patch takes less time than resetting all the properties.</remark>
         </member>
         <member name="M:Qlik.Engine.IGenericVariable.SetProperties(Qlik.Engine.GenericVariableProperties)">
             <summary><para>Sets some properties for a variable.</para></summary>
