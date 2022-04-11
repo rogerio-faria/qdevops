@@ -1,0 +1,417 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NLog.MailKit</name>
+    </assembly>
+    <members>
+        <member name="T:NLog.MailKit.MailTarget">
+            <summary>
+            Sends log messages by email using SMTP protocol with MailKit.
+            </summary>
+            <seealso href="https://github.com/nlog/nlog/wiki/Mail-target">Documentation on NLog Wiki</seealso>
+            <example>
+            <p>
+            To set up the target in the <a href="config.html">configuration file</a>, 
+            use the following syntax:
+            </p>
+            <code lang="XML" source="examples/targets/Configuration File/Mail/Simple/NLog.config" />
+            <p>
+            This assumes just one target and a single rule. More configuration
+            options are described <a href="config.html">here</a>.
+            </p>
+            <p>
+            To set up the log target programmatically use code like this:
+            </p>
+            <code lang="C#" source="examples/targets/Configuration API/Mail/Simple/Example.cs" />
+            <p>
+            Mail target works best when used with BufferingWrapper target
+            which lets you send multiple log messages in single mail
+            </p>
+            <p>
+            To set up the buffered mail target in the <a href="config.html">configuration file</a>, 
+            use the following syntax:
+            </p>
+            <code lang="XML" source="examples/targets/Configuration File/Mail/Buffered/NLog.config" />
+            <p>
+            To set up the buffered mail target programmatically use code like this:
+            </p>
+            <code lang="C#" source="examples/targets/Configuration API/Mail/Buffered/Example.cs" />
+            </example>
+        </member>
+        <member name="M:NLog.MailKit.MailTarget.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLog.MailKit.MailTarget" /> class.
+            </summary>
+            <remarks>
+            The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+            </remarks>
+        </member>
+        <member name="M:NLog.MailKit.MailTarget.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLog.MailKit.MailTarget" /> class.
+            </summary>
+            <remarks>
+            The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+            </remarks>
+            <param name="name">Name of the target.</param>
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.From">
+            <summary>
+            Gets or sets sender's email address (e.g. joe@domain.com).
+            </summary>
+            <docgen category='Message Options' order='10' />
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.To">
+            <summary>
+            Gets or sets recipients' email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com).
+            </summary>
+            <docgen category='Message Options' order='11' />
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.Cc">
+            <summary>
+            Gets or sets CC email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com).
+            </summary>
+            <docgen category='Message Options' order='12' />
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.Bcc">
+            <summary>
+            Gets or sets BCC email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com).
+            </summary>
+            <docgen category='Message Options' order='13' />
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.AddNewLines">
+            <summary>
+            Gets or sets a value indicating whether to add new lines between log entries.
+            </summary>
+            <value>A value of <c>true</c> if new lines should be added; otherwise, <c>false</c>.</value>
+            <docgen category='Layout Options' order='99' />
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.Subject">
+            <summary>
+            Gets or sets the mail subject.
+            </summary>
+            <docgen category='Message Options' order='5' />
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.Body">
+            <summary>
+            Gets or sets mail message body (repeated for each log message send in one mail).
+            </summary>
+            <remarks>Alias for the <c>Layout</c> property.</remarks>
+            <docgen category='Message Options' order='6' />
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.Encoding">
+            <summary>
+            Gets or sets encoding to be used for sending e-mail.
+            </summary>
+            <docgen category='Layout Options' order='20' />
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.Html">
+            <summary>
+            Gets or sets a value indicating whether to send message as HTML instead of plain text.
+            </summary>
+            <docgen category='Layout Options' order='11' />
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.SmtpServer">
+            <summary>
+            Gets or sets SMTP Server to be used for sending.
+            </summary>
+            <docgen category='SMTP Options' order='10' />
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.SmtpAuthentication">
+            <summary>
+            Gets or sets SMTP Authentication mode.
+            </summary>
+            <docgen category='SMTP Options' order='11' />
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.SmtpUserName">
+            <summary>
+            Gets or sets the username used to connect to SMTP server (used when SmtpAuthentication is set to "basic").
+            </summary>
+            <docgen category='SMTP Options' order='12' />
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.SmtpPassword">
+            <summary>
+            Gets or sets the password used to authenticate against SMTP server (used when SmtpAuthentication is set to "basic").
+            </summary>
+            <docgen category='SMTP Options' order='13' />
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.EnableSsl">
+            <summary>
+            Gets or sets a value indicating whether SSL (secure sockets layer) should be used when communicating with SMTP server.
+            
+            See also <see cref="P:NLog.MailKit.MailTarget.SecureSocketOption"/>
+            </summary>
+            <docgen category='SMTP Options' order='14' />.
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.SecureSocketOption">
+            <summary>
+            Provides a way of specifying the SSL and/or TLS encryption 
+            
+            If <see cref="P:NLog.MailKit.MailTarget.EnableSsl"/> is <c>true</c>, then <see cref="F:MailKit.Security.SecureSocketOptions.SslOnConnect"/> will be used.
+            </summary>
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.SmtpPort">
+            <summary>
+            Gets or sets the port number that SMTP Server is listening on.
+            </summary>
+            <docgen category='SMTP Options' order='15' />
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.SkipCertificateValidation">
+            <summary>
+            Gets or sets a value indicating whether SmtpClient should ignore invalid certificate.
+            </summary>
+            <docgen category='SMTP Options' order='16' />.
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.Priority">
+            <summary>
+            Gets or sets the priority used for sending mails.
+            </summary>
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.ReplaceNewlineWithBrTagInHtml">
+            <summary>
+            Gets or sets a value indicating whether NewLine characters in the body should be replaced with <br/> tags.
+            </summary>
+            <remarks>Only happens when <see cref="P:NLog.MailKit.MailTarget.Html"/> is set to true.</remarks>
+        </member>
+        <member name="P:NLog.MailKit.MailTarget.Timeout">
+            <summary>
+            Gets or sets a value indicating the SMTP client timeout.
+            </summary>
+            <remarks>Warning: zero is not infinit waiting</remarks>
+        </member>
+        <member name="M:NLog.MailKit.MailTarget.Write(NLog.Common.AsyncLogEventInfo)">
+            <summary>
+            Renders the logging event message and adds it to the internal ArrayList of log messages.
+            </summary>
+            <param name="logEvent">The logging event.</param>
+        </member>
+        <member name="M:NLog.MailKit.MailTarget.Write(NLog.Common.AsyncLogEventInfo[])">
+            <summary>
+            NOTE! Will soon be marked obsolete. Instead override Write(IList{AsyncLogEventInfo} logEvents)
+            
+            Writes an array of logging events to the log target. By default it iterates on all
+            events and passes them to "Write" method. Inheriting classes can use this method to
+            optimize batch writes.
+            </summary>
+            <param name="logEvents">Logging events to be written out.</param>
+        </member>
+        <member name="M:NLog.MailKit.MailTarget.Write(System.Collections.Generic.IList{NLog.Common.AsyncLogEventInfo})">
+            <summary>
+            Renders an array logging events.
+            </summary>
+            <param name="logEvents">Array of logging events.</param>
+        </member>
+        <member name="M:NLog.MailKit.MailTarget.InitializeTarget">
+            <summary>
+            Initializes the target. Can be used by inheriting classes
+            to initialize logging.
+            </summary>
+        </member>
+        <member name="M:NLog.MailKit.MailTarget.ProcessSingleMailMessage(System.Collections.Generic.IList{NLog.Common.AsyncLogEventInfo})">
+            <summary>
+            Create mail and send with SMTP
+            </summary>
+            <param name="events">event printed in the body of the event</param>
+        </member>
+        <member name="M:NLog.MailKit.MailTarget.CreateBodyBuffer(System.Collections.Generic.IEnumerable{NLog.Common.AsyncLogEventInfo},NLog.LogEventInfo,NLog.LogEventInfo)">
+            <summary>
+            Create buffer for body
+            </summary>
+            <param name="events">all events</param>
+            <param name="firstEvent">first event for header</param>
+            <param name="lastEvent">last event for footer</param>
+            <returns></returns>
+        </member>
+        <member name="M:NLog.MailKit.MailTarget.GetSmtpSettingsKey(NLog.LogEventInfo)">
+             <summary>
+             Create key for grouping. Needed for multiple events in one mailmessage
+             </summary>
+             <param name="logEvent">event for rendering layouts   </param>  
+            <returns>string to group on</returns>
+        </member>
+        <member name="M:NLog.MailKit.MailTarget.AppendLayout(System.Text.StringBuilder,NLog.LogEventInfo,NLog.Layouts.Layout)">
+            <summary>
+            Append rendered layout to the stringbuilder
+            </summary>
+            <param name="sb">append to this</param>
+            <param name="logEvent">event for rendering <paramref name="layout"/></param>
+            <param name="layout">append if not <c>null</c></param>
+        </member>
+        <member name="M:NLog.MailKit.MailTarget.CreateMailMessage(NLog.LogEventInfo,System.String)">
+            <summary>
+            Create the mailmessage with the addresses, properties and body.
+            </summary>
+        </member>
+        <member name="M:NLog.MailKit.MailTarget.AddAddresses(MimeKit.InternetAddressList,NLog.Layouts.Layout,NLog.LogEventInfo)">
+            <summary>
+            Render  <paramref name="layout"/> and add the addresses to <paramref name="mailAddressCollection"/>
+            </summary>
+            <param name="mailAddressCollection">Addresses appended to this list</param>
+            <param name="layout">layout with addresses, ; separated</param>
+            <param name="logEvent">event for rendering the <paramref name="layout"/></param>
+            <returns>added a address?</returns>
+        </member>
+        <member name="T:NLog.MailKit.SmtpAuthenticationMode">
+            <summary>
+            SMTP authentication modes.
+            </summary>
+        </member>
+        <member name="F:NLog.MailKit.SmtpAuthenticationMode.None">
+            <summary>
+            No authentication.
+            </summary>
+        </member>
+        <member name="F:NLog.MailKit.SmtpAuthenticationMode.Basic">
+            <summary>
+            Basic - username and password.
+            </summary>
+        </member>
+        <member name="F:NLog.MailKit.SmtpAuthenticationMode.Ntlm">
+            <summary>
+            NTLM Authentication.
+            </summary>
+        </member>
+        <member name="T:NLog.Internal.ExceptionHelper">
+            <summary>
+            Helper class for dealing with exceptions.
+            </summary>
+        </member>
+        <member name="M:NLog.Internal.ExceptionHelper.MarkAsLoggedToInternalLogger(System.Exception)">
+            <summary>
+            Mark this exception as logged to the <see cref="T:NLog.Common.InternalLogger"/>.
+            </summary>
+            <param name="exception"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NLog.Internal.ExceptionHelper.IsLoggedToInternalLogger(System.Exception)">
+            <summary>
+            Is this exception logged to the <see cref="T:NLog.Common.InternalLogger"/>? 
+            </summary>
+            <param name="exception"></param>
+            <returns><c>true</c>if the <paramref name="exception"/> has been logged to the <see cref="T:NLog.Common.InternalLogger"/>.</returns>
+        </member>
+        <member name="M:NLog.Internal.ExceptionHelper.MustBeRethrown(System.Exception)">
+            <summary>
+            Determines whether the exception must be rethrown and logs the error to the <see cref="T:NLog.Common.InternalLogger"/> if <see cref="M:NLog.Internal.ExceptionHelper.IsLoggedToInternalLogger(System.Exception)"/> is <c>false</c>.
+            
+            Advised to log first the error to the <see cref="T:NLog.Common.InternalLogger"/> before calling this method.
+            </summary>
+            <param name="exception">The exception to check.</param>
+            <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:NLog.Internal.ExceptionHelper.MustBeRethrownImmediately(System.Exception)">
+            <summary>
+            Determines whether the exception must be rethrown immediately, without logging the error to the <see cref="T:NLog.Common.InternalLogger"/>.
+            
+            Only used this method in special cases.
+            </summary>
+            <param name="exception">The exception to check.</param>
+            <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="T:NLog.Internal.SortHelpers">
+            <summary>
+            Provides helpers to sort log events and associated continuations.
+            </summary>
+        </member>
+        <member name="T:NLog.Internal.SortHelpers.KeySelector`2">
+            <summary>
+            Key selector delegate.
+            </summary>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="value">Value to extract key information from.</param>
+            <returns>Key selected from log event.</returns>
+        </member>
+        <member name="M:NLog.Internal.SortHelpers.BucketSort``2(System.Collections.Generic.IEnumerable{``0},NLog.Internal.SortHelpers.KeySelector{``0,``1})">
+            <summary>
+            Performs bucket sort (group by) on an array of items and returns a dictionary for easy traversal of the result set.
+            </summary>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="inputs">The inputs.</param>
+            <param name="keySelector">The key selector function.</param>
+            <returns>
+            Dictionary where keys are unique input keys, and values are lists of <see cref="T:NLog.Common.AsyncLogEventInfo"/>.
+            </returns>
+        </member>
+        <member name="M:NLog.Internal.SortHelpers.BucketSort``2(System.Collections.Generic.IList{``0},NLog.Internal.SortHelpers.KeySelector{``0,``1})">
+            <summary>
+            Performs bucket sort (group by) on an array of items and returns a dictionary for easy traversal of the result set.
+            </summary>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="inputs">The inputs.</param>
+            <param name="keySelector">The key selector function.</param>
+            <returns>
+            Dictionary where keys are unique input keys, and values are lists of <see cref="T:NLog.Common.AsyncLogEventInfo"/>.
+            </returns>
+        </member>
+        <member name="T:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2">
+             <summary>
+             Single-Bucket optimized readonly dictionary. Uses normal internally Dictionary if multiple buckets are needed.
+            
+             Avoids allocating a new dictionary, when all items are using the same bucket
+             </summary>
+             <typeparam name="TKey">The type of the key.</typeparam>
+             <typeparam name="TValue">The type of the value.</typeparam>
+        </member>
+        <member name="P:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.Count">
+            <inheritDoc/>
+        </member>
+        <member name="P:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.Keys">
+            <inheritDoc/>
+        </member>
+        <member name="P:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.Values">
+            <inheritDoc/>
+        </member>
+        <member name="P:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.IsReadOnly">
+            <inheritDoc/>
+        </member>
+        <member name="P:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.Item(`0)">
+            <summary>
+            Allows direct lookup of existing keys. If trying to access non-existing key exception is thrown.
+            Consider to use <see cref="M:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.TryGetValue(`0,`1@)"/> instead for better safety.
+            </summary>
+            <param name="key">Key value for lookup</param>
+            <returns>Mapped value found</returns>
+        </member>
+        <member name="T:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.Enumerator">
+            <summary>
+            Non-Allocating struct-enumerator
+            </summary>
+        </member>
+        <member name="M:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.System#Collections#Generic#IEnumerable{System#Collections#Generic#KeyValuePair{TKey,TValue}}#GetEnumerator">
+            <inheritDoc/>
+        </member>
+        <member name="M:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.System#Collections#IEnumerable#GetEnumerator">
+            <inheritDoc/>
+        </member>
+        <member name="M:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.ContainsKey(`0)">
+            <inheritDoc/>
+        </member>
+        <member name="M:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.Add(`0,`1)">
+            <summary>Will always throw, as dictionary is readonly</summary>
+        </member>
+        <member name="M:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.Remove(`0)">
+            <summary>Will always throw, as dictionary is readonly</summary>
+        </member>
+        <member name="M:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.TryGetValue(`0,`1@)">
+            <inheritDoc/>
+        </member>
+        <member name="M:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.Add(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>Will always throw, as dictionary is readonly</summary>
+        </member>
+        <member name="M:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.Clear">
+            <summary>Will always throw, as dictionary is readonly</summary>
+        </member>
+        <member name="M:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.Contains(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <inheritDoc/>
+        </member>
+        <member name="M:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)">
+            <inheritDoc/>
+        </member>
+        <member name="M:NLog.Internal.SortHelpers.ReadOnlySingleBucketDictionary`2.Remove(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>Will always throw, as dictionary is readonly</summary>
+        </member>
+    </members>
+</doc>
